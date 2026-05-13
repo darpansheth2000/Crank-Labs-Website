@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Crank Labs — Automate and Optimize your business with AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #050810;
+    --bg-1: #070b16;
+    --bg-2: #0a1020;
+    --bg-card: #0b1224;
+    --bg-card-2: #0e1830;
+    --border: rgba(255,255,255,0.07);
+    --border-2: rgba(255,255,255,0.12);
+    --text: #ffffff;
+    --muted: #9aa3b5;
+    --muted-2: #6b7488;
+    --blue: #2b6dff;
+    --blue-2: #4d8aff;
+    --blue-glow: rgba(43, 109, 255, 0.55);
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --purple: #8b5cf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg-0);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* ---------- Page container with vertical lines ---------- */
+  .page {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+    background:
+      radial-gradient(ellipse 1000px 600px at 50% -200px, rgba(43,109,255,0.18), transparent 70%),
+      linear-gradient(180deg, #070b16 0%, #050810 100%);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  /* Subtle dot pattern */
+  .dots-bg {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 56px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .brand-logo {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-links {
+    display: flex; gap: 44px;
+    font-size: 15px; color: #d7dbe5; font-weight: 400;
+  }
+  .nav-links a { transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .btn-outline {
+    padding: 11px 22px;
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+    font-size: 15px;
+    color: #fff;
+    transition: all .2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.06); }
+
+  /* ---------- Buttons ---------- */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #4d8aff 0%, #2b6dff 100%);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.12) inset,
+      0 12px 32px rgba(43,109,255,0.45),
+      0 0 60px rgba(43,109,255,0.35);
+    transition: transform .15s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary .arr {
+    width: 16px; height: 16px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Pill chip */
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px;
+    border: 1px solid var(--border-2);
+    border-radius: 999px;
+    background: rgba(10,16,32,0.6);
+    backdrop-filter: blur(6px);
+    font-size: 14px;
+    color: #d7dbe5;
+  }
+  .pill .flag { width: 18px; height: 18px; border-radius: 50%; overflow: hidden; display: inline-block; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 90px 24px 80px;
+    z-index: 2;
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 6.5vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 26px auto 24px;
+    max-width: 1000px;
+    background: linear-gradient(180deg, #ffffff 0%, #c7d0e0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 1.45vw, 22px);
+    color: #c2c9d6;
+    max-width: 640px;
+    margin: 0 auto 14px;
+    line-height: 1.5;
+  }
+  .hero p.tag {
+    font-size: 17px; color: #e7eaf2;
+    font-weight: 500;
+    margin: 0 auto 36px;
+  }
+  .hero-glow {
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    width: 900px; height: 280px;
+    background: radial-gradient(closest-side, rgba(43,109,255,0.55), rgba(43,109,255,0.0) 70%);
+    filter: blur(20px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    margin-top: 56px;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 64px;
+    animation: marquee 28s linear infinite;
+    width: max-content;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: #8a93a8;
+    white-space: nowrap;
+    padding: 8px 0;
+  }
+  .marquee-track span { display: inline-block; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---------- Sections ---------- */
+  section { position: relative; padding: 110px 56px; }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .section-head h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 4.4vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 18px 0 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #c0cae0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .section-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
+
+  /* Section divider lines */
+  .divider {
+    position: relative;
+    height: 1px;
+    background: var(--border);
+  }
+  .divider::before {
+    content: ""; position: absolute;
+    left: 25%; right: 25%; top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(77,138,255,0.5), transparent);
+  }
+
+  /* ---------- Benefits grid ---------- */
+  .grid-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .benefit {
+    position: relative;
+    padding: 30px 28px 32px;
+    border-radius: 18px;
+    background:
+      radial-gradient(120% 80% at 50% -20%, rgba(43,109,255,0.10), transparent 70%),
+      linear-gradient(180deg, rgba(15,22,40,0.7) 0%, rgba(8,13,26,0.7) 100%);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+    overflow: hidden;
+  }
+  .benefit::before {
+    content: ""; position: absolute; inset: -1px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(77,138,255,0.25), transparent 40%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+  }
+  .benefit .icon {
+    width: 44px; height: 44px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, #1a2647 0%, #0c1430 100%);
+    box-shadow: 0 0 0 1px rgba(77,138,255,0.25), 0 12px 24px rgba(0,0,0,0.4);
+    margin-bottom: 26px;
+  }
+  .benefit h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .benefit p { color: #97a1b5; font-size: 14.5px; line-height: 1.6; }
+
+  /* ---------- Why us split section ---------- */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .why-list { display: flex; flex-direction: column; }
+  .why-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .why-item:last-child { border-bottom: none; }
+  .why-item .row {
+    display: flex; align-items: baseline; gap: 16px;
+    font-size: 21px; font-weight: 400; color: #c9d0de;
+    font-family: 'Instrument Serif', serif;
+  }
+  .why-item .num { color: #8a93a8; min-width: 32px; font-family: 'Instrument Serif', serif; }
+  .why-item .title { color: #c9d0de; }
+  .why-item.active .num { color: var(--blue-2); font-weight: 500; }
+  .why-item.active .title { color: #fff; }
+  .why-item .desc {
+    overflow: hidden;
+    max-height: 0;
+    color: #97a1b5;
+    font-size: 14.5px;
+    line-height: 1.6;
+    padding-left: 48px;
+    transition: max-height .35s ease, margin .25s, opacity .25s;
+    opacity: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  .why-item.active .desc {
+    max-height: 80px;
+    margin-top: 10px;
+    opacity: 1;
+  }
+
+  .why-visual {
+    position: relative;
+    height: 470px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #0a1226 0%, #060b1a 100%);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .why-visual .stage {
+    position: relative; width: 78%; height: 70%;
+    border-radius: 22px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(77,138,255,0.6), rgba(43,109,255,0.18) 50%, transparent 80%);
+    border: 1px solid rgba(77,138,255,0.4);
+    box-shadow:
+      0 0 60px rgba(43,109,255,0.45),
+      inset 0 0 60px rgba(43,109,255,0.15);
+    padding: 26px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-visual .inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #0a1226 0%, #050b1c 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 26px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  /* Workflow mapping diagram */
+  .wm-diagram { display: flex; align-items: center; gap: 28px; width: 100%; height: 100%; }
+  .wm-hub {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(180deg, #1d2e57 0%, #0f1a36 100%);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(77,138,255,0.4);
+    box-shadow: 0 0 24px rgba(77,138,255,0.45);
+    flex-shrink: 0;
+  }
+  .wm-nodes { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .wm-node {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, #14224a 0%, #0c1735 100%);
+    border: 1px solid rgba(77,138,255,0.25);
+    border-radius: 10px;
+    font-size: 13px;
+  }
+  .wm-node .ico {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: rgba(77,138,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: #cfd9ff;
+  }
+  .wm-node .meta { line-height: 1.2; }
+  .wm-node .meta b { display: block; color: #fff; font-weight: 500; font-size: 13px; }
+  .wm-node .meta span { color: #8893ab; font-size: 11.5px; }
+
+  /* Connecting lines */
+  .wm-lines { position: absolute; left: 60px; top: 0; bottom: 0; width: 38px; pointer-events: none; }
+
+  /* Total Growth Chart */
+  .growth-card {
+    width: 92%; height: 90%;
+    background: linear-gradient(180deg, #142146 0%, #0a1432 100%);
+    border-radius: 14px;
+    padding: 18px;
+    color: #fff;
+    border: 1px solid rgba(77,138,255,0.3);
+  }
+  .growth-card .top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .growth-card .label { font-size: 12px; color: #9aa3b8; }
+  .growth-card .big { font-size: 32px; font-weight: 600; margin-top: 4px; }
+  .growth-card .legend { display: flex; gap: 14px; font-size: 11px; color: #9aa3b8; }
+  .growth-card .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+  .growth-card .chart { display: flex; gap: 14px; align-items: end; height: 130px; padding: 8px 4px 0; position: relative; }
+  .growth-card .bars { display: flex; flex-direction: column; gap: 0; align-items: center; flex: 1; }
+  .growth-card .bar {
+    width: 22px;
+    background: linear-gradient(180deg, #6ea3ff 0%, #2c6dff 100%);
+    border-radius: 4px 4px 0 0;
+    position: relative;
+  }
+  .growth-card .bar::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(110,163,255,0.25), transparent);
+    border-radius: 0 0 4px 4px;
+  }
+  .growth-card .month { font-size: 10px; color: #788299; margin-top: 6px; }
+  .growth-card .y-axis {
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-size: 10px; color: #788299; height: 130px; margin-right: 4px;
+  }
+
+  /* Notifications visual (Error handling) */
+  .notifs { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .notif {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, rgba(20,30,60,0.95), rgba(12,20,42,0.95));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: #fff;
+    position: relative;
+  }
+  .notif .nico {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .notif .ntext b { display: block; font-weight: 500; font-size: 13px; }
+  .notif .ntext span { color: #97a1b5; font-size: 11.5px; }
+  .notif .nx {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    color: #6b7488; font-size: 14px;
+  }
+  .notif.ok { background: linear-gradient(180deg, rgba(34,197,94,0.18), rgba(15,40,25,0.5)); border-color: rgba(34,197,94,0.3); }
+  .notif.ok .nico { background: rgba(34,197,94,0.25); color: #22c55e; }
+  .notif.fail { background: linear-gradient(180deg, rgba(239,68,68,0.18), rgba(40,15,15,0.5)); border-color: rgba(239,68,68,0.3); }
+  .notif.fail .nico { background: rgba(239,68,68,0.25); color: #ef4444; }
+  .notif.warn { background: linear-gradient(180deg, rgba(245,158,11,0.18), rgba(40,30,10,0.5)); border-color: rgba(245,158,11,0.3); }
+  .notif.warn .nico { background: rgba(245,158,11,0.25); color: #f59e0b; }
+  .notif.info { background: linear-gradient(180deg, rgba(77,138,255,0.18), rgba(15,25,55,0.5)); border-color: rgba(77,138,255,0.3); }
+  .notif.info .nico { background: rgba(77,138,255,0.25); color: #4d8aff; }
+
+  /* AI integration design visual (default placeholder) */
+  .ai-int {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .ai-int .orb {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #6ea3ff, #2b6dff 60%, #0a1f55 100%);
+    box-shadow: 0 0 60px rgba(77,138,255,0.7), inset 0 0 30px rgba(255,255,255,0.2);
+  }
+
+  /* Smart triggers visual */
+  .triggers {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;
+  }
+  .triggers .tile {
+    padding: 14px;
+    background: linear-gradient(180deg, #14224a 0%, #0c1735 100%);
+    border: 1px solid rgba(77,138,255,0.25);
+    border-radius: 12px;
+    font-size: 12px;
+    color: #cfd9ff;
+  }
+  .triggers .tile b { display: block; color: #fff; font-size: 13px; margin-bottom: 4px; }
+  .triggers .tile small { color: #8893ab; font-size: 11px; }
+
+  /* ---------- Services ---------- */
+  .service {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    padding: 40px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(11,18,36,0.6) 0%, rgba(6,10,22,0.6) 100%);
+    border: 1px solid var(--border);
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  .service::before {
+    content: ""; position: absolute; inset: -1px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(77,138,255,0.2), transparent 30%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+  }
+  .service.reverse { grid-template-columns: 1fr 1fr; }
+  .service.reverse .svc-visual { order: 2; }
+  .service.reverse .svc-text { order: 1; }
+  .svc-text .pill { margin-bottom: 18px; }
+  .svc-text h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .svc-text p { color: #97a1b5; font-size: 15px; line-height: 1.65; margin-bottom: 20px; }
+  .svc-bullets { display: flex; flex-direction: column; gap: 12px; }
+  .svc-bullets .b {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; color: #d7dbe5;
+  }
+  .svc-bullets .check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(180deg, #4d8aff, #2b6dff);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(77,138,255,0.5);
+  }
+  .svc-visual {
+    background: linear-gradient(180deg, #0c1426 0%, #06091a 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    min-height: 320px;
+    position: relative;
+  }
+  .svc-visual .browser-dots { display: flex; gap: 6px; margin-bottom: 18px; }
+  .svc-visual .browser-dots i {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(77,138,255,0.6);
+    display: inline-block;
+  }
+  .svc-visual .browser-dots i:nth-child(2),
+  .svc-visual .browser-dots i:nth-child(3) { background: rgba(255,255,255,0.1); }
+
+  /* Workflow automation card content */
+  .wa-flow { display: flex; flex-direction: column; gap: 10px; position: relative; padding-left: 14px; }
+  .wa-flow::before {
+    content: ""; position: absolute; left: 4px; top: 22px; bottom: 22px;
+    border-left: 1.5px dashed rgba(77,138,255,0.35);
+  }
+  .wa-step {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, #14224a 0%, #0c1735 100%);
+    border: 1px solid rgba(77,138,255,0.25);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #fff;
+    position: relative;
+  }
+  .wa-step .ico {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(77,138,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    color: #b6ccff;
+  }
+  .wa-step .meta b { display: block; font-weight: 500; font-size: 13px; }
+  .wa-step .meta span { color: #8893ab; font-size: 11px; letter-spacing: 0.06em; }
+  .wa-step .dots { margin-left: auto; color: #6b7488; }
+  .wa-stats { display: flex; gap: 14px; padding: 10px 14px; font-size: 12.5px; color: #d7dbe5; background: rgba(20,34,74,0.6); border-radius: 10px; border: 1px solid rgba(77,138,255,0.2); }
+  .wa-stats .s { display: flex; align-items: center; gap: 6px; }
+  .wa-stats .ok { width: 14px; height: 14px; border-radius: 50%; background: rgba(77,138,255,0.2); display: inline-flex; align-items: center; justify-content: center; color: #4d8aff; font-size: 10px; }
+
+  /* AI assistant card */
+  .ai-card { text-align: center; padding-top: 8px; }
+  .ai-card .ai-logo {
+    width: 48px; height: 48px; margin: 12px auto 10px;
+    background: linear-gradient(180deg, #4d8aff, #2b6dff);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 26px rgba(77,138,255,0.6);
+  }
+  .ai-card .ai-title { font-size: 13px; color: #d7dbe5; margin-bottom: 16px; }
+  .ai-card .ai-options { display: flex; flex-direction: column; gap: 8px; }
+  .ai-card .ai-option {
+    padding: 11px 14px;
+    background: linear-gradient(180deg, rgba(20,34,74,0.7), rgba(12,23,53,0.7));
+    border: 1px solid rgba(77,138,255,0.18);
+    border-radius: 9px;
+    font-size: 13px;
+    text-align: left;
+    color: #d7dbe5;
+  }
+  .ai-card .ai-option.active {
+    background: linear-gradient(180deg, rgba(43,109,255,0.35), rgba(27,68,170,0.35));
+    border-color: rgba(77,138,255,0.5);
+    color: #fff;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* Lead generation chart */
+  .lg-card {
+    background: linear-gradient(180deg, #0e1730 0%, #08101f 100%);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(77,138,255,0.15);
+  }
+  .lg-card .lg-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .lg-card .lg-title { font-size: 14px; color: #fff; display: flex; align-items: center; gap: 6px; }
+  .lg-card .lg-sub { font-size: 11px; color: #8893ab; margin-top: 2px; }
+  .lg-card .lg-btn {
+    padding: 6px 12px;
+    background: linear-gradient(180deg, rgba(77,138,255,0.2), rgba(43,109,255,0.2));
+    border: 1px solid rgba(77,138,255,0.3);
+    border-radius: 7px;
+    font-size: 12px;
+    color: #fff;
+  }
+  .lg-card .lg-chart {
+    height: 130px; margin: 8px 0 6px;
+    position: relative;
+    display: flex; align-items: stretch;
+  }
+  .lg-card .lg-y {
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-size: 10px; color: #788299; margin-right: 8px;
+  }
+  .lg-card .lg-line { flex: 1; position: relative; }
+  .lg-card .lg-x {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: #788299;
+    margin-top: 6px; padding: 0 8px;
+  }
+
+  /* Stacked panel effect for service cards */
+  .svc-stack {
+    position: relative;
+    margin-bottom: 26px;
+  }
+  .svc-stack::before, .svc-stack::after {
+    content: "";
+    position: absolute;
+    left: 30px; right: 30px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(11,18,36,0.6), rgba(6,10,22,0.6));
+    z-index: -1;
+  }
+  .svc-stack::before {
+    top: -12px; bottom: 28px;
+  }
+  .svc-stack::after {
+    top: -22px; bottom: 38px;
+    left: 60px; right: 60px;
+    opacity: 0.6;
+  }
+
+  /* ---------- Process / Work Process ---------- */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .process-cell {
+    padding: 50px 36px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .process-cell:nth-child(3n) { border-right: none; }
+  .process-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .process-cell h4 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 18px 0 14px;
+    color: #fff;
+  }
+  .process-cell p { color: #97a1b5; font-size: 14.5px; line-height: 1.65; max-width: 320px; margin: 0 auto; }
+
+  /* ---------- Case study ---------- */
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .case-card {
+    padding: 24px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(11,18,36,0.6), rgba(6,10,22,0.6));
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card::before {
+    content: ""; position: absolute; inset: -1px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(77,138,255,0.2), transparent 35%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+  }
+  .case-inner {
+    background: linear-gradient(180deg, #0e1730 0%, #08101f 100%);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 22px;
+  }
+  .case-inner .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .case-inner .row h5 { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; }
+  .case-inner .badge {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(180deg, #4d8aff, #2b6dff);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 18px rgba(77,138,255,0.4);
+  }
+  .case-inner .more { color: #6b7488; font-size: 18px; cursor: pointer; }
+
+  .donut-row { display: flex; align-items: center; gap: 22px; }
+  .donut-row .donut-wrap { position: relative; width: 110px; height: 110px; flex-shrink: 0; }
+  .donut-row .donut-pct {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 600;
+  }
+  .donut-row .donut-pct span { font-size: 10px; color: #97a1b5; font-weight: 400; }
+  .donut-row .legend { flex: 1; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+  .donut-row .legend .lr { display: flex; justify-content: space-between; gap: 12px; }
+  .donut-row .legend .lr .lf { display: flex; align-items: center; gap: 8px; color: #c9d0de; }
+  .donut-row .legend .lr .ld { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+  .donut-row .legend .lr .val { color: #fff; font-weight: 500; }
+
+  .inv-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: linear-gradient(180deg, rgba(15,24,48,0.7), rgba(10,17,36,0.7)); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 14px; }
+  .inv-row .big { font-size: 22px; font-weight: 600; }
+  .inv-row .sep { width: 1px; height: 28px; background: rgba(255,255,255,0.1); }
+  .inv-row .change { color: #22c55e; font-weight: 500; font-size: 13px; }
+  .inv-row .change-text { font-size: 12px; color: #9aa3b8; line-height: 1.25; max-width: 130px; }
+
+  .inv-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .inv-tile { padding: 12px; background: linear-gradient(180deg, rgba(15,24,48,0.7), rgba(10,17,36,0.7)); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); }
+  .inv-tile b { display: block; font-size: 16px; }
+  .inv-tile small { color: #9aa3b8; font-size: 11.5px; }
+  .inv-tile .bars { display: flex; gap: 1.5px; margin-top: 8px; }
+  .inv-tile .bars i { display: inline-block; width: 3px; height: 14px; border-radius: 1px; }
+
+  .case-card h6 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .case-card p { color: #97a1b5; font-size: 14px; line-height: 1.6; }
+
+  /* ---------- Pricing CTA ---------- */
+  .pricing-cta { text-align: center; padding: 100px 24px; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq {
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(15,22,42,0.6) 0%, rgba(8,12,24,0.6) 100%);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .faq-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+  }
+  .faq-q .ic {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: linear-gradient(180deg, #4d8aff, #2b6dff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: #fff;
+    flex-shrink: 0;
+    transition: transform .3s;
+  }
+  .faq.open .faq-q .ic { transform: rotate(45deg); }
+  .faq.open .faq-q .ic::before { content: "+"; }
+  .faq:not(.open) .faq-q .ic::before { content: "+"; }
+  .faq.open .faq-q .ic { background: linear-gradient(180deg, #4d8aff, #2b6dff); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    color: #97a1b5;
+    font-size: 14.5px;
+    line-height: 1.7;
+    transition: max-height .35s ease, padding .25s;
+  }
+  .faq.open .faq-a { max-height: 200px; padding: 6px 20px 22px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta-wrap {
+    margin: 0 auto 60px;
+    max-width: 900px;
+    padding: 60px 40px;
+    border-radius: 22px;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(43,109,255,0.18), transparent 70%),
+      linear-gradient(180deg, rgba(15,22,42,0.7), rgba(8,12,24,0.7));
+    border: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-wrap::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(135deg, transparent 49%, rgba(255,255,255,0.015) 50%, transparent 51%);
+    background-size: 12px 12px;
+    pointer-events: none;
+  }
+  .final-cta-wrap .pill { margin-bottom: 18px; }
+  .final-cta-wrap h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #c0cae0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .final-cta-wrap p { color: #97a1b5; max-width: 520px; margin: 0 auto 26px; font-size: 15px; line-height: 1.6; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 60px 56px 40px; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-top h6 { font-size: 15px; font-weight: 500; margin-bottom: 18px; color: #fff; }
+  .footer-top ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-top a, .footer-top li { font-size: 14px; color: #97a1b5; }
+  .footer-top a:hover { color: #fff; }
+  .footer-brand p { color: #97a1b5; font-size: 14px; line-height: 1.6; margin: 16px 0 22px; max-width: 320px; }
+  .subscribe { display: flex; background: rgba(15,22,42,0.6); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; max-width: 320px; }
+  .subscribe input {
+    flex: 1; background: transparent; border: none; outline: none;
+    padding: 12px 16px; color: #fff; font-family: inherit; font-size: 14px;
+  }
+  .subscribe input::placeholder { color: #6b7488; }
+  .subscribe button {
+    padding: 8px 16px; margin: 5px;
+    background: linear-gradient(180deg, #4d8aff, #2b6dff);
+    border-radius: 7px;
+    color: #fff; font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 0 20px rgba(77,138,255,0.4);
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    margin-top: 50px;
+    padding-top: 24px;
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: #6b7488;
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .nav { padding: 22px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .grid-benefits { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .service { grid-template-columns: 1fr; padding: 24px; }
+    .service.reverse .svc-visual { order: 2; }
+    .service.reverse .svc-text { order: 1; }
+    .process-grid { grid-template-columns: 1fr; }
+    .process-cell { border-right: none; }
+    .case-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    footer { padding: 50px 24px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="dots-bg"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">
+      <span class="brand-logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#6ea3ff"/>
+              <stop offset="100%" stop-color="#2b6dff"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 4 C 9 4, 4 9, 4 16 C 4 22, 8 27, 14 28 L 14 23 C 10 22, 8 19, 8 16 C 8 11, 11 8, 16 8 C 19 8, 21 9, 23 11 L 26 8 C 23 5, 20 4, 16 4 Z"
+                fill="url(#lg1)"/>
+          <path d="M20 14 C 22 14, 24 16, 24 18 C 24 21, 22 23, 19 23 L 19 28 C 24 28, 28 24, 28 19 C 28 14, 25 11, 21 11 L 20 14 Z"
+                fill="url(#lg1)" opacity="0.8"/>
+        </svg>
+      </span>
+      Crank Labs
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="btn-outline">Book a Call</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top: 50px;">
+    <span class="pill">
+      <span class="flag">
+        <svg viewBox="0 0 18 18" width="18" height="18">
+          <rect width="18" height="6" y="0" fill="#fff"/>
+          <rect width="18" height="6" y="6" fill="#009639"/>
+          <rect width="18" height="6" y="12" fill="#000"/>
+          <rect width="6" height="18" fill="#CE1126"/>
+        </svg>
+      </span>
+      Proudly based in the UAE
+    </span>
+    <h1>Transform Your Business with AI</h1>
+    <p class="lead">We build intelligent automation systems that replace manual work, accelerate revenue, and scale your operations without adding headcount.</p>
+    <p class="tag">For any business. Any industry. Starting today.</p>
+    <button class="btn-primary">
+      Book a Consult
+      <span class="arr">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M7 17 L17 7 M7 7 L17 7 L17 17"/>
+        </svg>
+      </span>
+    </button>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>AI Automation</span>
+        <span>Agentic Layer</span>
+        <span style="opacity:.55">Agentic Layer</span>
+        <span>AI and Business Strategy</span>
+        <span>CRM and Lead Gen</span>
+        <span>AI Automation</span>
+        <span>Agentic Layer</span>
+        <span style="opacity:.55">Agentic Layer</span>
+        <span>AI and Business Strategy</span>
+        <span>CRM and Lead Gen</span>
+      </div>
+    </div>
+
+    <div class="hero-glow"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="section-head">
+      <span class="pill">Benefits</span>
+      <h2>The AI advantage that changes everything</h2>
+      <p>Our intelligent solutions eliminate manual work, reduce costs, and scale with your growth backed by industry-leading ROI guarantees.</p>
+    </div>
+
+    <div class="grid-benefits">
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="6" width="18" height="13" rx="2.5" fill="url(#bg1)" stroke="#6ea3ff" stroke-width="1.3"/>
+            <circle cx="17" cy="12.5" r="2" fill="#bcd2ff"/>
+            <defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4d8aff"/><stop offset="1" stop-color="#1e4bcf"/></linearGradient></defs>
+          </svg>
+        </div>
+        <h3>Operating Costs by 40%</h3>
+        <p>Eliminate expensive manual processes and replace them with intelligent automation that works 24 hours a day, at a fraction of the cost.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="5" width="18" height="16" rx="2.5" fill="url(#bg2)" stroke="#6ea3ff" stroke-width="1.3"/>
+            <rect x="3" y="5" width="18" height="4.5" fill="#1e4bcf"/>
+            <circle cx="8" cy="14" r="1.2" fill="#bcd2ff"/>
+            <circle cx="12" cy="14" r="1.2" fill="#bcd2ff"/>
+            <circle cx="16" cy="14" r="1.2" fill="#bcd2ff"/>
+            <circle cx="8" cy="18" r="1.2" fill="#bcd2ff"/>
+            <circle cx="12" cy="18" r="1.2" fill="#bcd2ff"/>
+            <defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4d8aff"/><stop offset="1" stop-color="#1e4bcf"/></linearGradient></defs>
+          </svg>
+        </div>
+        <h3>Save 40+ hours every week</h3>
+        <p>Automate repetitive tasks and reclaim valuable time to focus on strategic growth initiatives.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="16" rx="2.5" fill="url(#bg3)" stroke="#6ea3ff" stroke-width="1.3"/>
+            <polyline points="5,14 8,11 11,13 14,9 17,12 19,10" stroke="#bcd2ff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4d8aff"/><stop offset="1" stop-color="#1e4bcf"/></linearGradient></defs>
+          </svg>
+        </div>
+        <h3>99% accuracy, zero hand-holding</h3>
+        <p>AI-powered validation eliminates costly human errors from data entry, compliance, reporting, and customer communication permanently.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M5 14 a 7 7 0 0 1 14 0 v 3 a 2 2 0 0 1 -2 2 h -1 v -7 h 3" stroke="#6ea3ff" stroke-width="1.4" fill="none"/>
+            <path d="M5 14 v 3 a 2 2 0 0 0 2 2 h 1 v -7 h -3" fill="url(#bg4)" stroke="#6ea3ff" stroke-width="1.4"/>
+            <path d="M16 12 v 7 h 1 a 2 2 0 0 0 2 -2 v -5" fill="url(#bg4)" stroke="#6ea3ff" stroke-width="1.4"/>
+            <defs><linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4d8aff"/><stop offset="1" stop-color="#1e4bcf"/></linearGradient></defs>
+          </svg>
+        </div>
+        <h3>Your business never sleeps</h3>
+        <p>AI agents handle enquiries, qualify leads, process requests, and nurture customers around the clock whether you're in a meeting or off the grid.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M14 4 c 4 1 7 4 6 10 l 3 1 -3 3 -3 -1 c -1 2 -3 4 -6 4 -3 0 -3 -3 -3 -3 l -2 -2 c 0 0 -3 0 -3 -3 0 -3 2 -5 4 -6 l 1 -3 z" fill="url(#bg5)" stroke="#6ea3ff" stroke-width="1.3"/>
+            <defs><linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4d8aff"/><stop offset="1" stop-color="#1e4bcf"/></linearGradient></defs>
+            <circle cx="9" cy="11" r="1" fill="#fff"/>
+          </svg>
+        </div>
+        <h3>Scale 3x without adding staff</h3>
+        <p>Handle triple the workload with existing team through intelligent automation and smart workflows.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <ellipse cx="12" cy="10" rx="6.5" ry="7" fill="url(#bg6)" stroke="#6ea3ff" stroke-width="1.3"/>
+            <rect x="10" y="16" width="4" height="4" rx="1" fill="#6ea3ff"/>
+            <rect x="9.5" y="19" width="5" height="1.5" rx="0.5" fill="#1e4bcf"/>
+            <defs><linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a3c2ff"/><stop offset="1" stop-color="#2b6dff"/></linearGradient></defs>
+          </svg>
+        </div>
+        <h3>ROI driven growth strategies</h3>
+        <p>Proven return on investment with measurable results that impact your bottom line immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="section-head">
+      <span class="pill">Why Crank Labs</span>
+      <h2>Built for real business transformation</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item active" data-visual="wm">
+          <div class="row"><span class="num">01.</span><span class="title">Workflow mapping</span></div>
+          <div class="desc">Document current processes and identify bottlenecks.</div>
+        </div>
+        <div class="why-item" data-visual="ai">
+          <div class="row"><span class="num">02.</span><span class="title">AI integration Design</span></div>
+          <div class="desc">Design intelligent layers that connect to your existing stack.</div>
+        </div>
+        <div class="why-item" data-visual="trig">
+          <div class="row"><span class="num">03.</span><span class="title">Smart triggers</span></div>
+          <div class="desc">Event-driven automations that fire when conditions are met.</div>
+        </div>
+        <div class="why-item" data-visual="err">
+          <div class="row"><span class="num">04.</span><span class="title">Error handling</span></div>
+          <div class="desc">Built-in exception management for edge cases</div>
+        </div>
+        <div class="why-item" data-visual="learn">
+          <div class="row"><span class="num">05.</span><span class="title">Continuous learning</span></div>
+          <div class="desc">AI improves accuracy over time through machine learning.</div>
+        </div>
+      </div>
+
+      <div class="why-visual">
+        <div class="stage">
+          <div class="inner" id="whyInner">
+            <!-- Workflow mapping default -->
+            <div class="wm-diagram" id="vis-wm">
+              <div class="wm-hub">
+                <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 4 C 9 4, 4 9, 4 16 C 4 22, 8 27, 14 28 L 14 23 C 10 22, 8 19, 8 16 C 8 11, 11 8, 16 8 C 19 8, 21 9, 23 11 L 26 8 C 23 5, 20 4, 16 4 Z" fill="#6ea3ff"/>
+                  <path d="M20 14 C 22 14, 24 16, 24 18 C 24 21, 22 23, 19 23 L 19 28 C 24 28, 28 24, 28 19 C 28 14, 25 11, 21 11 L 20 14 Z" fill="#6ea3ff" opacity="0.8"/>
+                </svg>
+              </div>
+              <svg viewBox="0 0 60 200" width="40" style="position:absolute;left:80px;top:24px;height:calc(100% - 48px);">
+                <path d="M0 100 C 30 100, 30 30, 60 30" stroke="#4d8aff" stroke-width="1.3" fill="none" opacity=".6"/>
+                <path d="M0 100 C 30 100, 30 75, 60 75" stroke="#4d8aff" stroke-width="1.3" fill="none" opacity=".6"/>
+                <path d="M0 100 C 30 100, 30 125, 60 125" stroke="#4d8aff" stroke-width="1.3" fill="none" opacity=".6"/>
+                <path d="M0 100 C 30 100, 30 170, 60 170" stroke="#4d8aff" stroke-width="1.3" fill="none" opacity=".6"/>
+              </svg>
+              <div class="wm-nodes" style="margin-left:30px;">
+                <div class="wm-node">
+                  <div class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="6" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 11 h 20" stroke="currentColor" stroke-width="2"/></svg></div>
+                  <div class="meta"><b>Payments</b><span>67 Issues</span></div>
+                </div>
+                <div class="wm-node">
+                  <div class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,11 21,3 13,21 11,13" /></svg></div>
+                  <div class="meta"><b>Social</b><span>34 Issues</span></div>
+                </div>
+                <div class="wm-node">
+                  <div class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12 h 18 M 12 3 a 14 14 0 0 1 0 18 M 12 3 a 14 14 0 0 0 0 18"/></svg></div>
+                  <div class="meta"><b>Community Engine</b><span>55 Issues</span></div>
+                </div>
+                <div class="wm-node">
+                  <div class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="14" width="4" height="7"/><rect x="10" y="9" width="4" height="12"/><rect x="17" y="4" width="4" height="17"/></svg></div>
+                  <div class="meta"><b>Revenue</b><span>43 Issues</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI integration -->
+            <div class="ai-int" id="vis-ai" style="display:none;">
+              <div class="orb"></div>
+            </div>
+
+            <!-- Smart triggers -->
+            <div class="triggers" id="vis-trig" style="display:none;">
+              <div class="tile"><b>On Form Submit</b><small>Trigger</small></div>
+              <div class="tile"><b>If Score &gt; 80</b><small>Condition</small></div>
+              <div class="tile"><b>Send Email</b><small>Action</small></div>
+              <div class="tile"><b>Update CRM</b><small>Action</small></div>
+            </div>
+
+            <!-- Error handling notifications -->
+            <div class="notifs" id="vis-err" style="display:none;">
+              <div class="notif ok">
+                <div class="nico">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="8,12 11,15 16,9"/></svg>
+                </div>
+                <div class="ntext"><b>Payment Successfull</b><span>Your payment has been successfully received.</span></div>
+                <span class="nx">✕</span>
+              </div>
+              <div class="notif fail">
+                <div class="nico">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/></svg>
+                </div>
+                <div class="ntext"><b>Payment Failure</b><span>We're encountering issues with processing.</span></div>
+                <span class="nx">✕</span>
+              </div>
+              <div class="notif warn">
+                <div class="nico">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 9 a 7 7 0 0 1 14 0 v 4 l 2 3 H 3 l 2 -3 z"/><path d="M10 19 a 2 2 0 0 0 4 0"/></svg>
+                </div>
+                <div class="ntext"><b>Time To Pay Up!</b><span>You're adding admins to your team.</span></div>
+                <span class="nx">✕</span>
+              </div>
+              <div class="notif info">
+                <div class="nico">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15,15"/></svg>
+                </div>
+                <div class="ntext"><b>Update Available</b><span>New feature and improve have been added.</span></div>
+                <span class="nx">✕</span>
+              </div>
+            </div>
+
+            <!-- Continuous learning chart -->
+            <div class="growth-card" id="vis-learn" style="display:none;">
+              <div class="top">
+                <div>
+                  <div class="label">Total Growth Score</div>
+                  <div class="big">72.9%</div>
+                </div>
+                <div class="legend">
+                  <span><i style="background:#6ea3ff"></i>LEARN</span>
+                  <span><i style="background:#4d8aff"></i>GROWTH</span>
+                  <span><i style="background:#2b6dff"></i>RESULT</span>
+                </div>
+              </div>
+              <div class="chart" style="display:flex;align-items:end;gap:14px;padding-top:12px;">
+                <div class="y-axis">
+                  <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>00</span>
+                </div>
+                <div style="flex:1;display:flex;justify-content:space-around;align-items:end;border-bottom:1px solid rgba(255,255,255,0.08);height:130px;">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:90%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">JAN</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:55%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">FEB</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:75%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">MAR</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:85%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">MAY</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:60%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">JUN</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:30px;height:100%;justify-content:end;">
+                    <div style="width:22px;height:78%;background:linear-gradient(180deg,#bcd2ff,#6ea3ff 60%,#2b6dff);border-radius:4px 4px 0 0;"></div>
+                    <span class="month">AUG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-head">
+      <span class="pill">Services</span>
+      <h2>AI solutions that actually move the needle</h2>
+      <p>Every solution is tailored to your industry and backed by measurable results.</p>
+    </div>
+
+    <!-- Workflow automation -->
+    <div class="service">
+      <div class="svc-visual">
+        <div class="browser-dots"><i></i><i></i><i></i></div>
+        <div class="wa-flow">
+          <div class="wa-step">
+            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13 c 0 -7 7 -10 14 -10 0 7 -3 14 -10 14 z"/><circle cx="14" cy="9" r="2"/><path d="M5 13 l -2 6 6 -2"/></svg></div>
+            <div class="meta"><b>For Submission</b><span>TRIGGER</span></div>
+            <div class="dots">⋮</div>
+          </div>
+          <div class="wa-step">
+            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3 v 9 l 6 4"/></svg></div>
+            <div class="meta"><b>Data Validation</b><span>PROCESSING</span></div>
+            <div class="dots">⋮</div>
+          </div>
+          <div class="wa-stats">
+            <div class="s"><span class="ok">✓</span> 99.5% accuracy</div>
+            <div class="s"><span class="ok">✓</span> 2 seconds</div>
+          </div>
+          <div class="wa-step">
+            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6 v 6 c 0 1.7 3.6 3 8 3 s 8 -1.3 8 -3 v -6"/><path d="M4 12 v 6 c 0 1.7 3.6 3 8 3 s 8 -1.3 8 -3 v -6"/></svg></div>
+            <div class="meta"><b>Smart Routing</b><span>ACTION</span></div>
+            <div class="dots">⋮</div>
+          </div>
+        </div>
+      </div>
+      <div class="svc-text">
+        <span class="pill">Automation</span>
+        <h3>Workflow automation</h3>
+        <p>Turn your most time consuming manual processes into intelligent, self-running systems. From lead routing and data entry to approvals and reporting. We eliminate the bottlenecks that quietly drain your team's time and your company's budget.</p>
+        <div class="svc-bullets">
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> 40+ Hours Saved Weekly</div>
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> 95% Error Reduction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI virtual assistant -->
+    <div class="service reverse">
+      <div class="svc-text">
+        <span class="pill">Assistants</span>
+        <h3>AI virtual assistant</h3>
+        <p>Deploy intelligent AI assistants that handle customer support, schedule management, email responses, and data analysis. Your virtual workforce operates 24/7 without breaks, sick days, or salary increases.</p>
+        <div class="svc-bullets">
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> 24/7 Availability</div>
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> Instant Response Times</div>
+        </div>
+      </div>
+      <div class="svc-visual">
+        <div class="browser-dots"><i></i><i></i><i></i></div>
+        <div class="ai-card">
+          <div class="ai-logo">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4 C 9 4, 4 9, 4 16 C 4 22, 8 27, 14 28 L 14 23 C 10 22, 8 19, 8 16 C 8 11, 11 8, 16 8 C 19 8, 21 9, 23 11 L 26 8 C 23 5, 20 4, 16 4 Z" fill="#fff"/>
+              <path d="M20 14 C 22 14, 24 16, 24 18 C 24 21, 22 23, 19 23 L 19 28 C 24 28, 28 24, 28 19 C 28 14, 25 11, 21 11 L 20 14 Z" fill="#fff" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="ai-title">AI Assistant with Smart Suggestions</div>
+          <div class="ai-options">
+            <div class="ai-option">Process invoices</div>
+            <div class="ai-option">Send payment reminders</div>
+            <div class="ai-option active">
+              Generate summary report
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sales marketing automation -->
+    <div class="service">
+      <div class="svc-visual">
+        <div class="browser-dots"><i></i><i></i><i></i></div>
+        <div class="lg-card">
+          <div class="lg-top">
+            <div>
+              <div class="lg-title">Lead Generation
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8893ab" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="#8893ab"/></svg>
+              </div>
+              <div class="lg-sub">Last month performance</div>
+            </div>
+            <button class="lg-btn">View more</button>
+          </div>
+          <div class="lg-chart">
+            <div class="lg-y">
+              <span>40K</span><span>20K</span><span>10K</span><span>5K</span><span>0k</span>
+            </div>
+            <div class="lg-line">
+              <svg viewBox="0 0 300 130" preserveAspectRatio="none" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="lgf" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4d8aff" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#4d8aff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 90 L 30 85 L 50 95 L 70 78 L 90 88 L 110 60 L 135 65 L 155 45 L 175 55 L 200 30 L 225 50 L 250 28 L 275 18 L 300 25 L 300 130 L 0 130 Z" fill="url(#lgf)"/>
+                <path d="M0 90 L 30 85 L 50 95 L 70 78 L 90 88 L 110 60 L 135 65 L 155 45 L 175 55 L 200 30 L 225 50 L 250 28 L 275 18 L 300 25" stroke="#4d8aff" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="lg-x">
+            <span>Sep12</span><span>Sep16</span><span>Sep20</span><span>Sep 24</span><span>Sep 29</span>
+          </div>
+        </div>
+      </div>
+      <div class="svc-text">
+        <span class="pill">Growth</span>
+        <h3>Sales &amp; marketing automation</h3>
+        <p>Accelerate revenue growth with AI-powered lead generation, personalized email sequences, and automated nurturing campaigns. Convert more prospects while your sales team focuses on closing deals.</p>
+        <div class="svc-bullets">
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> 3x More Qualified Leads</div>
+          <div class="b"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="6,12 10,16 18,8"/></svg></span> 50% Faster Sales Cycle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WORK PROCESS -->
+  <section id="process">
+    <div class="section-head">
+      <span class="pill">Work Process</span>
+      <h2>How we build custom AI solutions to help Crank your business further</h2>
+      <p>Every step is designed to minimize disruption while maximizing results, ensuring you see measurable improvements within 30 days.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-cell">
+        <span class="pill">Step 1</span>
+        <h4>Discovery &amp; audit</h4>
+        <p>Deep-dive analysis of current workflows, systems, and processes to identify automation opportunities and calculate potential ROI.</p>
+      </div>
+      <div class="process-cell">
+        <span class="pill">Step 2</span>
+        <h4>Strategic planning</h4>
+        <p>Create custom automation blueprint with technology stack selection, integration planning and prioritized implementation timeline.</p>
+      </div>
+      <div class="process-cell">
+        <span class="pill">Step 3</span>
+        <h4>Design &amp; development</h4>
+        <p>Build and configure your custom AI solutions with rigorous testing to ensure seamless integration performance.</p>
+      </div>
+      <div class="process-cell">
+        <span class="pill">Step 4</span>
+        <h4>Integration &amp; testing</h4>
+        <p>Seamlessly connect AI systems with existing infrastructure while conducting comprehensive testing to guarantee flawless reliability.</p>
+      </div>
+      <div class="process-cell">
+        <span class="pill">Step 5</span>
+        <h4>Training &amp; launch</h4>
+        <p>Comprehensive team training on new AI systems followed by controlled launch with real-time monitoring and immediate support.</p>
+      </div>
+      <div class="process-cell">
+        <span class="pill">Step 6</span>
+        <h4>Optimization &amp; scale</h4>
+        <p>ontinuous performance monitoring, system optimization, and strategic to maximize ROI and expand automation organization.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CASE STUDIES -->
+  <section id="cases">
+    <div class="section-head">
+      <span class="pill">Case Study</span>
+      <h2>How we transformed these businesses</h2>
+      <p>Don't just take our word for it. See how our custom solutions have helped companies across industries eliminate manual work.</p>
+    </div>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-inner">
+          <div class="row">
+            <h5>
+              <span class="badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 3 l 8 4 v 5 c 0 5 -3 8 -8 9 -5 -1 -8 -4 -8 -9 v -5 z"/><polyline points="8,12 11,15 16,9"/></svg>
+              </span>
+              Solutions &amp; Result
+            </h5>
+            <span class="more">⋮</span>
+          </div>
+          <div class="donut-row">
+            <div class="donut-wrap">
+              <svg viewBox="0 0 120 120" width="110" height="110">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+                <!-- Cost reduction green arc 50% -->
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#22c55e" stroke-width="10" stroke-dasharray="150 302" stroke-dashoffset="0" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                <!-- Weekly savings purple arc 23% -->
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-dasharray="70 302" stroke-dashoffset="-152" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                <!-- ROI amber arc 23% -->
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="70 302" stroke-dashoffset="-224" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              </svg>
+              <div class="donut-pct">38.9%<span>Total</span></div>
+            </div>
+            <div class="legend">
+              <div class="lr"><div class="lf"><span class="ld" style="background:#22c55e"></span>Cost Reduction</div><span class="val">50%</span></div>
+              <div class="lr"><div class="lf"><span class="ld" style="background:#8b5cf6"></span>Weekly Savings</div><span class="val">23hr</span></div>
+              <div class="lr"><div class="lf"><span class="ld" style="background:#f59e0b"></span>Return (ROI)</div><span class="val">23%</span></div>
+            </div>
+          </div>
+        </div>
+        <h6>IT services &amp; software development</h6>
+        <p>A widely known ERP was drowning in manual processes that were killing their growth potential. Their development team spent 60+ hours weekly on administrative tasks instead of building.</p>
+      </div>
+
+      <div class="case-card">
+        <div class="case-inner">
+          <div class="row">
+            <h5>
+              <span class="badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M15 9 c 0 -1.5 -1.5 -2 -3 -2 s -3 0.5 -3 2 c 0 3 6 1.5 6 4.5 c 0 1.5 -1.5 2.5 -3 2.5 s -3 -1 -3 -2.5"/><line x1="12" y1="5" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="19"/></svg>
+              </span>
+              Total Inventory
+            </h5>
+            <span class="more">⋮</span>
+          </div>
+          <div class="inv-row">
+            <div class="big">$35K</div>
+            <div class="sep"></div>
+            <div class="change">↗ 25.4%</div>
+            <div class="change-text">Increase from last month</div>
+          </div>
+          <div class="inv-tiles">
+            <div class="inv-tile">
+              <b>$75K</b><small>Monthly Savings</small>
+              <div class="bars">
+                <i style="background:#22c55e;height:8px"></i>
+                <i style="background:#22c55e;height:14px"></i>
+                <i style="background:#22c55e;height:11px"></i>
+                <i style="background:#22c55e;height:18px"></i>
+                <i style="background:#22c55e;height:9px"></i>
+                <i style="background:#22c55e;height:16px"></i>
+                <i style="background:#22c55e;height:12px"></i>
+                <i style="background:#22c55e;height:20px"></i>
+                <i style="background:#22c55e;height:14px"></i>
+                <i style="background:#22c55e;height:17px"></i>
+                <i style="background:#22c55e;height:10px"></i>
+                <i style="background:rgba(34,197,94,0.3);height:13px"></i>
+                <i style="background:rgba(34,197,94,0.3);height:8px"></i>
+                <i style="background:rgba(34,197,94,0.3);height:11px"></i>
+              </div>
+            </div>
+            <div class="inv-tile">
+              <b>69.9%</b><small>Accuracy</small>
+              <div class="bars">
+                <i style="background:#8b5cf6;height:10px"></i>
+                <i style="background:#8b5cf6;height:16px"></i>
+                <i style="background:#8b5cf6;height:13px"></i>
+                <i style="background:#8b5cf6;height:19px"></i>
+                <i style="background:#8b5cf6;height:11px"></i>
+                <i style="background:#8b5cf6;height:17px"></i>
+                <i style="background:#8b5cf6;height:14px"></i>
+                <i style="background:#8b5cf6;height:20px"></i>
+                <i style="background:#8b5cf6;height:12px"></i>
+                <i style="background:#8b5cf6;height:18px"></i>
+                <i style="background:#8b5cf6;height:15px"></i>
+                <i style="background:rgba(139,92,246,0.35);height:11px"></i>
+                <i style="background:rgba(139,92,246,0.35);height:9px"></i>
+                <i style="background:rgba(139,92,246,0.35);height:13px"></i>
+              </div>
+            </div>
+            <div class="inv-tile">
+              <b>109%</b><small>ROI</small>
+              <div class="bars">
+                <i style="background:#f59e0b;height:9px"></i>
+                <i style="background:#f59e0b;height:15px"></i>
+                <i style="background:#f59e0b;height:12px"></i>
+                <i style="background:#f59e0b;height:18px"></i>
+                <i style="background:#f59e0b;height:10px"></i>
+                <i style="background:#f59e0b;height:17px"></i>
+                <i style="background:#f59e0b;height:14px"></i>
+                <i style="background:#f59e0b;height:19px"></i>
+                <i style="background:#f59e0b;height:13px"></i>
+                <i style="background:rgba(245,158,11,0.35);height:11px"></i>
+                <i style="background:rgba(245,158,11,0.35);height:14px"></i>
+                <i style="background:rgba(245,158,11,0.35);height:9px"></i>
+                <i style="background:rgba(245,158,11,0.35);height:12px"></i>
+                <i style="background:rgba(245,158,11,0.35);height:10px"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h6>Manufacturing &amp; supply chain</h6>
+        <p>Our client was losing $75K monthly due to inventory management errors, manual quality control processes, and disconnected systems that created operational chaos.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRICING CTA -->
+  <section id="pricing" class="pricing-cta">
+    <span class="pill">Pricing</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4.4vw,58px);line-height:1.08;letter-spacing:-0.015em;margin:18px auto;max-width:780px;background:linear-gradient(180deg,#fff,#c0cae0);-webkit-background-clip:text;background-clip:text;color:transparent;">Simple, transparent, and tied to outcomes.</h2>
+    <p style="color:#97a1b5;max-width:520px;margin:0 auto 32px;font-size:16px;">Custom built AI solutions with tailor made pricing schedules and payment plans. No hidden fees EVER!</p>
+    <button class="btn-primary">
+      Book a Consult
+      <span class="arr">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M7 17 L17 7 M7 7 L17 7 L17 17"/>
+        </svg>
+      </span>
+    </button>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-head">
+      <span class="pill">Faq Questions</span>
+      <h2>Got questions? we've got clear answers</h2>
+      <p>Considering AI automation for your business but have questions about implementation, costs, or results? You're not alone.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq open">
+        <div class="faq-q">How quickly will we see measurable results from AI automation?<span class="ic"></span></div>
+        <div class="faq-a">Most clients begin seeing measurable improvements within a few weeks as automation streamlines their processes. Significant productivity and efficiency gains typically appear within the first few months of implementation.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">Do we need technical expertise or will you handle everything?<span class="ic"></span></div>
+        <div class="faq-a">Our team handles the entire implementation end-to-end from discovery through deployment. We provide thorough training and ongoing support so your team can confidently operate every system we build.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">How do you ensure our sensitive business data remains secure?<span class="ic"></span></div>
+        <div class="faq-a">We follow industry-standard encryption, role-based access controls, and compliance frameworks tailored to your sector. Your data stays under your control with full audit trails and transparent governance.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">What if our existing software systems aren't compatible with AI automation?<span class="ic"></span></div>
+        <div class="faq-a">We specialize in connecting legacy and modern systems through APIs, middleware, and intelligent adapters. If a direct integration isn't possible, we build the bridge so your stack works seamlessly.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">Can we start small and gradually expand our automation as we see results?<span class="ic"></span></div>
+        <div class="faq-a">Absolutely, Crank Labs supports a scalable approach that lets you start with key processes first. As you see results, you can easily expand automation across more areas of your business.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FINAL CTA -->
+  <section style="padding: 80px 56px 30px;">
+    <div class="final-cta-wrap">
+      <span class="pill">Reach out Anytime</span>
+      <h2>Automate and Optimize your business with AI today!</h2>
+      <p>Join 10+ companies saving 40+ hours weekly with automated workflows. Get your free audit and see exactly how much you can save.</p>
+      <button class="btn-primary">
+        Book a Consult
+        <span class="arr">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17 L17 7 M7 7 L17 7 L17 17"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-logo">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4 C 9 4, 4 9, 4 16 C 4 22, 8 27, 14 28 L 14 23 C 10 22, 8 19, 8 16 C 8 11, 11 8, 16 8 C 19 8, 21 9, 23 11 L 26 8 C 23 5, 20 4, 16 4 Z" fill="url(#fglg)"/>
+              <path d="M20 14 C 22 14, 24 16, 24 18 C 24 21, 22 23, 19 23 L 19 28 C 24 28, 28 24, 28 19 C 28 14, 25 11, 21 11 L 20 14 Z" fill="url(#fglg)" opacity="0.8"/>
+              <defs><linearGradient id="fglg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6ea3ff"/><stop offset="100%" stop-color="#2b6dff"/></linearGradient></defs>
+            </svg>
+          </span>
+          CrankLabs
+        </div>
+        <p>Crank Labs is a leading AI automation consultancy helping businesses eliminate manual work, reduce costs, and scale efficiently.</p>
+        <div class="subscribe">
+          <input type="email" placeholder="Email address"/>
+          <button>Subscribe <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 L17 7 M7 7 L17 7 L17 17"/></svg></button>
+        </div>
+      </div>
+
+      <div>
+        <h6>Catalog</h6>
+        <ul>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#process">Work Process</a></li>
+          <li><a href="#faq">Faq Questions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h6>Company</h6>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h6>Contact</h6>
+        <ul>
+          <li>hello@cranklabs.tech</li>
+          <li>+971 56 3402532</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Crank Labs. All rights reserved.</span>
+      <span>Designed with care in the UAE</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Why us interactive list
+  document.querySelectorAll('.why-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.why-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const v = item.dataset.visual;
+      ['vis-wm','vis-ai','vis-trig','vis-err','vis-learn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      const target = document.getElementById('vis-' + v);
+      if (target) target.style.display = (v === 'wm') ? 'flex' : (v === 'learn' ? 'block' : 'flex');
+    });
+  });
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const f = q.parentElement;
+      f.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
