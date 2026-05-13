@@ -861,8 +861,10 @@
     .nav-links { display: none; }
     section { padding: 70px 20px; }
     .grid-benefits { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; gap: 40px; }
-    .why-visual { height: 400px; }
+    /* Keep why-us side-by-side on tablet */
+    .why-grid { grid-template-columns: 1fr 1.1fr; gap: 32px; }
+    .why-visual { height: 380px; }
+    .why-item .row { font-size: 18px; }
     .service { grid-template-columns: 1fr; padding: 24px; }
     .service.reverse .svc-visual { order: 2; }
     .service.reverse .svc-text { order: 1; }
@@ -872,13 +874,31 @@
     .footer-top { grid-template-columns: 1fr 1fr; }
     footer { padding: 50px 20px 30px; }
   }
+  @media (max-width: 600px) {
+    /* Keep side-by-side on phone, tighten sizing */
+    .why-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .why-visual { height: 300px; }
+    .why-item { padding: 14px 0; }
+    .why-item .row { font-size: 14px; gap: 8px; }
+    .why-item .num { min-width: 22px; font-size: 13px; }
+    .why-item .desc { font-size: 12.5px; padding-left: 30px; }
+    .why-item.active .desc { max-height: 100px; }
+    .wm-node { padding: 7px 10px; font-size: 11px; }
+    .wm-node .ico { width: 22px; height: 22px; }
+    .wm-node .meta b { font-size: 11px; }
+    .wm-node .meta span { font-size: 10px; }
+    .wm-hub { width: 34px; height: 34px; border-radius: 9px; }
+    .wm-lines { left: 46px; width: 28px; }
+  }
   @media (max-width: 480px) {
     .nav { padding: 18px 16px; }
     section { padding: 60px 16px; }
     footer { padding: 40px 16px 24px; }
     .footer-top { grid-template-columns: 1fr; }
     .hero h1 { font-size: 38px; }
-    .why-visual { height: 320px; }
+    .why-visual { height: 260px; }
+    .why-visual .stage { width: 88%; height: 82%; padding: 14px; }
+    .why-visual .inner { padding: 14px; border-radius: 12px; }
   }
 </style>
 </head>
