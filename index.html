@@ -207,7 +207,8 @@
 
   .ticker { border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.018); overflow: hidden; mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
   .ticker-track { display: flex; width: max-content; padding: 17px 0; color: rgba(210,224,255,0.54); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; animation: ticker 58s linear infinite; }
-  .ticker-track span { padding: 0 18px; }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 18px; padding: 0 18px; }
+  .ticker-divider { width: 6px; height: 6px; border-radius: 50%; background: rgba(121,168,255,.72); box-shadow: 0 0 16px rgba(121,168,255,.5); }
 
   section { padding: 112px 0; position: relative; }
   .section-head { display: grid; grid-template-columns: minmax(0,.85fr) minmax(320px,.55fr); gap: 42px; align-items: end; margin-bottom: 46px; }
@@ -297,32 +298,33 @@
   .step h3 { margin: 18px 0 12px; font-size: 23px; }
   .step p { margin: 0; color: var(--muted); font-size: 14px; }
 
-  .industries { display: grid; grid-template-columns: minmax(360px,.7fr) minmax(0,1fr); gap: 28px; align-items: stretch; }
+  /* Industries — animated ribbon layout */
+  .industries { display: grid; grid-template-columns: minmax(360px,.76fr) minmax(0,1fr); gap: 28px; align-items: stretch; }
   .industry-copy {
-    position: sticky; top: 104px; min-height: 560px; padding: 48px; border-radius: 22px;
+    min-height: 360px; padding: 44px; border-radius: 22px;
     border: 1px solid rgba(142,165,212,.16);
     background: radial-gradient(720px 340px at 0% 0%, rgba(61,123,255,.17), transparent 64%), linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
     overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 28px 90px rgba(0,0,0,.2);
   }
-  .industry-copy h2 { max-width: 620px; font-size: 66px; line-height: .98; }
+  .industry-copy h2 { max-width: 620px; font-size: 58px; line-height: .98; }
   .industry-copy p { color: var(--muted); font-size: 17px; line-height: 1.75; max-width: 610px; }
-  .industries-panel { min-height: 560px; display: grid; grid-template-rows: auto 1fr; gap: 14px; }
+  .industries-panel { min-height: 360px; display: grid; align-items: stretch; }
   .universal-box {
-    position: relative; min-height: 150px; padding: 24px 26px; border-radius: 22px;
+    position: relative; min-height: 360px; padding: 42px 0; border-radius: 22px;
+    display: flex; flex-direction: column; justify-content: center;
     border: 1px solid rgba(121,168,255,.24);
-    background: radial-gradient(420px 160px at 15% 0%, rgba(114,228,255,.16), transparent 64%), radial-gradient(520px 190px at 95% 80%, rgba(61,123,255,.2), transparent 62%), linear-gradient(180deg, rgba(9,17,35,.88), rgba(3,8,19,.88));
+    background: radial-gradient(420px 160px at 15% 0%, rgba(114,228,255,.13), transparent 64%), radial-gradient(520px 190px at 95% 80%, rgba(61,123,255,.2), transparent 62%), linear-gradient(180deg, rgba(9,17,35,.88), rgba(3,8,19,.88));
     overflow: hidden; box-shadow: 0 22px 64px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08);
   }
   .universal-box::before { content: ""; position: absolute; inset: -1px; background: linear-gradient(110deg, transparent 0%, rgba(121,168,255,.28) 45%, transparent 58%); transform: translateX(-115%); animation: universalSweep 5.8s ease-in-out infinite; }
   .universal-box::after { content: ""; position: absolute; width: 220px; height: 220px; right: -70px; top: -70px; border-radius: 50%; border: 1px solid rgba(121,168,255,.18); box-shadow: inset 0 0 40px rgba(61,123,255,.14), 0 0 42px rgba(61,123,255,.1); animation: universalPulse 4.8s ease-in-out infinite; }
-  .universal-kicker { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; color: #83aaff; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .universal-kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 18px rgba(40,209,124,.76); font-style: normal; }
-  .universal-box strong { position: relative; z-index: 1; display: block; margin-top: 16px; color: white; font-family: var(--editorial); font-weight: 400; font-size: 42px; line-height: .95; }
-  .universal-box p { position: relative; z-index: 1; max-width: 760px; margin: 12px 0 0; color: rgba(220,229,244,.72); font-size: 14px; line-height: 1.65; }
-  .tag-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: minmax(56px,auto); gap: 10px; align-content: stretch; }
-  .tag { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(142,165,212,.14); background: linear-gradient(180deg, rgba(255,255,255,.046), rgba(255,255,255,.018)); color: #d9e2f3; font-weight: 700; font-size: 13px; text-align: center; line-height: 1.2; transition: transform .24s, border-color .24s, background .24s; }
-  .tag:hover { transform: translateY(-3px); border-color: rgba(121,168,255,0.34); background: rgba(61,123,255,0.11); }
-  .tag.featured { grid-column: span 2; color: #fff; border-color: rgba(121,168,255,.24); background: linear-gradient(135deg, rgba(61,123,255,.18), rgba(255,255,255,.03)); }
+  .universal-title { position: relative; z-index: 1; margin: 0 auto 34px; padding: 0 28px; max-width: 720px; text-align: center; color: #fff; font-weight: 800; font-size: 28px; line-height: 1.2; }
+  .universal-title span { background: linear-gradient(180deg, #fff, #aebfe4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .industry-ribbons { position: relative; z-index: 1; display: grid; gap: 18px; overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+  .industry-ribbon { display: flex; width: max-content; gap: 12px; animation: industryRibbon 34s linear infinite; }
+  .industry-ribbon.reverse { animation-direction: reverse; animation-duration: 38s; }
+  .industry-pill { display: inline-flex; align-items: center; gap: 10px; min-height: 42px; padding: 8px 18px 8px 10px; border-radius: 999px; border: 1px solid rgba(142,165,212,.18); background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.035)); color: #e5ecfa; font-size: 13px; font-weight: 800; white-space: nowrap; box-shadow: 0 10px 28px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.08); }
+  .industry-pill i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: rgba(121,168,255,.13); color: #8fb7ff; font-style: normal; font-size: 13px; }
 
   .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .compare { position: relative; border: 1px solid var(--line); border-radius: 18px; padding: 28px; background: rgba(255,255,255,0.035); overflow: hidden; }
@@ -407,6 +409,7 @@
   @keyframes signalFloat { 50% { transform: translateY(-6px); } }
   @keyframes universalSweep { 0%,42% { transform: translateX(-115%); opacity: 0; } 52% { opacity: 1; } 72%,100% { transform: translateX(115%); opacity: 0; } }
   @keyframes universalPulse { 50% { transform: scale(1.08); opacity: .62; } }
+  @keyframes industryRibbon { to { transform: translateX(-50%); } }
   @keyframes rotateWords {
     0% { opacity: 0; transform: translateY(110%); filter: blur(8px); }
     3.6%, 12.8% { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -426,9 +429,9 @@
     .process-grid { border: 1px solid var(--line); }
     .step { border-right: 0; border-bottom: 1px solid var(--line); }
     .step:last-child { border-bottom: 0; }
-    .industry-copy { position: static; }
     .industry-copy, .industries-panel { min-height: auto; }
-    .tag-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .universal-box { min-height: 320px; }
+    .reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
   }
   @media (max-width: 680px) {
     .container { width: min(100% - 28px, 560px); }
@@ -439,14 +442,14 @@
     .rotate-line { font-size: 26px; display: block; }
     .rotate-window { margin-top: 6px; width: 100%; }
     .hero-actions .btn, .cta-actions .btn { width: 100%; }
-    section { padding: 78px 0; }
+    section { padding: 58px 0; }
     #services .container { width: min(100% - 28px, 560px); }
     #services h2 { font-size: 42px; }
-    .service-card { min-height: auto; padding: 22px; gap: 26px; }
+    .service-card { min-height: auto; padding: 18px; gap: 20px; }
     .svc-copy { grid-template-columns: 52px 1fr; gap: 16px; }
     .service-icon { width: 48px; height: 48px; border-radius: 12px; }
     .service-icon svg { width: 24px; height: 24px; }
-    .service-card h3 { font-size: 29px; }
+    .service-card h3 { font-size: 27px; }
     .mockup { min-height: 150px; padding: 12px; }
     .flow { grid-template-columns: 36px 1fr; }
     .phone-mock { width: 100%; }
@@ -461,11 +464,10 @@
     .metric small { font-size: 10px; } .metric strong { margin-top: 5px; font-size: 18px; } .metric span { font-size: 10px; }
     .metric:nth-child(n+3) { display: none; }
     .signal { display: none; }
-    .industry-copy { padding: 28px; } .industry-copy h2 { font-size: 40px; }
-    .universal-box { padding: 22px; } .universal-box strong { font-size: 34px; }
-    .tag-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
-    .tag { min-height: 52px; font-size: 12px; border-radius: 14px; }
-    .tag.featured { grid-column: span 2; }
+    .industry-copy { padding: 24px; } .industry-copy h2 { font-size: 38px; }
+    .universal-box { min-height: 236px; padding: 24px 0; }
+    .universal-title { font-size: 20px; padding: 0 18px; }
+    .industry-pill { min-height: 38px; font-size: 12px; }
     .consult-layout { grid-template-columns: 1fr; }
     .consult-intro { padding: 38px 24px 24px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
     .consult-intro h2 { font-size: 42px; }
@@ -570,8 +572,8 @@
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>AI Automation &hellip; CRM Systems &hellip; WhatsApp AI &hellip; Lead Generation &hellip; Client Onboarding &hellip; Internal Operations &hellip; Sales Pipelines &hellip; AI Employees &hellip; Growth Systems &hellip; Process Optimization &hellip;</span>
-        <span>AI Automation &hellip; CRM Systems &hellip; WhatsApp AI &hellip; Lead Generation &hellip; Client Onboarding &hellip; Internal Operations &hellip; Sales Pipelines &hellip; AI Employees &hellip; Growth Systems &hellip; Process Optimization &hellip;</span>
+        <span>AI Automation <i class="ticker-divider"></i> CRM Systems <i class="ticker-divider"></i> WhatsApp AI <i class="ticker-divider"></i> Lead Generation <i class="ticker-divider"></i> Client Onboarding <i class="ticker-divider"></i> Internal Operations <i class="ticker-divider"></i> Sales Pipelines <i class="ticker-divider"></i> AI Employees <i class="ticker-divider"></i> Growth Systems <i class="ticker-divider"></i> Process Optimization <i class="ticker-divider"></i></span>
+        <span>AI Automation <i class="ticker-divider"></i> CRM Systems <i class="ticker-divider"></i> WhatsApp AI <i class="ticker-divider"></i> Lead Generation <i class="ticker-divider"></i> Client Onboarding <i class="ticker-divider"></i> Internal Operations <i class="ticker-divider"></i> Sales Pipelines <i class="ticker-divider"></i> AI Employees <i class="ticker-divider"></i> Growth Systems <i class="ticker-divider"></i> Process Optimization <i class="ticker-divider"></i></span>
       </div>
     </div>
 
@@ -601,8 +603,8 @@
             </div>
             <div class="phone-mock" aria-hidden="true">
               <div class="phone-head"><i>&#10022;</i><span>Crank Labs AI<small>&#9679; Online</small></span></div>
-              <div class="bubble">Hi! I'm your AI assistant. How can I help you today?</div>
-              <div class="bubble ai">I'd like to book a demo</div>
+              <div class="bubble">Hi! I&rsquo;m your AI assistant. How can I help you today?</div>
+              <div class="bubble ai">I&rsquo;d like to book a demo</div>
               <div class="bubble">Perfect. Let me check availability for you.</div>
             </div>
           </article>
@@ -681,24 +683,45 @@
         </div>
         <div class="industries-panel reveal">
           <div class="universal-box">
-            <span class="universal-kicker"><i></i>Universal Fit</span>
-            <strong>We cater to any and all businesses.</strong>
-            <p>Whether you sell services, appointments, properties, products, memberships, experiences, or expertise, we can map the operating layer and automate the work behind it.</p>
-          </div>
-          <div class="tag-grid">
-            <span class="tag featured">Aesthetic Clinics</span><span class="tag featured">Medical &amp; Wellness Centers</span>
-            <span class="tag">Real Estate Firms</span><span class="tag">Fitness Studios</span><span class="tag">Professional Services</span><span class="tag">Agencies</span>
-            <span class="tag featured">Local Service Businesses</span><span class="tag">Consultants &amp; Coaches</span>
-            <span class="tag">E-commerce Brands</span><span class="tag">Hospitality Businesses</span><span class="tag">Dental Clinics</span><span class="tag">Veterinary Clinics</span>
-            <span class="tag">Law Firms</span><span class="tag">Accounting Firms</span><span class="tag">Insurance Brokers</span><span class="tag">Mortgage Brokers</span>
-            <span class="tag">Recruitment Firms</span><span class="tag">Education Centers</span><span class="tag">Training Institutes</span><span class="tag">Interior Design Studios</span>
-            <span class="tag">Architecture Firms</span><span class="tag">Construction Companies</span><span class="tag">Home Maintenance</span><span class="tag">Cleaning Companies</span>
-            <span class="tag">Salons &amp; Spas</span><span class="tag">Restaurants</span><span class="tag">Event Companies</span><span class="tag">Travel Agencies</span>
-            <span class="tag">Automotive Services</span><span class="tag">Logistics Operators</span><span class="tag">SaaS Companies</span><span class="tag">Media Teams</span>
-            <span class="tag">Retail Stores</span><span class="tag">Beauty Clinics</span><span class="tag">Physiotherapy Centers</span><span class="tag">Chiropractors</span>
-            <span class="tag">Home Healthcare</span><span class="tag">Property Management</span><span class="tag">Tutoring Centers</span><span class="tag">Nurseries</span>
-            <span class="tag">Gyms &amp; Clubs</span><span class="tag">Marketing Teams</span><span class="tag">B2B Sales Teams</span><span class="tag">Franchise Operators</span>
-            <span class="tag">Manufacturing Firms</span><span class="tag">Wholesale Businesses</span><span class="tag">Repair Services</span><span class="tag">Security Companies</span>
+            <div class="universal-title"><span>Built for businesses across every industry</span></div>
+            <div class="industry-ribbons" aria-hidden="true">
+              <div class="industry-ribbon">
+                <span class="industry-pill"><i>💰</i>Finance</span>
+                <span class="industry-pill"><i>🎪</i>Events</span>
+                <span class="industry-pill"><i>🏨</i>Hotel</span>
+                <span class="industry-pill"><i>📚</i>Education</span>
+                <span class="industry-pill"><i>⚕</i>Health Care</span>
+                <span class="industry-pill"><i>🏭</i>Manufacturing</span>
+                <span class="industry-pill"><i>🛍</i>Retail Store</span>
+                <span class="industry-pill"><i>🏗</i>Construction</span>
+                <span class="industry-pill"><i>💰</i>Finance</span>
+                <span class="industry-pill"><i>🎪</i>Events</span>
+                <span class="industry-pill"><i>🏨</i>Hotel</span>
+                <span class="industry-pill"><i>📚</i>Education</span>
+                <span class="industry-pill"><i>⚕</i>Health Care</span>
+                <span class="industry-pill"><i>🏭</i>Manufacturing</span>
+                <span class="industry-pill"><i>🛍</i>Retail Store</span>
+                <span class="industry-pill"><i>🏗</i>Construction</span>
+              </div>
+              <div class="industry-ribbon reverse">
+                <span class="industry-pill"><i>✨</i>Wellness</span>
+                <span class="industry-pill"><i>🏢</i>Corporate</span>
+                <span class="industry-pill"><i>🚚</i>Logistics</span>
+                <span class="industry-pill"><i>🏠</i>Real Estate</span>
+                <span class="industry-pill"><i>🍽</i>Restaurant</span>
+                <span class="industry-pill"><i>🚗</i>Automotive</span>
+                <span class="industry-pill"><i>✈</i>Travel</span>
+                <span class="industry-pill"><i>💼</i>Consulting</span>
+                <span class="industry-pill"><i>✨</i>Wellness</span>
+                <span class="industry-pill"><i>🏢</i>Corporate</span>
+                <span class="industry-pill"><i>🚚</i>Logistics</span>
+                <span class="industry-pill"><i>🏠</i>Real Estate</span>
+                <span class="industry-pill"><i>🍽</i>Restaurant</span>
+                <span class="industry-pill"><i>🚗</i>Automotive</span>
+                <span class="industry-pill"><i>✈</i>Travel</span>
+                <span class="industry-pill"><i>💼</i>Consulting</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -851,7 +874,7 @@
 </div>
 
 <script>
-  const CONSULT_SHEET_ENDPOINT = "";
+  const CONSULT_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyClIWRaKOUNx8ZIV_CwREmV2HNVKqxM6VPJDp7BDsh5rSLS2zREyE3LEIPnivtAuc5QQ/exec";
 
   const progress = document.querySelector(".scroll-progress");
   const updateProgress = () => {
@@ -919,12 +942,6 @@
     e.preventDefault();
     submittedAt.value = new Date().toISOString();
     consultStatus.className = "form-status";
-
-    if (!CONSULT_SHEET_ENDPOINT) {
-      consultStatus.textContent = "Form is ready. Add a Google Apps Script endpoint to activate submissions.";
-      consultStatus.classList.add("error");
-      return;
-    }
 
     const btn = consultForm.querySelector('button[type="submit"]');
     btn.disabled = true; btn.textContent = "Submitting...";
