@@ -434,28 +434,60 @@
     .reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
   }
   @media (max-width: 680px) {
-    .container { width: min(100% - 28px, 560px); }
-    .nav-inner { height: 66px; }
+    .container { width: min(100% - 30px, 560px); }
+    .nav-inner { height: 64px; gap: 12px; }
+    .brand { gap: 9px; font-size: 16px; }
+    .mark { width: 32px; height: 32px; border-radius: 10px; }
+    .nav-actions .btn { width: 46px; min-height: 46px; padding: 0; border-radius: 14px; }
     .nav-actions .btn span.label { display: none; }
-    .hero { padding: 48px 0 12px; } .hero-layout { gap: 28px; }
-    h1 { font-size: 50px; } h2 { font-size: 38px; } .lead { font-size: 17px; }
-    .rotate-line { font-size: 26px; display: block; }
+    .hero { padding: 42px 0 10px; } .hero-layout { gap: 24px; }
+    h1 { font-size: clamp(43px, 13vw, 52px); line-height: .92; } h2 { font-size: 38px; } .lead { font-size: 16px; line-height: 1.65; }
+    .status { font-size: 12px; padding: 7px 12px; }
+    .rotate-line { font-size: 24px; display: block; }
     .rotate-window { margin-top: 6px; width: 100%; }
-    .hero-actions .btn, .cta-actions .btn { width: 100%; }
-    section { padding: 58px 0; }
-    #services .container { width: min(100% - 28px, 560px); }
-    #services h2 { font-size: 42px; }
-    .service-card { min-height: auto; padding: 18px; gap: 20px; }
-    .svc-copy { grid-template-columns: 52px 1fr; gap: 16px; }
-    .service-icon { width: 48px; height: 48px; border-radius: 12px; }
-    .service-icon svg { width: 24px; height: 24px; }
-    .service-card h3 { font-size: 27px; }
-    .mockup { min-height: 150px; padding: 12px; }
-    .flow { grid-template-columns: 36px 1fr; }
-    .phone-mock { width: 100%; }
-    .task-node { width: 150px; }
-    .dash-chart { grid-template-columns: repeat(2,1fr); }
+    .rotate-word { filter: none !important; }
+    .emphasis { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 20px; }
+    .emphasis span { width: max-content; max-width: 100%; opacity: 1; transform: none; animation: none; }
+    .hero-actions .btn, .cta-actions .btn, .service-bottom .btn { width: 100%; }
+    section { padding: 54px 0; }
+    .section-head { gap: 16px; margin-bottom: 30px; }
+    .section-head p { font-size: 15px; line-height: 1.65; }
+    #services { padding-top: 46px; }
+    #services .container { width: min(100% - 30px, 560px); }
+    #services .section-head { margin-bottom: 30px; }
+    #services h2 { font-size: clamp(39px, 11.5vw, 46px); line-height: .92; max-width: 360px; }
+    #services .section-head p { font-size: 15px; max-width: 330px; }
+    .services-grid { gap: 14px; }
+    .service-card { min-height: auto; padding: 22px 18px 18px; gap: 18px; border-radius: 14px; align-items: start; }
+    .service-card:hover { transform: none; }
+    .svc-copy { grid-template-columns: 46px 1fr; gap: 14px; align-items: start; }
+    .svc-copy::before { top: -22px; font-size: 13px; }
+    .svc-copy::after { top: -13px; left: 24px; }
+    .service-icon { width: 46px; height: 46px; border-radius: 13px; }
+    .service-icon svg { width: 23px; height: 23px; }
+    .service-card h3 { font-size: 25px; line-height: 1; margin-bottom: 10px; text-wrap: balance; }
+    .service-card p { max-width: none; font-size: 13px; line-height: 1.62; }
+    .mockup { min-height: auto; padding: 12px; border-radius: 12px; }
+    .flow { grid-template-columns: 30px 1fr; gap: 7px; min-height: auto; }
+    .flow div, .lead-tile, .task-node { padding: 9px; font-size: 10.5px; }
+    .flow-ico { height: 31px; }
+    .phone-mock { width: 100%; min-height: auto; border-radius: 18px; padding: 13px; }
+    .bubble { font-size: 10px; }
+    .lead-panel { min-height: auto; padding: 14px; }
+    .lead-panel-top { margin-bottom: 12px; font-size: 10.5px; }
+    .lead-big { font-size: 29px; }
+    .lead-panel svg { height: 58px; }
+    .lead-stats { gap: 6px; margin-top: 8px; font-size: 9.5px; }
+    .lead-stats strong { font-size: 13px; }
+    .node-map { min-height: auto; display: grid; gap: 8px; padding: 0; }
+    .node-map::before { display: none; }
+    .task-node, .task-node:nth-child(n) { position: static; width: 100%; min-height: 38px; }
+    .task-node.center { width: 46px; height: 46px; justify-self: center; }
+    .dash-chart { grid-template-columns: repeat(2,1fr); gap: 7px; }
+    .lead-tile strong { font-size: 16px; }
     .dash-chart .wide, .dash-chart .bars { grid-column: 1/-1; grid-row: auto; }
+    .dash-chart .wide { height: 54px; }
+    .dash-chart .bars { min-height: 88px; }
     .systems-orbit { min-height: 230px; }
     .core-console { inset: 28px 18px auto; padding: 12px; }
     .console-top { margin-bottom: 10px; }
@@ -464,7 +496,7 @@
     .metric small { font-size: 10px; } .metric strong { margin-top: 5px; font-size: 18px; } .metric span { font-size: 10px; }
     .metric:nth-child(n+3) { display: none; }
     .signal { display: none; }
-    .industry-copy { padding: 24px; } .industry-copy h2 { font-size: 38px; }
+    .industry-copy { padding: 24px; border-radius: 18px; } .industry-copy h2 { font-size: 38px; }
     .universal-box { min-height: 236px; padding: 24px 0; }
     .universal-title { font-size: 20px; padding: 0 18px; }
     .industry-pill { min-height: 38px; font-size: 12px; }
@@ -477,8 +509,27 @@
     .service-bottom, .footer-bottom { flex-direction: column; }
     .footer-bottom { align-items: flex-start; }
   }
+  @media (max-width: 420px) {
+    .container, #services .container { width: min(100% - 24px, 560px); }
+    h1 { font-size: clamp(40px, 12.6vw, 48px); }
+    #services h2 { font-size: clamp(36px, 10.6vw, 42px); }
+    .service-card { padding: 21px 14px 15px; }
+    .svc-copy { grid-template-columns: 42px 1fr; gap: 12px; }
+    .service-icon { width: 42px; height: 42px; }
+    .service-card h3 { font-size: 23px; }
+    .service-card p { font-size: 12.5px; }
+    .lead-big { font-size: 27px; }
+    .lead-stats { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .industry-copy h2 { font-size: 34px; }
+    .universal-title { font-size: 18px; }
+    .consult-modal { border-radius: 18px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .rotate-word:first-child { opacity: 1; transform: none; filter: none; }
+  }
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
     .rotate-word:first-child { opacity: 1; transform: none; filter: none; }
