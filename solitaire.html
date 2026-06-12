@@ -255,13 +255,12 @@ section{padding:8.5rem 0;position:relative}
 
 /* ---------- languages ---------- */
 .langs{background:var(--velvet-2);border-top:1px solid var(--hairline-soft);border-bottom:1px solid var(--hairline-soft)}
-.lang-row{display:grid;grid-template-columns:repeat(5,1fr);gap:2rem;text-align:center}
+.lang-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
 .lang-cell{padding:2.5rem 1rem;border-left:1px solid var(--hairline-soft)}
 .lang-cell:first-child{border-left:0}
 .lang-glyph{font-family:var(--display);font-size:clamp(2.4rem,4.6vw,4rem);font-weight:500;color:var(--champagne-soft);line-height:1.2}
 .lang-name{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory-dim);margin-top:1rem}
 .lang-devanagari .lang-glyph{font-family:'Tiro Devanagari',serif}
-@media(max-width:900px){.lang-row{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:680px){.lang-row{grid-template-columns:1fr}.lang-cell{border-left:0;border-top:1px solid var(--hairline-soft)}.lang-cell:first-child{border-top:0}}
 
 /* ---------- constellation ---------- */
@@ -482,10 +481,8 @@ footer b{color:var(--champagne);font-weight:500}
     </div>
     <div class="lang-row">
       <div class="lang-cell rv"><div class="lang-glyph">Exquisite</div><div class="lang-name">English</div></div>
-      <div class="lang-cell rv rv-d1"><div class="lang-glyph">Raffiné</div><div class="lang-name">French</div></div>
-      <div class="lang-cell rv rv-d2"><div class="lang-glyph">فاخر</div><div class="lang-name">Arabic</div></div>
+      <div class="lang-cell rv rv-d1"><div class="lang-glyph">فاخر</div><div class="lang-name">Arabic</div></div>
       <div class="lang-cell lang-devanagari rv rv-d2"><div class="lang-glyph">बेमिसाल</div><div class="lang-name">Hindi</div></div>
-      <div class="lang-cell rv rv-d3"><div class="lang-glyph">Изысканно</div><div class="lang-name">Russian</div></div>
     </div>
   </div>
 </section>
