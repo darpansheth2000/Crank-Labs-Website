@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolitAIre – The AI Sales Concierge for Jewellery Brands</title>
+<meta name="description" content="A 24/7 AI concierge that answers every jewellery inquiry, qualifies serious buyers, books boutique visits, and syncs with your CRM and ERP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --velvet:#0D0A08;
+  --velvet-2:#161009;
+  --velvet-3:#1E1610;
+  --champagne:#D9B36C;
+  --champagne-soft:#E8CFA0;
+  --gold-deep:#8A6A33;
+  --ivory:#F3EAD9;
+  --ivory-dim:#B9AC95;
+  --emerald:#3E8A6E;
+  --hairline:rgba(217,179,108,.22);
+  --hairline-soft:rgba(217,179,108,.12);
+  --display:'Cormorant Garamond',serif;
+  --body:'Jost',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--velvet);
+  color:var(--ivory);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--champagne);color:var(--velvet)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- utility ---------- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 6vw}
+.eyebrow{
+  font-family:var(--body);font-size:.72rem;font-weight:500;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--champagne);
+}
+.display{
+  font-family:var(--display);font-weight:500;line-height:1.06;
+  letter-spacing:-.01em;
+}
+.display em{font-style:italic;font-weight:400;color:var(--champagne-soft)}
+.lede{color:var(--ivory-dim);font-size:1.08rem;max-width:34em}
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:var(--body);font-size:.78rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:1.05rem 2.2rem;border:1px solid var(--champagne);
+  color:var(--champagne);background:transparent;cursor:pointer;
+  position:relative;overflow:hidden;transition:color .45s ease;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;background:var(--champagne);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.65,0,.35,1);
+  z-index:-1;
+}
+.btn:hover{color:var(--velvet)}
+.btn:hover::before{transform:scaleX(1)}
+.btn.solid{background:var(--champagne);color:var(--velvet)}
+.btn.solid::before{background:var(--ivory)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--champagne);outline-offset:4px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s ease,transform 1s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 6vw;transition:background .5s ease,padding .5s ease,border-color .5s ease;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{background:rgba(13,10,8,.82);backdrop-filter:blur(14px);border-bottom-color:var(--hairline-soft);padding:1rem 6vw}
+.logo{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+.logo span{color:var(--champagne)}
+.nav-links{display:flex;gap:2.4rem;align-items:center}
+.nav-links a{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory-dim);transition:color .3s}
+.nav-links a:hover{color:var(--champagne)}
+.nav-cta{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne);border:1px solid var(--hairline);padding:.6rem 1.3rem;transition:all .3s}
+.nav-cta:hover{background:var(--champagne);color:var(--velvet)}
+@media(max-width:780px){.nav-links a{display:none}.nav-links .nav-cta{display:inline-block}}
+
+/* ---------- hero ---------- */
+header{position:relative;min-height:100vh;display:flex;align-items:center;padding:9rem 0 5rem}
+#dust{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-grid{
+  position:relative;z-index:2;display:grid;
+  grid-template-columns:1.15fr .85fr;gap:5rem;align-items:center;width:100%;
+}
+.hero-copy h1{font-size:clamp(2.9rem,5.6vw,5.1rem)}
+.hero-copy .eyebrow{display:block;margin-bottom:1.6rem}
+.hero-copy .lede{margin:1.8rem 0 2.6rem}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap}
+.hero-note{margin-top:2.2rem;font-size:.78rem;letter-spacing:.12em;color:var(--ivory-dim);display:flex;align-items:center;gap:.6rem}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 rgba(62,138,110,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,138,110,.55)}70%{box-shadow:0 0 0 9px rgba(62,138,110,0)}100%{box-shadow:0 0 0 0 rgba(62,138,110,0)}}
+
+/* phone */
+.phone-wrap{display:flex;justify-content:center;perspective:1200px}
+.phone{
+  width:min(360px,86vw);border-radius:38px;
+  background:linear-gradient(160deg,#241B12,#120D09);
+  border:1px solid var(--hairline);
+  box-shadow:0 50px 120px rgba(0,0,0,.65),0 0 80px rgba(217,179,108,.07),inset 0 1px 0 rgba(243,234,217,.08);
+  padding:14px;transform:rotateY(-6deg) rotateX(2deg);
+  transition:transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+.phone:hover{transform:rotateY(0) rotateX(0)}
+.screen{border-radius:26px;background:#0B0908;overflow:hidden;border:1px solid rgba(243,234,217,.06)}
+.chat-head{
+  display:flex;align-items:center;gap:.8rem;padding:.95rem 1.1rem;
+  background:linear-gradient(180deg,#1B130C,#120D09);border-bottom:1px solid var(--hairline-soft);
+}
+.chat-avatar{
+  width:36px;height:36px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 30% 30%,var(--champagne-soft),var(--gold-deep));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:600;color:var(--velvet);font-size:1.05rem;
+}
+.chat-title{font-size:.86rem;font-weight:500;letter-spacing:.04em}
+.chat-status{font-size:.66rem;color:var(--emerald);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:.35rem}
+.chat-status::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--emerald)}
+.chat-body{height:380px;padding:1rem .9rem;display:flex;flex-direction:column;gap:.55rem;overflow:hidden;position:relative}
+.msg{
+  max-width:82%;padding:.6rem .85rem;border-radius:14px;
+  font-size:.82rem;line-height:1.45;font-weight:300;
+  opacity:0;transform:translateY(14px) scale(.97);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1);
+}
+.msg.show{opacity:1;transform:none}
+.msg.cust{align-self:flex-end;background:#27392F;border-bottom-right-radius:4px;color:#E9F0EA}
+.msg.bot{align-self:flex-start;background:#211910;border:1px solid var(--hairline-soft);border-bottom-left-radius:4px;color:var(--ivory)}
+.msg.sys{
+  align-self:center;background:transparent;border:1px solid var(--champagne);
+  color:var(--champagne);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.5rem 1rem;border-radius:99px;text-align:center;
+}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:.7rem .9rem;background:#211910;border:1px solid var(--hairline-soft);border-radius:14px;border-bottom-left-radius:4px;opacity:0;transition:opacity .3s}
+.typing.show{opacity:1}
+.typing i{width:5px;height:5px;border-radius:50%;background:var(--champagne);animation:tp 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
+@keyframes tp{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+/* intent meter */
+.intent{
+  padding:.85rem 1.1rem 1rem;border-top:1px solid var(--hairline-soft);
+  background:linear-gradient(180deg,#120D09,#1B130C);
+}
+.intent-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem}
+.intent-label{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ivory-dim)}
+.intent-stage{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne);font-weight:500;transition:color .4s}
+.intent-stage.hot{color:#E2654A}
+.intent-track{height:3px;background:rgba(243,234,217,.1);border-radius:2px;overflow:hidden}
+.intent-fill{height:100%;width:8%;background:linear-gradient(90deg,var(--gold-deep),var(--champagne),#E2654A);transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:3.5rem}
+  header{padding-top:7.5rem}
+  .phone{transform:none}
+}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-top:1px solid var(--hairline-soft);border-bottom:1px solid var(--hairline-soft);
+  padding:1.3rem 0;overflow:hidden;white-space:nowrap;position:relative;
+}
+.marquee-track{display:inline-flex;gap:0;animation:slide 400s linear infinite}
+.marquee span{
+  font-family:var(--display);font-size:1.15rem;font-style:italic;color:var(--ivory-dim);
+  padding:0 1.6rem;display:inline-flex;align-items:center;gap:3.2rem;
+}
+.marquee span::after{content:'◆';font-size:.5rem;color:var(--gold-deep);font-style:normal}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:8.5rem 0;position:relative}
+.sec-head{max-width:680px;margin-bottom:5rem}
+.sec-head .eyebrow{display:block;margin-bottom:1.3rem}
+.sec-head h2{font-size:clamp(2.2rem,4vw,3.4rem)}
+.sec-head .lede{margin-top:1.4rem}
+
+/* moments – alternating editorial rows */
+.moment{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  padding:4.5rem 0;border-top:1px solid var(--hairline-soft);
+}
+.moment:last-child{border-bottom:1px solid var(--hairline-soft)}
+.moment.flip .m-visual{order:2}
+.m-copy .eyebrow{display:block;margin-bottom:1.1rem;color:var(--gold-deep)}
+.m-copy h3{font-family:var(--display);font-size:clamp(1.7rem,2.6vw,2.4rem);font-weight:500;line-height:1.15;margin-bottom:1.1rem}
+.m-copy p{color:var(--ivory-dim);max-width:30em}
+.m-visual{
+  background:var(--velvet-2);border:1px solid var(--hairline-soft);
+  border-radius:6px;padding:2rem;min-height:280px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;transition:border-color .5s;
+}
+.m-visual:hover{border-color:var(--hairline)}
+.m-visual::before{
+  content:'';position:absolute;top:-60%;left:-30%;width:80%;height:160%;
+  background:radial-gradient(ellipse,rgba(217,179,108,.07),transparent 70%);
+  pointer-events:none;
+}
+@media(max-width:880px){
+  .moment{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 0}
+  .moment.flip .m-visual{order:0}
+}
+
+/* mini visuals inside moments */
+.kb-card{width:100%;max-width:340px;font-size:.82rem}
+.kb-line{
+  display:flex;justify-content:space-between;padding:.85rem .2rem;
+  border-bottom:1px solid var(--hairline-soft);color:var(--ivory-dim);
+}
+.kb-line b{color:var(--ivory);font-weight:400}
+.kb-line:last-child{border:0}
+.score-demo{width:100%;max-width:340px}
+.score-item{margin-bottom:1.4rem}
+.score-top{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.45rem}
+.score-top em{font-style:normal;color:var(--ivory-dim)}
+.score-top b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem}
+.score-bar{height:3px;background:rgba(243,234,217,.08);border-radius:2px;overflow:hidden}
+.score-bar i{display:block;height:100%;width:0;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+.s-hot b{color:#E2654A}.s-hot i{background:#E2654A}
+.s-warm b{color:var(--champagne)}.s-warm i{background:var(--champagne)}
+.s-new b{color:var(--ivory-dim)}.s-new i{background:var(--ivory-dim)}
+.book-card{
+  width:100%;max-width:320px;text-align:center;border:1px solid var(--hairline);
+  padding:2.2rem 1.8rem;background:rgba(217,179,108,.03);
+}
+.book-card .bk-day{font-family:var(--display);font-size:2.6rem;font-weight:500;color:var(--champagne-soft);line-height:1}
+.book-card .bk-sub{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory-dim);margin:.7rem 0 1.2rem}
+.book-card .bk-conf{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald);border:1px solid rgba(62,138,110,.4);border-radius:99px;padding:.45rem 1rem;display:inline-block}
+.handoff{width:100%;max-width:340px;font-size:.8rem}
+.handoff .h-msg{background:#211910;border:1px solid var(--hairline-soft);border-radius:12px;padding:.8rem 1rem;color:var(--ivory-dim);margin-bottom:.9rem}
+.handoff .h-alert{
+  border:1px solid var(--champagne);border-radius:12px;padding:.9rem 1rem;
+  color:var(--champagne);display:flex;gap:.7rem;align-items:flex-start;
+}
+.handoff .h-alert b{font-weight:500;display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.25rem}
+
+/* ---------- languages ---------- */
+.langs{background:var(--velvet-2);border-top:1px solid var(--hairline-soft);border-bottom:1px solid var(--hairline-soft)}
+.lang-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
+.lang-cell{padding:2.5rem 1rem;border-left:1px solid var(--hairline-soft)}
+.lang-cell:first-child{border-left:0}
+.lang-glyph{font-family:var(--display);font-size:clamp(2.4rem,4.6vw,4rem);font-weight:500;color:var(--champagne-soft);line-height:1.2}
+.lang-name{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory-dim);margin-top:1rem}
+@media(max-width:680px){.lang-row{grid-template-columns:1fr}.lang-cell{border-left:0;border-top:1px solid var(--hairline-soft)}.lang-cell:first-child{border-top:0}}
+
+/* ---------- constellation ---------- */
+.constellation{display:flex;justify-content:center}
+.constellation svg{width:min(820px,100%);height:auto;overflow:visible}
+.const-label{font-family:var(--body);font-size:11px;letter-spacing:.24em;text-transform:uppercase;fill:var(--ivory-dim)}
+.const-core-label{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:.18em;fill:var(--champagne)}
+.spoke{stroke:rgba(217,179,108,.25);stroke-width:1}
+.node-ring{fill:none;stroke:var(--hairline);stroke-width:1}
+.node-dot{fill:#1E1610;stroke:var(--gold-deep);stroke-width:1}
+.pulse-dot{fill:var(--champagne)}
+
+/* ---------- owner tuning ---------- */
+.tune-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.tune-chat{display:flex;flex-direction:column;gap:.7rem;max-width:420px}
+.tune-chat .msg{opacity:1;transform:none;max-width:100%}
+@media(max-width:880px){.tune-grid{grid-template-columns:1fr;gap:3rem}}
+
+/* ---------- house rules ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);border:1px solid var(--hairline-soft)}
+.rule{background:var(--velvet);padding:2.6rem 2.2rem;transition:background .5s}
+.rule:hover{background:var(--velvet-2)}
+.rule .r-no{font-family:var(--display);font-style:italic;font-size:1.05rem;color:var(--gold-deep);display:block;margin-bottom:.9rem}
+.rule h4{font-family:var(--display);font-size:1.45rem;font-weight:500;margin-bottom:.7rem;line-height:1.2}
+.rule p{font-size:.92rem;color:var(--ivory-dim)}
+@media(max-width:880px){.rules{grid-template-columns:1fr}}
+
+/* ---------- CTA ---------- */
+.cta{
+  text-align:center;position:relative;overflow:hidden;
+  border-top:1px solid var(--hairline-soft);
+}
+.cta h2{font-size:clamp(2.6rem,5.4vw,4.6rem);margin-bottom:1.6rem}
+.cta .lede{margin:0 auto 2.8rem}
+#dust2{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.7}
+.cta .wrap{position:relative;z-index:2}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--hairline-soft);padding:3rem 6vw;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;
+  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory-dim);
+}
+footer b{color:var(--champagne);font-weight:500}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="#">Solit<span>AI</span>re</a>
+  <div class="nav-links">
+    <a href="#concierge">Concierge</a>
+    <a href="#integrations">Integrations</a>
+    <a href="#control">Control</a>
+    <a href="#rules">House rules</a>
+    <a class="nav-cta" href="https://wa.me/971501037434" target="_blank" rel="noopener">Book a demo</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header>
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow rv">For fine jewellery brands</span>
+      <h1 class="display rv rv-d1">Every inquiry,<br>answered like your<br><em>finest salesperson.</em></h1>
+      <p class="lede rv rv-d2">SolitAIre is an AI sales concierge that lives on your WhatsApp. It answers customers in seconds, knows your collections by heart, recognises a serious buyer, books the boutique visit — and hands the conversation to your team at exactly the right moment.</p>
+      <div class="hero-actions rv rv-d3">
+        <a class="btn solid" href="https://wa.me/971501037434" target="_blank" rel="noopener">Book a demo on WhatsApp</a>
+        <a class="btn" href="#concierge">See it sell</a>
+      </div>
+      <div class="hero-note rv rv-d3"><span class="live-dot"></span> On duty 24/7 · WhatsApp &amp; email · English, Hindi, Arabic</div>
+    </div>
+    <div class="phone-wrap rv rv-d2">
+      <div class="phone" aria-label="Live demonstration of the concierge selling on WhatsApp">
+        <div class="screen">
+          <div class="chat-head">
+            <div class="chat-avatar">S</div>
+            <div>
+              <div class="chat-title">Your Boutique · Concierge</div>
+              <div class="chat-status">Online</div>
+            </div>
+          </div>
+          <div class="chat-body" id="chatBody"></div>
+          <div class="intent">
+            <div class="intent-row">
+              <span class="intent-label">Buyer intent</span>
+              <span class="intent-stage" id="intentStage">Browsing</span>
+            </div>
+            <div class="intent-track"><div class="intent-fill" id="intentFill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack" style="animation-duration:120s!important">
+    <span>Polki</span><span>Kundan</span><span>Solitaires</span><span>Meenakari</span><span>Bridal Sets</span><span>22K Gold</span><span>Certified Diamonds</span><span>Jadau</span><span>Temple Jewellery</span><span>Hallmarked</span>
+  </div>
+</div>
+
+<!-- ============ CONCIERGE / MOMENTS ============ -->
+<section id="concierge">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">The concierge</span>
+      <h2 class="display">A jewellery customer is won in the <em>first reply</em> — and lost in the silence after it.</h2>
+      <p class="lede">Inquiries arrive at midnight, mid-festival, mid-rush. SolitAIre replies in seconds, every time, and moves each conversation toward a visit.</p>
+    </div>
+
+    <div class="moment rv">
+      <div class="m-copy">
+        <span class="eyebrow">Knows your house</span>
+        <h3>Trained on your collections, your story, your craft</h3>
+        <p>From the 4Cs and gold karats to Kundan, Polki and bridal traditions — and everything specific to your boutique: collections, occasions, store details. It speaks with the confidence of someone who has worked your floor for years, and it stays current as your catalogue changes.</p>
+      </div>
+      <div class="m-visual">
+        <div class="kb-card">
+          <div class="kb-line"><span>Collection</span><b>Bridal Polki · 22K</b></div>
+          <div class="kb-line"><span>Occasion</span><b>Wedding · December</b></div>
+          <div class="kb-line"><span>Speciality</span><b>Uncut diamonds, Jadau setting</b></div>
+          <div class="kb-line"><span>Boutique</span><b>Dubai · By appointment</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="moment flip rv">
+      <div class="m-copy">
+        <span class="eyebrow">Reads the room</span>
+        <h3>Recognises a serious buyer before your team does</h3>
+        <p>Every conversation is scored continuously — from a casual browser to a buyer with a budget, an occasion and a date. Your team's attention goes where the gold is, not into a flooded inbox.</p>
+      </div>
+      <div class="m-visual">
+        <div class="score-demo">
+          <div class="score-item s-hot"><div class="score-top"><em>Bride's mother · budget stated · visit requested</em><b>Hot · 92</b></div><div class="score-bar"><i data-w="92%"></i></div></div>
+          <div class="score-item s-warm"><div class="score-top"><em>Asking about solitaire certification</em><b>Warm · 58</b></div><div class="score-bar"><i data-w="58%"></i></div></div>
+          <div class="score-item s-new"><div class="score-top"><em>Browsing earring designs</em><b>New · 21</b></div><div class="score-bar"><i data-w="21%"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="moment rv">
+      <div class="m-copy">
+        <span class="eyebrow">Closes the loop</span>
+        <h3>Books the boutique visit, into your real calendar</h3>
+        <p>When a customer is ready, SolitAIre offers genuine available slots, confirms the appointment and notifies your sales team — so the right consultant is waiting with the right pieces set aside.</p>
+      </div>
+      <div class="m-visual">
+        <div class="book-card">
+          <div class="bk-day">Saturday, 6:00 PM</div>
+          <div class="bk-sub">Boutique consultation</div>
+          <div class="bk-conf">Confirmed · Team notified</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="moment flip rv">
+      <div class="m-copy">
+        <span class="eyebrow">Knows its place</span>
+        <h3>Hands over to your humans at the perfect moment</h3>
+        <p>The instant a customer is ready to buy or visit, your sales team is alerted on WhatsApp and the concierge goes quiet. No awkward overlap, no robot in the closing room. Your team takes the applause.</p>
+      </div>
+      <div class="m-visual">
+        <div class="handoff">
+          <div class="h-msg">"Yes — Saturday works. Can someone show me the Jadau set in person?"</div>
+          <div class="h-alert"><span>→</span><span><b>Hot lead · handed to your team</b>Concierge is now silent. Priya from sales has the full conversation.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LANGUAGES ============ -->
+<section class="langs" style="padding:5.5rem 0">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-bottom:3.5rem;max-width:100%">
+      <span class="eyebrow">Speaks your customer's language</span>
+    </div>
+    <div class="lang-row">
+      <div class="lang-cell rv"><div class="lang-glyph">Exquisite</div><div class="lang-name">English</div></div>
+      <div class="lang-cell rv rv-d1"><div class="lang-glyph">बेमिसाल</div><div class="lang-name">Hindi</div></div>
+      <div class="lang-cell rv rv-d2"><div class="lang-glyph">فاخر</div><div class="lang-name">Arabic</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATIONS ============ -->
+<section id="integrations">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Integrations</span>
+      <h2 class="display">Quietly connected to <em>everything</em> your business runs on.</h2>
+      <p class="lede">Every lead, score, appointment and conversation flows into the systems you already use. Your CRM stays the source of truth; your ERP sees the demand; your calendar fills itself.</p>
+    </div>
+    <div class="constellation rv">
+      <svg viewBox="0 0 820 460" role="img" aria-label="SolitAIre at the centre, connected to CRM, ERP, calendar, WhatsApp, email and your website">
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#D9B36C" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#D9B36C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- spokes -->
+        <line class="spoke" id="sp1" x1="410" y1="230" x2="120" y2="80"/>
+        <line class="spoke" id="sp2" x1="410" y1="230" x2="120" y2="380"/>
+        <line class="spoke" id="sp3" x1="410" y1="230" x2="700" y2="80"/>
+        <line class="spoke" id="sp4" x1="410" y1="230" x2="700" y2="380"/>
+        <line class="spoke" id="sp5" x1="410" y1="230" x2="410" y2="50"/>
+        <line class="spoke" id="sp6" x1="410" y1="230" x2="410" y2="410"/>
+        <!-- traveling pulses -->
+        <circle class="pulse-dot" r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M410,230 L120,80"/></circle>
+        <circle class="pulse-dot" r="3"><animateMotion dur="5s" begin="1s" repeatCount="indefinite" path="M410,230 L700,380"/></circle>
+        <circle class="pulse-dot" r="3"><animateMotion dur="4.5s" begin="2s" repeatCount="indefinite" path="M700,80 L410,230"/></circle>
+        <circle class="pulse-dot" r="3"><animateMotion dur="5.5s" begin="0.5s" repeatCount="indefinite" path="M120,380 L410,230"/></circle>
+        <!-- core -->
+        <circle cx="410" cy="230" r="120" fill="url(#coreGlow)"/>
+        <g transform="translate(410,230)">
+          <rect x="-42" y="-42" width="84" height="84" transform="rotate(45)" fill="#16100A" stroke="#D9B36C" stroke-width="1.2"/>
+          <rect x="-30" y="-30" width="60" height="60" transform="rotate(45)" fill="none" stroke="rgba(217,179,108,.35)" stroke-width="1">
+            <animateTransform attributeName="transform" type="rotate" from="45" to="405" dur="24s" repeatCount="indefinite"/>
+          </rect>
+          <text class="const-core-label" text-anchor="middle" dy="7" font-size="12" letter-spacing="0.1em">SOLITAIRE</text>
+        </g>
+        <!-- nodes -->
+        <g transform="translate(120,80)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="58">Your CRM</text></g>
+        <g transform="translate(120,380)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="-44">Your ERP</text></g>
+        <g transform="translate(700,80)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="58">Calendar</text></g>
+        <g transform="translate(700,380)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="-44">Email</text></g>
+        <g transform="translate(410,50)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="-44">WhatsApp</text></g>
+        <g transform="translate(410,410)"><circle class="node-dot" r="26"/><circle class="node-ring" r="34"/><text class="const-label" text-anchor="middle" dy="58">Your website</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OWNER CONTROL ============ -->
+<section id="control" class="langs">
+  <div class="wrap tune-grid">
+    <div class="rv">
+      <span class="eyebrow" style="display:block;margin-bottom:1.3rem">You stay in command</span>
+      <h2 class="display" style="font-size:clamp(2rem,3.6vw,3rem)">Tune it the way you'd <em>train a salesperson.</em></h2>
+      <p class="lede" style="margin-top:1.4rem">Message your concierge in plain language and it adjusts instantly — across every customer conversation. No dashboards required, though a beautiful one is there when you want it: every lead, every score, every conversation, live.</p>
+    </div>
+    <div class="tune-chat rv rv-d1">
+      <div class="msg cust show">Always mention the new Dubai boutique first.</div>
+      <div class="msg bot show">Noted. From now on, every customer hears about the Dubai boutique before anything else.</div>
+      <div class="msg cust show">Why did you suggest the Jadau set to the last customer?</div>
+      <div class="msg bot show">She mentioned a December wedding and a preference for uncut diamonds — the Jadau bridal set matched both, so I proposed a viewing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOUSE RULES ============ -->
+<section id="rules">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">House rules</span>
+      <h2 class="display">Discretion, <em>by design.</em></h2>
+      <p class="lede">Luxury is as much about what is never said. SolitAIre is deliberately restrained where it matters.</p>
+    </div>
+    <div class="rules rv">
+      <div class="rule"><span class="r-no">It never</span><h4>Quotes a final price</h4><p>Gold rates move and pieces are personal. Exact quotes always come from your team — the concierge sets the stage, never the number.</p></div>
+      <div class="rule"><span class="r-no">It never</span><h4>Promises what it can't keep</h4><p>No invented delivery dates, no overclaiming. When it doesn't know, it gracefully brings in a human.</p></div>
+      <div class="rule"><span class="r-no">It never</span><h4>Talks over your team</h4><p>The moment a human takes a conversation, the concierge falls silent. It also ignores attempts by customers to manipulate or derail it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="demo">
+  <canvas id="dust2" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="eyebrow rv" style="display:block;margin-bottom:1.5rem">A private demonstration</span>
+    <h2 class="display rv rv-d1">Watch it sell <em>your</em> jewellery.</h2>
+    <p class="lede rv rv-d2" style="max-width:30em">We'll set up a live concierge trained on your collections and let you message it yourself. Twenty minutes, on WhatsApp, no slides.</p>
+    <a class="btn solid rv rv-d3" href="https://wa.me/971501037434" target="_blank" rel="noopener">Book a demo on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div><b>SolitAIre</b> · An AI concierge by Crank Labs</div>
+  <div>Dubai · Mumbai</div>
+</footer>
+
+<script>
+/* ---------- nav ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('in');
+    e.target.querySelectorAll('.score-bar i').forEach(b=>b.style.width=b.dataset.w);
+    io.unobserve(e.target);
+  }
+}),{threshold:.18});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ---------- marquee duplicate ---------- */
+const mt=document.getElementById('marqueeTrack');
+mt.innerHTML+=mt.innerHTML;
+
+/* ---------- gold dust canvas ---------- */
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function dustField(id,count){
+  const c=document.getElementById(id);if(!c)return;
+  const x=c.getContext('2d');let w,h,parts=[];
+  function size(){
+    const r=c.parentElement.getBoundingClientRect();
+    w=c.width=r.width*devicePixelRatio;h=c.height=r.height*devicePixelRatio;
+  }
+  function spawn(){
+    parts=Array.from({length:count},()=>({
+      x:Math.random()*w,y:Math.random()*h,
+      r:(Math.random()*1.6+.4)*devicePixelRatio,
+      vx:(Math.random()-.5)*.12*devicePixelRatio,
+      vy:(-Math.random()*.18-.04)*devicePixelRatio,
+      a:Math.random()*Math.PI*2,
+      tw:Math.random()*.02+.005,
+      glint:Math.random()<.07
+    }));
+  }
+  function draw(){
+    x.clearRect(0,0,w,h);
+    for(const p of parts){
+      p.x+=p.vx;p.y+=p.vy;p.a+=p.tw;
+      if(p.y<-10)p.y=h+10;if(p.x<-10)p.x=w+10;if(p.x>w+10)p.x=-10;
+      const o=(Math.sin(p.a)*.5+.5)*.55+.08;
+      x.fillStyle=`rgba(217,179,108,${o.toFixed(3)})`;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();
+      if(p.glint&&o>.5){
+        x.strokeStyle=`rgba(232,207,160,${(o*.5).toFixed(3)})`;
+        x.lineWidth=devicePixelRatio*.6;const s=p.r*5*o;
+        x.beginPath();x.moveTo(p.x-s,p.y);x.lineTo(p.x+s,p.y);
+        x.moveTo(p.x,p.y-s);x.lineTo(p.x,p.y+s);x.stroke();
+      }
+    }
+    if(!reduced)requestAnimationFrame(draw);
+  }
+  size();spawn();draw();
+  addEventListener('resize',()=>{size();spawn();},{passive:true});
+}
+dustField('dust',90);
+dustField('dust2',55);
+
+/* ---------- chat demo loop ---------- */
+const script=[
+  {t:'cust',txt:'Hi — do you have polki chokers for a wedding in December?',stage:'Browsing',fill:18},
+  {t:'bot', txt:'Congratulations on the occasion! Yes — our bridal polki line includes chokers in 22K with uncut diamonds. May I ask, is this for the bride herself?',stage:'Browsing',fill:26},
+  {t:'cust',txt:'Yes, for my daughter. Budget is around 40k dirhams.',stage:'Interested',fill:52},
+  {t:'bot', txt:'Lovely. Within that range, the Jadau bridal set and two of our choker pieces would be perfect to see in person. Would you like to visit the boutique this week?',stage:'Ready',fill:74},
+  {t:'cust',txt:'Saturday evening works for us.',stage:'Ready',fill:84},
+  {t:'bot', txt:'Booked — Saturday, 6:00 PM. Our senior consultant will have the pieces set aside for you and your daughter.',stage:'Hot',fill:100},
+  {t:'sys', txt:'Hot lead · handed to your sales team',stage:'Hot',fill:100}
+];
+const body=document.getElementById('chatBody');
+const stageEl=document.getElementById('intentStage');
+const fillEl=document.getElementById('intentFill');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+async function playChat(){
+  while(true){
+    body.innerHTML='';
+    stageEl.textContent='Browsing';stageEl.classList.remove('hot');
+    fillEl.style.width='8%';
+    await sleep(900);
+    for(const m of script){
+      if(m.t==='bot'){
+        const tp=document.createElement('div');tp.className='typing';
+        tp.innerHTML='<i></i><i></i><i></i>';body.appendChild(tp);trim();
+        await sleep(60);tp.classList.add('show');
+        await sleep(reduced?200:1300);tp.remove();
+      } else { await sleep(reduced?200:1000); }
+      const el=document.createElement('div');
+      el.className='msg '+m.t;el.textContent=m.txt;
+      body.appendChild(el);trim();
+      await sleep(40);el.classList.add('show');
+      stageEl.textContent=m.stage;
+      stageEl.classList.toggle('hot',m.stage==='Hot');
+      fillEl.style.width=m.fill+'%';
+      await sleep(reduced?400:1400);
+    }
+    await sleep(3800);
+  }
+}
+function trim(){
+  while(body.scrollHeight>body.clientHeight&&body.children.length>1){
+    body.removeChild(body.firstChild);
+  }
+}
+playChat();
+</script>
+</body>
+</html>
