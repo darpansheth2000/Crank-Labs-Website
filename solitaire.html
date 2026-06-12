@@ -279,6 +279,13 @@ section{padding:8.5rem 0;position:relative}
 .tune-chat .msg{opacity:1;transform:none;max-width:100%}
 @media(max-width:880px){.tune-grid{grid-template-columns:1fr;gap:3rem}}
 
+/* ---------- privacy ---------- */
+.privacy-claims{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3.5rem}
+.privacy-item{padding:2rem 0;border-top:1px solid var(--hairline-soft)}
+.p-label{font-family:var(--display);font-size:1.35rem;font-weight:500;color:var(--champagne-soft);display:block;margin-bottom:.75rem}
+.privacy-item p{font-size:.9rem;color:var(--ivory-dim);line-height:1.7}
+@media(max-width:780px){.privacy-claims{grid-template-columns:1fr}}
+
 /* ---------- house rules ---------- */
 .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);border:1px solid var(--hairline-soft)}
 .rule{background:var(--velvet);padding:2.6rem 2.2rem;transition:background .5s}
@@ -565,6 +572,31 @@ footer b{color:var(--champagne);font-weight:500}
       <div class="rule"><span class="r-no">It never</span><h4>Quotes a final price</h4><p>Market prices move and pieces are personal. Exact quotes always come from your team — the concierge sets the stage, never the number.</p></div>
       <div class="rule"><span class="r-no">It never</span><h4>Promises what it can't keep</h4><p>No invented delivery dates, no overclaiming. When it doesn't know, it gracefully brings in a human.</p></div>
       <div class="rule"><span class="r-no">It never</span><h4>Talks over your team</h4><p>The moment a human takes a conversation, the concierge falls silent. It also ignores attempts by customers to manipulate or derail it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section id="privacy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Infrastructure</span>
+      <h2 class="display">Built for your brand. <em>Hosted for your privacy.</em></h2>
+      <p class="lede">SolitAIre is not a generic chatbot bolted onto a third-party platform. It is a personalised AI, custom-built for your brand and self-hosted on Crank Labs servers — so your customer conversations belong to you alone.</p>
+    </div>
+    <div class="privacy-claims">
+      <div class="privacy-item rv">
+        <span class="p-label">Personalised AI</span>
+        <p>Trained specifically on your catalogue, your tone and your boutique — not a shared model deployed across thousands of brands. It knows your house the way a long-serving member of your team does.</p>
+      </div>
+      <div class="privacy-item rv rv-d1">
+        <span class="p-label">Self-hosted</span>
+        <p>Runs entirely on Crank Labs infrastructure. Your customer data, lead scores and conversation history never pass through Meta, OpenAI or any third-party server.</p>
+      </div>
+      <div class="privacy-item rv rv-d2">
+        <span class="p-label">No Meta API required</span>
+        <p>You do not need a WhatsApp Business API account or Meta approval. We handle the infrastructure — your team just sends and receives messages as normal.</p>
+      </div>
     </div>
   </div>
 </section>
