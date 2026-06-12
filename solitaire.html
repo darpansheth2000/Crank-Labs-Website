@@ -85,8 +85,9 @@ nav{
   border-bottom:1px solid transparent;
 }
 nav.scrolled{background:rgba(13,10,8,.82);backdrop-filter:blur(14px);border-bottom-color:var(--hairline-soft);padding:1rem 6vw}
-.logo{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
-.logo span{color:var(--champagne)}
+.logo{font-family:var(--body);font-size:1.55rem;font-weight:700;letter-spacing:.04em;text-transform:none;color:var(--ivory);display:inline-flex;align-items:center}
+.logo-a{position:relative;color:var(--champagne);display:inline-block;line-height:1}
+.logo-gem{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:13px;height:11px;display:block;stroke:var(--champagne);fill:none;stroke-width:1.4;stroke-linejoin:round}
 .nav-links{display:flex;gap:2.4rem;align-items:center}
 .nav-links a{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory-dim);transition:color .3s}
 .nav-links a:hover{color:var(--champagne)}
@@ -354,7 +355,7 @@ footer b{color:var(--champagne);font-weight:500}
 <body>
 
 <nav id="nav">
-  <a class="logo" href="#">Solit<span>AI</span>re</a>
+  <a class="logo" href="#">Solit<span class="logo-a"><svg class="logo-gem" viewBox="0 0 22 18" aria-hidden="true"><polyline points="4,7 7,1 15,1 18,7"/><line x1="1" y1="7" x2="21" y2="7"/><line x1="1" y1="7" x2="7" y2="1"/><line x1="21" y1="7" x2="15" y2="1"/><line x1="1" y1="7" x2="11" y2="17"/><line x1="21" y1="7" x2="11" y2="17"/><line x1="11" y1="1" x2="11" y2="7"/><line x1="7" y1="7" x2="11" y2="17"/><line x1="15" y1="7" x2="11" y2="17"/></svg>A</span>ire</a>
   <div class="nav-links">
     <a href="#concierge">Concierge</a>
     <a href="#studio">Studio</a>
