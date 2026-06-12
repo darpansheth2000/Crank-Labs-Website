@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 54" role="img" aria-label="SolitAire">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Jost:wght@700&amp;display=swap');
+      .lt { font-family: 'Jost', Arial, sans-serif; font-weight: 700; font-size: 42px; }
+    </style>
+  </defs>
+  <!-- wordmark -->
+  <text class="lt" y="44">
+    <tspan fill="#F3EAD9">Solit</tspan><tspan fill="#C9A86C">A</tspan><tspan fill="#F3EAD9">ire</tspan>
+  </text>
+  <!-- diamond gem — floats above the i in Aire (~x 127) -->
+  <g transform="translate(124, 1)" stroke="#E8CFA0" fill="none" stroke-width="1.35" stroke-linejoin="round">
+    <polyline points="4,7 7,1 15,1 18,7"/>
+    <line x1="1"  y1="7" x2="21" y2="7"/>
+    <line x1="1"  y1="7" x2="7"  y2="1"/>
+    <line x1="21" y1="7" x2="15" y2="1"/>
+    <line x1="1"  y1="7" x2="11" y2="17"/>
+    <line x1="21" y1="7" x2="11" y2="17"/>
+    <line x1="11" y1="1" x2="11" y2="7"/>
+    <line x1="7"  y1="7" x2="11" y2="17"/>
+    <line x1="15" y1="7" x2="11" y2="17"/>
+  </g>
+</svg>
