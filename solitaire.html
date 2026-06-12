@@ -7,7 +7,8 @@
 <meta name="description" content="A 24/7 AI concierge that answers every luxury inquiry, qualifies serious buyers, books private appointments, and syncs with your CRM and inventory.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{
   --velvet:#0D0A08;
@@ -258,6 +259,7 @@ section{padding:8.5rem 0;position:relative}
 .lang-cell:first-child{border-left:0}
 .lang-glyph{font-family:var(--display);font-size:clamp(2.4rem,4.6vw,4rem);font-weight:500;color:var(--champagne-soft);line-height:1.2}
 .lang-name{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory-dim);margin-top:1rem}
+.lang-devanagari .lang-glyph{font-family:'Tiro Devanagari',serif}
 @media(max-width:900px){.lang-row{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:680px){.lang-row{grid-template-columns:1fr}.lang-cell{border-left:0;border-top:1px solid var(--hairline-soft)}.lang-cell:first-child{border-top:0}}
 
@@ -481,7 +483,7 @@ footer b{color:var(--champagne);font-weight:500}
       <div class="lang-cell rv"><div class="lang-glyph">Exquisite</div><div class="lang-name">English</div></div>
       <div class="lang-cell rv rv-d1"><div class="lang-glyph">Raffiné</div><div class="lang-name">French</div></div>
       <div class="lang-cell rv rv-d2"><div class="lang-glyph">فاخر</div><div class="lang-name">Arabic</div></div>
-      <div class="lang-cell rv rv-d2"><div class="lang-glyph">बेमिसाल</div><div class="lang-name">Hindi</div></div>
+      <div class="lang-cell lang-devanagari rv rv-d2"><div class="lang-glyph">बेमिसाल</div><div class="lang-name">Hindi</div></div>
       <div class="lang-cell rv rv-d3"><div class="lang-glyph">Изысканно</div><div class="lang-name">Russian</div></div>
     </div>
   </div>
