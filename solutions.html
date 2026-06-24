@@ -51,32 +51,72 @@ pointer-events:none;z-index:-1}
 width:calc(100% - 48px);max-width:1100px;
 background:linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.035)),rgba(8,10,14,0.82);
 backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:0 24px}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.nav-logo img{height:32px;width:32px}
-.nav-logo span{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--heading);letter-spacing:-0.02em}
-.nav-link-active{color:var(--cyan)!important;font-weight:600!important}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 22px;
+border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:0 8px 0 20px}
+.nav-inner{display:flex;align-items:center;height:52px;gap:0}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;margin-right:auto}
+.nav-logo img{height:30px;width:30px}
+.nav-logo span{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--heading);letter-spacing:-0.02em}
+
+.nav-links{display:flex;align-items:center;gap:2px;margin-right:8px}
+.nav-links a,.nav-links .nav-sol-trigger{
+color:var(--text-muted);text-decoration:none;font-size:0.8rem;font-weight:500;
+padding:7px 13px;border-radius:999px;transition:all 0.2s ease;cursor:pointer;
+background:none;border:none;font-family:var(--font-body);white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.nav-links a:hover,.nav-links .nav-sol-trigger:hover{color:var(--heading);background:rgba(255,255,255,0.06)}
+.nav-sol-trigger{color:var(--cyan)!important;font-weight:600!important}
+.nav-sol-trigger svg{transition:transform 0.2s ease}
+.nav-sol-trigger.open svg{transform:rotate(180deg)}
+
+.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;
 background:linear-gradient(135deg,var(--cyan),var(--blue));color:#030711;
-font-weight:700;font-size:0.8125rem;border-radius:999px;text-decoration:none;
+font-weight:700;font-size:0.8rem;border-radius:999px;text-decoration:none;
 transition:all var(--transition);border:none;cursor:pointer;font-family:var(--font-body);flex-shrink:0;white-space:nowrap}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(114,228,255,0.3)}
 
-/* Desktop hamburger links hidden */
-.nav-desktop-links{display:flex;align-items:center;gap:24px}
-.nav-desktop-links a{color:var(--text-dim);text-decoration:none;font-size:0.8125rem;font-weight:500;transition:color var(--transition)}
-.nav-desktop-links a:hover{color:var(--cyan)}
+/* Solutions mega dropdown */
+.sol-mega{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+width:calc(100% + 40px);max-width:720px;
+background:linear-gradient(180deg,rgba(12,16,28,0.97),rgba(6,8,14,0.98));
+backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:20px;
+opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);
+transition:opacity 0.25s ease,visibility 0.25s ease,transform 0.25s ease;z-index:1002;
+box-shadow:0 24px 80px rgba(0,0,0,0.5)}
+.sol-mega.open{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.sol-mega-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 4px}
+.sol-mega-head h4{font-family:var(--font-display);font-size:0.8125rem;font-weight:600;color:var(--heading)}
+.sol-mega-head a{font-size:0.75rem;color:var(--cyan);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.sol-mega-head a:hover{text-decoration:underline}
+.sol-mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.sol-mega-item{padding:10px 14px;border-radius:10px;color:var(--text-dim);font-size:0.8rem;font-weight:500;
+text-decoration:none;transition:all 0.15s ease;cursor:pointer;border:1px solid transparent;display:flex;align-items:center;gap:8px}
+.sol-mega-item:hover{background:rgba(114,228,255,0.04);border-color:rgba(114,228,255,0.12);color:var(--heading)}
+.sol-mega-item .sol-count{margin-left:auto;font-size:0.6875rem;color:var(--text-muted);font-weight:400}
+.sol-mega-bottom{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);
+display:flex;align-items:center;justify-content:center;gap:16px}
+.sol-mega-bottom a{font-size:0.8rem;color:var(--text-dim);text-decoration:none;font-weight:500;
+display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;transition:all 0.15s ease}
+.sol-mega-bottom a:hover{color:var(--heading);background:rgba(255,255,255,0.05)}
+.sol-mega-bottom .sol-quiz-link{color:var(--cyan);font-weight:600}
 
 /* Mobile hamburger */
 .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:4px;flex-shrink:0}
-.nav-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:16px;
-background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03)),rgba(8,10,14,0.95);
+.nav-dropdown{display:none;position:absolute;top:calc(100% + 8px);left:12px;right:12px;
+background:linear-gradient(180deg,rgba(12,16,28,0.97),rgba(6,8,14,0.98));
 backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:12px 8px;min-width:200px;z-index:1001}
-.nav-dropdown.open{display:flex;flex-direction:column;gap:4px}
-.nav-dropdown a{color:var(--text-dim);text-decoration:none;font-size:0.875rem;font-weight:500;padding:10px 16px;border-radius:10px;transition:all var(--transition)}
-.nav-dropdown a:hover{background:rgba(255,255,255,0.06);color:var(--text)}
+border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:12px 8px;z-index:1001;
+box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.nav-dropdown.open{display:flex;flex-direction:column;gap:2px}
+.nav-dropdown a{color:var(--text-dim);text-decoration:none;font-size:0.875rem;font-weight:500;
+padding:11px 16px;border-radius:12px;transition:all 0.15s ease}
+.nav-dropdown a:hover{background:rgba(255,255,255,0.06);color:var(--heading)}
+.nav-dropdown .nav-link-active{color:var(--cyan)!important;font-weight:600!important}
+.nav-dropdown .mob-ind-section{padding:4px 16px 8px;display:none}
+.nav-dropdown .mob-ind-section.open{display:block}
+.nav-dropdown .mob-ind-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px}
+.nav-dropdown .mob-ind-item{font-size:0.75rem;color:var(--text-muted);padding:8px 10px;border-radius:8px;
+text-decoration:none;transition:all 0.15s ease;text-align:center}
+.nav-dropdown .mob-ind-item:hover{background:rgba(114,228,255,0.04);color:var(--heading)}
 
 /* ===== HERO ===== */
 .hero{padding:120px 24px 48px;text-align:center;position:relative;overflow:hidden}
@@ -410,7 +450,8 @@ justify-content:center;gap:8px}
   .nav-inner{height:52px;gap:8px}
   .nav-logo img{height:28px;width:28px}
   .nav-logo span{font-size:1rem}
-  .nav-desktop-links{display:none}
+  .nav-links{display:none}
+  .sol-mega{display:none!important}
   .nav-toggle{display:block}
   .nav-cta{padding:8px 16px;font-size:0.75rem}
   .hero{padding:90px 16px 28px}
@@ -482,8 +523,10 @@ justify-content:center;gap:8px}
     <img src="./crank-logo-icon.png" alt="Crank Labs">
     <span>Crank Labs</span>
   </a>
-  <div class="nav-desktop-links">
-    <a href="#" onclick="goHome(event)" class="nav-link-active">Solutions</a>
+  <div class="nav-links">
+    <button class="nav-sol-trigger" id="solTrigger" onclick="toggleSolMega()">
+      Solutions <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4.5l3 3 3-3"/></svg>
+    </button>
     <a href="https://cranklabs.tech/#services">Services</a>
     <a href="https://cranklabs.tech/#process">Process</a>
     <a href="https://cranklabs.tech/#proof">Results</a>
@@ -494,13 +537,35 @@ justify-content:center;gap:8px}
     <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h16M3 5.5h16M3 16.5h16"/></svg>
   </button>
 </div>
+
+<!-- Solutions mega dropdown -->
+<div class="sol-mega" id="solMega">
+  <div class="sol-mega-head">
+    <h4>Browse by Industry</h4>
+    <a href="#" onclick="goHome(event);closeSolMega()">View all 534 solutions <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2l5 5-5 5"/></svg></a>
+  </div>
+  <div class="sol-mega-grid" id="solMegaGrid"></div>
+  <div class="sol-mega-bottom">
+    <a href="#quiz" class="sol-quiz-link" onclick="closeSolMega()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><path d="M7 1v3M7 10v3M1 7h3M10 7h3"/></svg>
+      What should we automate?
+    </a>
+    <a href="https://cranklabs.tech/#book">Book a systems audit</a>
+  </div>
+</div>
+
+<!-- Mobile dropdown -->
 <div class="nav-dropdown" id="navDropdown">
-  <a href="#" onclick="goHome(event)" class="nav-link-active">Solutions</a>
-  <a href="https://cranklabs.tech/#services">Services</a>
-  <a href="https://cranklabs.tech/#process">Process</a>
-  <a href="https://cranklabs.tech/#proof">Results</a>
-  <a href="https://cranklabs.tech/#faq">FAQ</a>
-  <a href="https://cranklabs.tech/#book">Book a Free Systems Audit</a>
+  <a href="#" onclick="goHome(event);closeMobileNav()" class="nav-link-active">All Solutions</a>
+  <a href="#" onclick="toggleMobileIndustries(event)">Browse by Industry <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto"><path d="M3 4.5l3 3 3-3"/></svg></a>
+  <div class="mob-ind-section" id="mobIndSection">
+    <div class="mob-ind-grid" id="mobIndGrid"></div>
+  </div>
+  <a href="https://cranklabs.tech/#services" onclick="closeMobileNav()">Services</a>
+  <a href="https://cranklabs.tech/#process" onclick="closeMobileNav()">Process</a>
+  <a href="https://cranklabs.tech/#proof" onclick="closeMobileNav()">Results</a>
+  <a href="https://cranklabs.tech/#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="https://cranklabs.tech/#book" onclick="closeMobileNav()">Book a Free Systems Audit</a>
 </div>
 </nav>
 
@@ -1239,6 +1304,7 @@ let currentDetailSlug=null;
 document.addEventListener('DOMContentLoaded',()=>{
   buildFilters();
   buildQuizIndustries();
+  buildNavIndustries();
   renderCards();
   handleHash();
   animateStatCounter();
@@ -1666,16 +1732,56 @@ function submitBuild(){
   window.open(url,'_blank');
 }
 
-/* ===== MOBILE NAV ===== */
+/* ===== NAV FUNCTIONS ===== */
+function buildNavIndustries(){
+  const grid=document.getElementById('solMegaGrid');
+  const mobGrid=document.getElementById('mobIndGrid');
+  const counts={};
+  solutions.forEach(s=>{counts[s.industry]=(counts[s.industry]||0)+1});
+  industries.forEach(ind=>{
+    grid.innerHTML+=`<a class="sol-mega-item" href="#" onclick="filterFromNav('${ind.replace(/'/g,"\\'")}');return false">${ind}<span class="sol-count">${counts[ind]||0}</span></a>`;
+    mobGrid.innerHTML+=`<a class="mob-ind-item" href="#" onclick="filterFromNav('${ind.replace(/'/g,"\\'")}');closeMobileNav();return false">${ind}</a>`;
+  });
+}
+function filterFromNav(ind){
+  closeSolMega();
+  goHome();
+  currentFilter=ind;
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.toggle('active',t.textContent===ind));
+  renderCards();
+  document.querySelector('.filter-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+let solMegaOpen=false;
+function toggleSolMega(){
+  solMegaOpen=!solMegaOpen;
+  document.getElementById('solMega').classList.toggle('open',solMegaOpen);
+  document.getElementById('solTrigger').classList.toggle('open',solMegaOpen);
+}
+function closeSolMega(){
+  solMegaOpen=false;
+  document.getElementById('solMega').classList.remove('open');
+  document.getElementById('solTrigger').classList.remove('open');
+}
 function toggleMobileNav(){
   document.getElementById('navDropdown').classList.toggle('open');
 }
-// Close dropdown on outside click
+function closeMobileNav(){
+  document.getElementById('navDropdown').classList.remove('open');
+}
+function toggleMobileIndustries(e){
+  e.preventDefault();
+  document.getElementById('mobIndSection').classList.toggle('open');
+}
 document.addEventListener('click',e=>{
   const dd=document.getElementById('navDropdown');
   const toggle=document.querySelector('.nav-toggle');
   if(dd.classList.contains('open')&&!dd.contains(e.target)&&!toggle.contains(e.target)){
-    dd.classList.remove('open');
+    closeMobileNav();
+  }
+  const mega=document.getElementById('solMega');
+  const trigger=document.getElementById('solTrigger');
+  if(solMegaOpen&&!mega.contains(e.target)&&!trigger.contains(e.target)){
+    closeSolMega();
   }
 });
 </script>
