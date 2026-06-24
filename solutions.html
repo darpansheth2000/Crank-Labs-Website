@@ -55,10 +55,7 @@ border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .nav-logo img{height:32px;width:32px}
 .nav-logo span{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--heading);letter-spacing:-0.02em}
-.nav-active{color:var(--cyan);font-size:0.875rem;font-weight:600;font-family:var(--font-body);flex-shrink:0}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{color:var(--text-dim);text-decoration:none;font-size:0.8125rem;font-weight:500;transition:color var(--transition);white-space:nowrap}
-.nav-links a:hover{color:var(--cyan)}
+.nav-link-active{color:var(--cyan)!important;font-weight:600!important}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 22px;
 background:linear-gradient(135deg,var(--cyan),var(--blue));color:#030711;
 font-weight:700;font-size:0.8125rem;border-radius:999px;text-decoration:none;
@@ -113,13 +110,13 @@ background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-cl
 
 /* ===== QUESTIONNAIRE ===== */
 .quiz-trigger{text-align:center;margin:0 auto 40px;padding:0 24px}
-.quiz-trigger-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
-background:rgba(255,255,255,0.01);backdrop-filter:blur(4px);
-border:1px solid rgba(114,228,255,0.2);border-radius:999px;color:var(--cyan);
-font-family:var(--font-body);font-size:1rem;font-weight:600;cursor:pointer;
-transition:all var(--transition)}
-.quiz-trigger-btn:hover{background:rgba(114,228,255,0.06);border-color:var(--cyan);
-box-shadow:0 0 32px rgba(114,228,255,0.1)}
+.quiz-trigger-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;
+background:linear-gradient(135deg,var(--cyan),var(--blue));
+border:none;border-radius:999px;color:#000;
+font-family:var(--font-body);font-size:1.0625rem;font-weight:700;cursor:pointer;
+transition:all var(--transition);box-shadow:0 4px 24px rgba(114,228,255,0.25)}
+.quiz-trigger-btn:hover{transform:translateY(-2px);
+box-shadow:0 8px 40px rgba(114,228,255,0.4)}
 .quiz-trigger-btn svg{transition:transform var(--transition)}
 .quiz-trigger-btn.active svg{transform:rotate(180deg)}
 
@@ -210,7 +207,7 @@ box-shadow:inset 0 1px 1px rgba(255,255,255,0.12),0 16px 48px rgba(0,0,0,0.4)}
 .card-category{font-size:0.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;
 padding:4px 10px;border-radius:999px;background:rgba(114,228,255,0.08);color:var(--cyan)}
 .card-industry{font-size:0.6875rem;color:var(--text-muted);font-weight:500}
-.card h3{font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--heading);margin-bottom:10px;line-height:1.3;position:relative;z-index:1}
+.card h3{font-family:var(--font-display);font-size:1.0625rem;font-weight:600;color:var(--heading);margin-bottom:10px;line-height:1.3;position:relative;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card p{font-size:0.875rem;color:var(--text-dim);line-height:1.6;margin-bottom:20px;position:relative;z-index:1}
 .card-footer{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
 .card-link{display:inline-flex;align-items:center;gap:6px;font-size:0.8125rem;font-weight:600;
@@ -407,7 +404,6 @@ justify-content:center;gap:8px}
   .nav-logo span{font-size:1rem}
   .nav-desktop-links{display:none}
   .nav-toggle{display:block}
-  .nav-active{font-size:0.8125rem}
   .hero{padding:100px 16px 32px}
   .hero p{font-size:0.95rem}
   .stats-bar{margin:32px 16px 36px}
@@ -472,25 +468,25 @@ justify-content:center;gap:8px}
     <img src="./crank-logo-icon.png" alt="Crank Labs">
     <span>Crank Labs</span>
   </a>
-  <span class="nav-active">Solutions</span>
   <div class="nav-desktop-links">
-    <a href="https://cranklabs.tech">Home</a>
+    <a href="#" onclick="goHome(event)" class="nav-link-active">Solutions</a>
     <a href="https://cranklabs.tech/#services">Services</a>
     <a href="https://cranklabs.tech/#process">Process</a>
-    <a href="https://cranklabs.tech/#results">Results</a>
+    <a href="https://cranklabs.tech/#proof">Results</a>
     <a href="https://cranklabs.tech/#faq">FAQ</a>
   </div>
-  <a href="https://cranklabs.tech/#book" class="nav-cta">Book Now</a>
+  <a href="https://cranklabs.tech/#book" class="nav-cta">Strategy Call</a>
   <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
     <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h16M3 5.5h16M3 16.5h16"/></svg>
   </button>
 </div>
 <div class="nav-dropdown" id="navDropdown">
-  <a href="https://cranklabs.tech">Home</a>
+  <a href="#" onclick="goHome(event)" class="nav-link-active">Solutions</a>
   <a href="https://cranklabs.tech/#services">Services</a>
   <a href="https://cranklabs.tech/#process">Process</a>
-  <a href="https://cranklabs.tech/#results">Results</a>
+  <a href="https://cranklabs.tech/#proof">Results</a>
   <a href="https://cranklabs.tech/#faq">FAQ</a>
+  <a href="https://cranklabs.tech/#book">Book a Free Systems Audit</a>
 </div>
 </nav>
 
@@ -515,8 +511,8 @@ justify-content:center;gap:8px}
   <div class="quiz-trigger">
     <button class="quiz-trigger-btn" id="quizTriggerBtn" onclick="toggleQuiz()">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="4"/><path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.2 4.2l2.8 2.8M13 13l2.8 2.8M4.2 15.8l2.8-2.8M13 7l2.8-2.8"/></svg>
-      Find Your Solutions
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+      What should we automate for you?
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg>
     </button>
   </div>
 
