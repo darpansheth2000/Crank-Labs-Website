@@ -169,8 +169,8 @@ box-shadow:0 8px 40px rgba(114,228,255,0.45)}
 .quiz-trigger-btn.active svg{transform:rotate(180deg)}
 
 .quiz-section{max-width:900px;margin:0 auto;padding:0 16px;overflow:hidden;box-sizing:border-box;
-max-height:0;opacity:0;transition:max-height 0.5s ease,opacity 0.4s ease,margin 0.4s ease}
-.quiz-section.open{max-height:800px;opacity:1;margin-bottom:48px}
+max-height:0;opacity:0;transition:max-height 0.6s ease,opacity 0.4s ease,margin 0.4s ease}
+.quiz-section.open{max-height:1200px;opacity:1;margin-bottom:48px}
 .quiz-box{padding:40px;position:relative;border-radius:var(--radius-lg);overflow:hidden;
 background:rgba(255,255,255,0.01);backdrop-filter:blur(4px);
 box-shadow:inset 0 1px 1px rgba(255,255,255,0.08)}
@@ -201,6 +201,27 @@ background:linear-gradient(135deg,var(--cyan),var(--blue));color:#030711;font-we
 font-size:0.875rem;border-radius:999px;border:none;cursor:pointer;font-family:var(--font-body);
 transition:all var(--transition)}
 .quiz-result .btn-see:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(114,228,255,0.3)}
+.quiz-progress{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px}
+.quiz-progress-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width 0.4s ease;width:20%}
+.quiz-step-label{text-align:center;font-size:0.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:20px}
+.quiz-multi.selected{border-color:var(--cyan)!important;color:var(--cyan)!important;background:rgba(114,228,255,0.06)!important;box-shadow:0 0 16px rgba(114,228,255,0.1)}
+.quiz-next-btn{display:block;margin:20px auto 0;padding:12px 32px;background:linear-gradient(135deg,var(--cyan),var(--blue));
+color:#000;font-weight:700;font-size:0.9375rem;border:none;border-radius:999px;cursor:pointer;
+font-family:var(--font-body);transition:all var(--transition)}
+.quiz-next-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(114,228,255,0.3)}
+.quiz-result-icon{font-size:2.5rem;margin-bottom:12px}
+.quiz-result-sub{font-size:1rem;color:var(--text-dim);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6}
+.quiz-diagnosis{text-align:left;max-width:520px;margin:0 auto 28px;display:flex;flex-direction:column;gap:10px}
+.quiz-diag-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:var(--radius);
+background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06)}
+.quiz-diag-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem}
+.quiz-diag-icon.red{background:rgba(239,68,68,0.12);color:#ef4444}
+.quiz-diag-icon.green{background:rgba(40,209,124,0.12);color:var(--green)}
+.quiz-diag-text{font-size:0.875rem;color:var(--text);line-height:1.5}
+.quiz-diag-text strong{color:var(--heading)}
+.quiz-result-actions{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.quiz-book-link{font-size:0.8125rem;color:var(--text-muted);text-decoration:none;transition:color 0.2s ease}
+.quiz-book-link:hover{color:var(--cyan)}
 
 /* ===== SEARCH ===== */
 .search-section{max-width:1360px;margin:0 auto;padding:0 24px}
@@ -598,28 +619,73 @@ justify-content:center;gap:8px}
   <!-- Questionnaire -->
   <div class="quiz-section" id="quizSection">
     <div class="quiz-box">
+      <!-- Progress bar -->
+      <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <p class="quiz-step-label" id="quizStepLabel">Step 1 of 5</p>
+
       <!-- Step 1: Industry -->
       <div class="quiz-step active" id="quizStep1">
         <h2>What industry are you in?</h2>
-        <p class="quiz-sub">Select your industry to see relevant solutions</p>
+        <p class="quiz-sub">We'll tailor everything to your sector</p>
         <div class="quiz-grid" id="quizIndustries"></div>
-        <button class="quiz-skip" onclick="skipQuiz()">Skip &mdash; browse all solutions</button>
       </div>
-      <!-- Step 2: Pain Point -->
+
+      <!-- Step 2: Team size -->
       <div class="quiz-step" id="quizStep2">
-        <h2>What's your biggest challenge?</h2>
-        <p class="quiz-sub" id="quizStep2Sub">Tell us what you need help with</p>
-        <div class="quiz-grid" id="quizPains" style="grid-template-columns:repeat(3,1fr)"></div>
-        <button class="quiz-skip" onclick="skipQuiz()">Skip &mdash; browse all solutions</button>
-      </div>
-      <!-- Step 3: Results -->
-      <div class="quiz-step" id="quizStep3">
-        <div class="quiz-result">
-          <h2 id="quizResultHeading"></h2>
-          <p id="quizResultSub"></p>
-          <button class="btn-see" onclick="applyQuizResults()">View Solutions <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg></button>
+        <h2>How large is your team?</h2>
+        <p class="quiz-sub">This helps us gauge which systems will have the biggest impact</p>
+        <div class="quiz-grid" style="grid-template-columns:repeat(2,1fr);max-width:500px;margin:0 auto">
+          <button class="quiz-option" onclick="quizSelectTeam(this,'1-5')">1 &ndash; 5 people</button>
+          <button class="quiz-option" onclick="quizSelectTeam(this,'6-20')">6 &ndash; 20 people</button>
+          <button class="quiz-option" onclick="quizSelectTeam(this,'21-50')">21 &ndash; 50 people</button>
+          <button class="quiz-option" onclick="quizSelectTeam(this,'50+')">50+ people</button>
         </div>
       </div>
+
+      <!-- Step 3: Pain points (multi-select) -->
+      <div class="quiz-step" id="quizStep3">
+        <h2>Where are you losing time or money?</h2>
+        <p class="quiz-sub">Select all that apply &mdash; be honest, most businesses have 3+</p>
+        <div class="quiz-grid" style="grid-template-columns:repeat(2,1fr);max-width:600px;margin:0 auto" id="quizPainsGrid">
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="leads">Leads fall through the cracks</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="response">Slow response to inquiries</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="manual">Too much manual data entry</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="followup">Inconsistent follow-ups</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="reporting">Reporting takes forever</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="scaling">Can't scale without hiring</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="comms">Client communication gaps</button>
+          <button class="quiz-option quiz-multi" onclick="quizTogglePain(this)" data-pain="docs">Document processing bottlenecks</button>
+        </div>
+        <button class="quiz-next-btn" id="quizPainNext" onclick="quizPainsDone()" style="display:none">Next &rarr;</button>
+      </div>
+
+      <!-- Step 4: Current tools -->
+      <div class="quiz-step" id="quizStep4">
+        <h2>How do you handle these today?</h2>
+        <p class="quiz-sub">No judgement &mdash; most businesses are here too</p>
+        <div class="quiz-grid" style="grid-template-columns:repeat(2,1fr);max-width:500px;margin:0 auto">
+          <button class="quiz-option" onclick="quizSelectTools(this,'manual')">Manually / spreadsheets</button>
+          <button class="quiz-option" onclick="quizSelectTools(this,'basic')">Basic tools, not connected</button>
+          <button class="quiz-option" onclick="quizSelectTools(this,'some')">Some automation, gaps remain</button>
+          <button class="quiz-option" onclick="quizSelectTools(this,'none')">We haven't started yet</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Results / Diagnosis -->
+      <div class="quiz-step" id="quizStep5">
+        <div class="quiz-result">
+          <div class="quiz-result-icon">&#9889;</div>
+          <h2 id="quizResultHeading">Your Automation Blueprint</h2>
+          <p id="quizResultSub" class="quiz-result-sub"></p>
+          <div class="quiz-diagnosis" id="quizDiagnosis"></div>
+          <div class="quiz-result-actions">
+            <button class="btn-see" onclick="applyQuizResults()">View Recommended Solutions <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg></button>
+            <a href="https://cranklabs.tech/#book" class="quiz-book-link">Or book a free systems audit &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="quiz-skip" onclick="skipQuiz()">Skip &mdash; browse all solutions</button>
     </div>
   </div>
 
@@ -1404,97 +1470,158 @@ function setFilter(f){
   renderCards();
 }
 
-/* ===== QUESTIONNAIRE ===== */
+/* ===== QUESTIONNAIRE (5-STEP DIAGNOSTIC) ===== */
+let qStep=1;
+let qTeam='';
+let qPains=[];
+let qTools='';
+
 function buildQuizIndustries(){
   const grid=document.getElementById('quizIndustries');
   industries.forEach(ind=>{
     const btn=document.createElement('button');
     btn.className='quiz-option';
     btn.textContent=ind;
-    btn.onclick=()=>selectQuizIndustry(ind);
+    btn.onclick=()=>quizSelectIndustry(ind);
     grid.appendChild(btn);
   });
   const other=document.createElement('button');
   other.className='quiz-option';
   other.textContent='Other';
-  other.onclick=()=>selectQuizIndustry('Other');
+  other.onclick=()=>quizSelectIndustry('Other');
   grid.appendChild(other);
 }
+
 function toggleQuiz(){
   quizOpen=!quizOpen;
   document.getElementById('quizSection').classList.toggle('open',quizOpen);
   document.getElementById('quizTriggerBtn').classList.toggle('active',quizOpen);
-  if(quizOpen){resetQuiz()}
+  if(quizOpen) resetQuiz();
 }
+
 function resetQuiz(){
-  quizIndustry='';quizPain='';
-  document.getElementById('quizStep1').classList.add('active');
-  document.getElementById('quizStep2').classList.remove('active');
-  document.getElementById('quizStep3').classList.remove('active');
+  qStep=1;quizIndustry='';qTeam='';qPains=[];qTools='';quizPain='';
+  for(let i=1;i<=5;i++) document.getElementById('quizStep'+i).classList.toggle('active',i===1);
   document.querySelectorAll('#quizIndustries .quiz-option').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.quiz-multi').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('quizPainNext').style.display='none';
+  updateQuizProgress();
 }
-function selectQuizIndustry(ind){
+
+function updateQuizProgress(){
+  document.getElementById('quizProgressFill').style.width=(qStep*20)+'%';
+  document.getElementById('quizStepLabel').textContent='Step '+qStep+' of 5';
+}
+
+function goQuizStep(n){
+  document.getElementById('quizStep'+qStep).classList.remove('active');
+  qStep=n;
+  document.getElementById('quizStep'+qStep).classList.add('active');
+  updateQuizProgress();
+}
+
+function quizSelectIndustry(ind){
   quizIndustry=ind;
   document.querySelectorAll('#quizIndustries .quiz-option').forEach(b=>{
     b.classList.toggle('selected',b.textContent===ind);
   });
-  if(ind==='Other'){
-    setTimeout(()=>{
-      document.getElementById('quizStep1').classList.remove('active');
-      document.getElementById('quizStep2').classList.remove('active');
-      document.getElementById('quizStep3').classList.add('active');
-      const total=solutions.length;
-      document.getElementById('quizResultHeading').textContent='We have '+total+' solutions across all industries';
-      document.getElementById('quizResultSub').textContent='Browse our full catalog to find what fits your business.';
-    },250);
-    return;
-  }
+  setTimeout(()=>goQuizStep(2),300);
+}
+
+function quizSelectTeam(btn,size){
+  qTeam=size;
+  btn.parentElement.querySelectorAll('.quiz-option').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  setTimeout(()=>goQuizStep(3),300);
+}
+
+function quizTogglePain(btn){
+  btn.classList.toggle('selected');
+  qPains=[];
+  document.querySelectorAll('.quiz-multi.selected').forEach(b=>qPains.push(b.dataset.pain));
+  document.getElementById('quizPainNext').style.display=qPains.length>0?'block':'none';
+}
+
+function quizPainsDone(){
+  goQuizStep(4);
+}
+
+function quizSelectTools(btn,tools){
+  qTools=tools;
+  btn.parentElement.querySelectorAll('.quiz-option').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
   setTimeout(()=>{
-    document.getElementById('quizStep1').classList.remove('active');
-    document.getElementById('quizStep2').classList.add('active');
-    document.getElementById('quizStep2Sub').textContent='Select what matters most for '+ind;
-    buildPainOptions();
-  },250);
+    buildDiagnosis();
+    goQuizStep(5);
+  },300);
 }
-function buildPainOptions(){
-  const grid=document.getElementById('quizPains');
-  grid.innerHTML='';
-  const pains=painPoints.default;
-  pains.forEach(p=>{
-    const btn=document.createElement('button');
-    btn.className='quiz-option';
-    btn.textContent=p.label;
-    btn.onclick=()=>selectQuizPain(p);
-    grid.appendChild(btn);
-  });
-}
-function selectQuizPain(p){
-  quizPain=p;
-  document.querySelectorAll('#quizPains .quiz-option').forEach(b=>{
-    b.classList.toggle('selected',b.textContent===p.label);
-  });
-  const filtered=getQuizFiltered();
-  setTimeout(()=>{
-    document.getElementById('quizStep2').classList.remove('active');
-    document.getElementById('quizStep3').classList.add('active');
-    document.getElementById('quizResultHeading').textContent='We found '+filtered.length+' solutions for '+quizIndustry;
-    document.getElementById('quizResultSub').textContent='Matching: '+p.label;
-  },250);
-}
-function getQuizFiltered(){
-  let list=solutions.filter(s=>s.industry===quizIndustry);
-  if(quizPain){
-    const kws=painKeywords[quizPain.key]||[];
-    list=list.filter(s=>{
+
+function buildDiagnosis(){
+  const indSolutions=quizIndustry==='Other'?solutions:solutions.filter(s=>s.industry===quizIndustry);
+  const count=indSolutions.length;
+  const painLabels={
+    leads:'Lead capture & conversion',response:'Speed to lead response',
+    manual:'Manual data entry & repetitive tasks',followup:'Follow-up consistency',
+    reporting:'Reporting & analytics',scaling:'Scaling without headcount',
+    comms:'Client communication',docs:'Document processing'
+  };
+  const painSolutionMap={
+    leads:['lead','capture','inquiry','funnel','prospecting','scraper'],
+    response:['response','speed','instant','callback','voice','call','reception'],
+    manual:['automation','automate','sync','extraction','ocr','pipeline','processing'],
+    followup:['follow','nurture','reminder','drip','sequence','reactivation','cadence'],
+    reporting:['dashboard','report','analytics','tracking','kpi','monitor','forecast'],
+    scaling:['automation','bot','ai','agent','assistant','system','engine'],
+    comms:['whatsapp','sms','email','chat','messaging','communication','concierge'],
+    docs:['document','contract','invoice','extraction','ocr','form','intake']
+  };
+
+  let urgency='moderate';
+  if(qPains.length>=4) urgency='critical';
+  else if(qPains.length>=2) urgency='significant';
+  const toolsText={manual:'relying on manual processes',basic:'using disconnected tools',some:'partially automated with gaps',none:'starting from scratch'};
+
+  let matchedSolutions=new Set();
+  qPains.forEach(p=>{
+    const kws=painSolutionMap[p]||[];
+    indSolutions.forEach(s=>{
       const text=(s.title+' '+s.category+' '+s.desc).toLowerCase();
-      return kws.some(k=>text.includes(k));
+      if(kws.some(k=>text.includes(k))) matchedSolutions.add(s.id);
     });
-    if(list.length===0) list=solutions.filter(s=>s.industry===quizIndustry);
-  }
-  return list;
+  });
+  if(matchedSolutions.size<5) indSolutions.slice(0,8).forEach(s=>matchedSolutions.add(s.id));
+
+  const teamImpact={
+    '1-5':'every hour your team spends on manual work is an hour not spent growing the business',
+    '6-20':'at your team size, manual processes create bottlenecks that directly limit growth',
+    '21-50':'with 21-50 people, unautomated workflows compound into significant operational drag',
+    '50+':'at your scale, every unautomated process multiplies across dozens of people daily'
+  };
+
+  document.getElementById('quizResultSub').innerHTML=
+    'Based on your answers, you\'re currently <strong>'+toolsText[qTools]+'</strong> and '+
+    '<strong>'+teamImpact[qTeam]+'</strong>. '+
+    'We identified <strong>'+matchedSolutions.size+' solutions</strong> that directly address your challenges.';
+
+  const diag=document.getElementById('quizDiagnosis');
+  let html='';
+  qPains.forEach(p=>{
+    html+=`<div class="quiz-diag-item"><div class="quiz-diag-icon red">!</div><div class="quiz-diag-text"><strong>${painLabels[p]}</strong> &mdash; this is costing you leads, time, or revenue every single day</div></div>`;
+  });
+  html+=`<div class="quiz-diag-item"><div class="quiz-diag-icon green">&#10003;</div><div class="quiz-diag-text"><strong>${matchedSolutions.size} AI solutions ready to deploy</strong> for ${quizIndustry==='Other'?'your business':quizIndustry} that eliminate these problems</div></div>`;
+  diag.innerHTML=html;
+
+  quizPain={key:'multi'};
 }
+
+function getQuizFiltered(){
+  if(quizIndustry==='Other') return solutions;
+  return solutions.filter(s=>s.industry===quizIndustry);
+}
+
 function applyQuizResults(){
-  setFilter(quizIndustry);
+  if(quizIndustry&&quizIndustry!=='Other') setFilter(quizIndustry);
+  else setFilter('All');
   quizOpen=false;
   document.getElementById('quizSection').classList.remove('open');
   document.getElementById('quizTriggerBtn').classList.remove('active');
@@ -1505,6 +1632,7 @@ function applyQuizResults(){
     document.getElementById('solutionCount').scrollIntoView({behavior:'smooth',block:'start'});
   },300);
 }
+
 function skipQuiz(){
   quizOpen=false;
   document.getElementById('quizSection').classList.remove('open');
