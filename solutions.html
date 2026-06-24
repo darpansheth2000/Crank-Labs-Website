@@ -282,14 +282,15 @@ padding:4px 10px;border-radius:999px;background:rgba(114,228,255,0.08);color:var
 .card-link{display:inline-flex;align-items:center;gap:6px;font-size:0.8125rem;font-weight:600;
 color:var(--cyan);text-decoration:none;transition:all var(--transition);background:none;border:none;cursor:pointer;font-family:var(--font-body)}
 .card-link:hover{gap:10px}
-.card-add{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;
-background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
-color:var(--text-dim);font-size:0.75rem;font-weight:600;cursor:pointer;
-transition:all var(--transition);font-family:var(--font-body)}
-.card-add:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(114,228,255,0.04)}
-.card-add.added{background:rgba(114,228,255,0.08);border-color:var(--cyan);color:var(--cyan)}
+.card-add{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:999px;
+background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);
+color:var(--text-dim);font-size:0.8125rem;font-weight:600;cursor:pointer;
+transition:all var(--transition);font-family:var(--font-body);white-space:nowrap;line-height:1}
+.card-add svg{flex-shrink:0}
+.card-add:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(114,228,255,0.05)}
+.card-add.added{background:rgba(114,228,255,0.1);border-color:var(--cyan);color:var(--cyan)}
 .card-add.added .add-icon{display:none}
-.card-add.added .check-icon{display:inline}
+.card-add.added .check-icon{display:inline-flex}
 .card-add .check-icon{display:none}
 
 /* Category color variations */
