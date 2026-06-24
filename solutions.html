@@ -114,9 +114,16 @@ background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-cl
 background:linear-gradient(135deg,var(--cyan),var(--blue));
 border:none;border-radius:999px;color:#000;
 font-family:var(--font-body);font-size:1.0625rem;font-weight:700;cursor:pointer;
-transition:all var(--transition);box-shadow:0 4px 24px rgba(114,228,255,0.25)}
-.quiz-trigger-btn:hover{transform:translateY(-2px);
-box-shadow:0 8px 40px rgba(114,228,255,0.4)}
+transition:all var(--transition);box-shadow:0 4px 24px rgba(114,228,255,0.25);
+position:relative;overflow:hidden}
+.quiz-trigger-btn::before{content:'';position:absolute;top:-2px;left:-100%;width:60%;height:calc(100% + 4px);
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+transform:skewX(-20deg);animation:shimmer-sweep 3s ease-in-out infinite}
+@keyframes shimmer-sweep{0%{left:-100%}40%{left:160%}100%{left:160%}}
+.quiz-trigger-btn:hover{transform:translateY(-2px) scale(1.03);
+box-shadow:0 8px 40px rgba(114,228,255,0.45)}
+@keyframes quiz-pulse{0%,100%{box-shadow:0 4px 24px rgba(114,228,255,0.25)}50%{box-shadow:0 4px 32px rgba(114,228,255,0.45),0 0 60px rgba(114,228,255,0.12)}}
+.quiz-trigger-btn{animation:quiz-pulse 2.5s ease-in-out infinite}
 .quiz-trigger-btn svg{transition:transform var(--transition)}
 .quiz-trigger-btn.active svg{transform:rotate(180deg)}
 
@@ -398,62 +405,68 @@ justify-content:center;gap:8px}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .nav{top:8px;width:calc(100% - 24px);padding:0 16px}
-  .nav-inner{height:52px;gap:12px}
+  .nav{top:8px;width:calc(100% - 24px);padding:0 12px}
+  .nav-inner{height:52px;gap:8px}
   .nav-logo img{height:28px;width:28px}
   .nav-logo span{font-size:1rem}
   .nav-desktop-links{display:none}
   .nav-toggle{display:block}
-  .hero{padding:100px 16px 32px}
-  .hero p{font-size:0.95rem}
-  .stats-bar{margin:32px 16px 36px}
+  .nav-cta{padding:8px 16px;font-size:0.75rem}
+  .hero{padding:90px 16px 28px}
+  .hero h1{font-size:clamp(1.6rem,5.5vw,2.5rem)}
+  .hero p{font-size:0.875rem;padding:0}
+  .hero-badge{font-size:0.625rem;padding:4px 10px}
+  .stats-bar{margin:24px 16px 28px}
   .stats-bar-inner{flex-wrap:wrap}
-  .stat-item{min-width:50%;border-bottom:1px solid rgba(255,255,255,0.06);padding:14px 12px}
+  .stat-item{min-width:50%;border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 8px}
   .stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
   .stat-item:nth-child(2n){border-right:none}
-  .stat-number{font-size:1.25rem!important}
-  .quiz-trigger{padding:0 16px}
+  .stat-number{font-size:1.125rem!important}
+  .stat-label{font-size:0.6rem}
+  .quiz-trigger{padding:0 16px;margin-bottom:28px}
+  .quiz-trigger-btn{padding:14px 28px;font-size:0.9375rem;width:100%;justify-content:center;max-width:360px}
   .quiz-section{padding:0 16px}
-  .quiz-box{padding:24px 16px}
+  .quiz-box{padding:20px 14px}
   .quiz-grid{grid-template-columns:1fr 1fr}
-  .quiz-option{padding:12px 8px;font-size:0.8125rem}
-  .quiz-step h2{font-size:1.375rem}
+  .quiz-option{padding:10px 6px;font-size:0.75rem}
+  .quiz-step h2{font-size:1.25rem}
+  .quiz-step p.quiz-sub{font-size:0.8125rem}
   .search-section{padding:0 16px}
-  .search-input{padding:12px 12px 12px 44px;font-size:0.9rem}
+  .search-input{padding:12px 12px 12px 40px;font-size:0.875rem}
   .filter-section{padding:0 16px}
   .filter-tabs{gap:6px;padding-bottom:6px}
-  .filter-tab{padding:7px 14px;font-size:0.75rem}
-  .solution-count{padding:12px 16px 4px}
-  .cards-section{padding:12px 16px 60px}
-  .cards-grid{grid-template-columns:1fr;gap:14px}
-  .card{padding:20px}
-  .card h3{font-size:1rem}
-  .card p{font-size:0.8125rem;margin-bottom:14px}
-  .card-header{margin-bottom:12px}
+  .filter-tab{padding:7px 12px;font-size:0.6875rem}
+  .solution-count{padding:10px 16px 4px;font-size:0.8125rem}
+  .cards-section{padding:10px 16px 60px}
+  .cards-grid{grid-template-columns:1fr;gap:12px}
+  .card{padding:18px}
+  .card h3{font-size:0.9375rem;white-space:normal}
+  .card p{font-size:0.8125rem;margin-bottom:12px}
+  .card-header{margin-bottom:10px}
   .card:hover{transform:none}
-  .benefits-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .benefit-card{padding:16px}
-  .steps{gap:14px}
-  .step{flex-direction:column;gap:12px;padding:18px}
-  .detail-page{padding:90px 16px 60px}
-  .detail-title{font-size:1.75rem}
-  .detail-desc{font-size:1rem;margin-bottom:32px}
-  .section-title{font-size:1.25rem;margin-bottom:24px}
-  .detail-cta{padding:32px 20px}
-  .detail-cta h3{font-size:1.375rem}
+  .benefits-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .benefit-card{padding:14px}
+  .steps{gap:12px}
+  .step{flex-direction:column;gap:10px;padding:16px}
+  .detail-page{padding:80px 16px 60px}
+  .detail-title{font-size:1.5rem}
+  .detail-desc{font-size:0.9375rem;margin-bottom:28px}
+  .section-title{font-size:1.125rem;margin-bottom:20px}
+  .detail-cta{padding:28px 16px}
+  .detail-cta h3{font-size:1.25rem}
   .related-grid{grid-template-columns:1fr}
-  .cart-fab{bottom:24px;right:20px;width:54px;height:54px}
+  .cart-fab{bottom:20px;right:16px;width:50px;height:50px}
   .cart-panel{width:100%}
+  .detail-add-build{padding:12px 24px;font-size:0.8125rem}
+  .page-glow{width:600px;height:400px}
 }
 @media(max-width:480px){
   .benefits-grid{grid-template-columns:1fr}
-  .hero h1{font-size:1.75rem}
-  .hero{padding:90px 14px 28px}
-  .hero-badge{font-size:0.6875rem;padding:5px 12px}
-  .stat-number{font-size:1.125rem!important}
-  .stat-label{font-size:0.625rem}
+  .hero h1{font-size:1.5rem}
+  .hero{padding:82px 14px 24px}
+  .quiz-trigger-btn{padding:12px 20px;font-size:0.875rem}
   .quiz-grid{grid-template-columns:1fr 1fr}
-  .quiz-option{padding:10px 6px;font-size:0.75rem}
+  .quiz-option{padding:10px 6px;font-size:0.6875rem}
 }
 </style>
 </head>
@@ -1293,6 +1306,11 @@ function buildQuizIndustries(){
     btn.onclick=()=>selectQuizIndustry(ind);
     grid.appendChild(btn);
   });
+  const other=document.createElement('button');
+  other.className='quiz-option';
+  other.textContent='Other';
+  other.onclick=()=>selectQuizIndustry('Other');
+  grid.appendChild(other);
 }
 function toggleQuiz(){
   quizOpen=!quizOpen;
@@ -1312,6 +1330,17 @@ function selectQuizIndustry(ind){
   document.querySelectorAll('#quizIndustries .quiz-option').forEach(b=>{
     b.classList.toggle('selected',b.textContent===ind);
   });
+  if(ind==='Other'){
+    setTimeout(()=>{
+      document.getElementById('quizStep1').classList.remove('active');
+      document.getElementById('quizStep2').classList.remove('active');
+      document.getElementById('quizStep3').classList.add('active');
+      const total=solutions.length;
+      document.getElementById('quizResultHeading').textContent='We have '+total+' solutions across all industries';
+      document.getElementById('quizResultSub').textContent='Browse our full catalog to find what fits your business.';
+    },250);
+    return;
+  }
   setTimeout(()=>{
     document.getElementById('quizStep1').classList.remove('active');
     document.getElementById('quizStep2').classList.add('active');
@@ -1506,6 +1535,12 @@ function handleHash(){
   if(hash.startsWith('#/solution/')){
     const slug=hash.replace('#/solution/','');
     renderDetail(slug);
+  } else if(hash==='#quiz'){
+    goHome();
+    setTimeout(()=>{
+      if(!quizOpen) toggleQuiz();
+      document.querySelector('.quiz-trigger').scrollIntoView({behavior:'smooth',block:'center'});
+    },100);
   } else {
     goHome();
   }
