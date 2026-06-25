@@ -393,6 +393,47 @@ transition:all var(--transition);position:relative;z-index:1}
 .detail-add-build:hover{background:rgba(114,228,255,0.12);border-color:var(--cyan)}
 .detail-add-build.added{background:rgba(114,228,255,0.12);border-color:var(--cyan)}
 
+/* ===== INDUSTRY PAGE ===== */
+.industry-page{display:none;padding:0 0 80px;max-width:100%}
+.industry-page.active{display:block}
+.ind-hero{padding:120px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.ind-hero::before{content:'';position:absolute;top:40px;left:50%;transform:translateX(-50%);width:800px;height:600px;
+background:radial-gradient(ellipse at center,rgba(114,228,255,0.06),rgba(61,123,255,0.03) 40%,transparent 65%);pointer-events:none}
+.ind-hero .detail-back{position:relative;z-index:1;margin-bottom:24px}
+.ind-hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
+background:rgba(40,209,124,0.08);border:1px solid rgba(40,209,124,0.15);
+border-radius:999px;font-size:0.6875rem;font-weight:700;color:var(--green);
+text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;position:relative;z-index:1}
+.ind-hero-title{font-family:var(--font-heading);font-style:italic;font-size:clamp(2rem,5vw,3.5rem);
+line-height:1.1;color:var(--heading);max-width:700px;margin:0 auto 16px;font-weight:400;position:relative;z-index:1}
+.ind-hero-desc{font-size:clamp(0.9375rem,1.5vw,1.125rem);color:var(--text-dim);max-width:600px;margin:0 auto 32px;line-height:1.7;position:relative;z-index:1}
+.ind-stats{display:inline-flex;gap:32px;position:relative;z-index:1}
+.ind-stat{display:flex;flex-direction:column;align-items:center}
+.ind-stat-num{font-family:var(--font-display);font-size:1.75rem;font-weight:700;
+background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ind-stat-label{font-size:0.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+.ind-categories{max-width:1200px;margin:0 auto;padding:0 24px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.ind-categories::-webkit-scrollbar{display:none}
+.ind-cat-tab{white-space:nowrap;padding:8px 18px;border-radius:999px;font-size:0.8rem;font-weight:600;
+cursor:pointer;transition:all 0.2s ease;border:1px solid rgba(255,255,255,0.08);
+background:transparent;color:var(--text-dim);font-family:var(--font-body)}
+.ind-cat-tab:hover{border-color:rgba(114,228,255,0.2);color:var(--text)}
+.ind-cat-tab.active{background:rgba(114,228,255,0.08);border-color:rgba(114,228,255,0.25);color:var(--cyan)}
+.ind-section{max-width:1200px;margin:0 auto;padding:16px 24px}
+.ind-group{margin-bottom:40px}
+.ind-group-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.ind-group-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--heading)}
+.ind-group-count{font-size:0.75rem;color:var(--text-muted);padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.04)}
+.ind-group-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ind-cta{text-align:center;padding:48px 24px;margin:20px 24px 0;position:relative;border-radius:var(--radius-lg);overflow:hidden;
+background:rgba(255,255,255,0.01);backdrop-filter:blur(4px);box-shadow:inset 0 1px 1px rgba(255,255,255,0.06);max-width:1152px;margin-left:auto;margin-right:auto}
+.ind-cta::before{content:'';position:absolute;inset:0;border-radius:var(--radius-lg);padding:1px;
+background:linear-gradient(135deg,rgba(114,228,255,0.1),rgba(255,255,255,0.02));
+-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ind-cta .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(114,228,255,0.04),transparent 70%);pointer-events:none}
+.ind-cta h3{font-family:var(--font-heading);font-style:italic;font-size:1.75rem;color:var(--heading);margin-bottom:12px;position:relative;z-index:1}
+.ind-cta p{color:var(--text-dim);margin-bottom:24px;font-size:0.9375rem;position:relative;z-index:1;max-width:500px;margin-left:auto;margin-right:auto}
+
 /* Related Solutions */
 .related-section{margin-bottom:40px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
@@ -520,6 +561,14 @@ justify-content:center;gap:8px}
   .detail-cta h3{font-size:1.25rem}
   .related-grid{grid-template-columns:1fr}
   .cart-fab{bottom:20px;right:16px;width:50px;height:50px}
+  .ind-hero{padding:90px 16px 32px}
+  .ind-hero-title{font-size:1.75rem}
+  .ind-hero-desc{font-size:0.9rem}
+  .ind-categories{padding:0 16px 10px}
+  .ind-section{padding:12px 16px}
+  .ind-group-grid{grid-template-columns:1fr;gap:12px}
+  .ind-cta{margin:16px 16px 0;padding:32px 16px}
+  .ind-cta h3{font-size:1.375rem}
   .cart-panel{width:100%}
   .detail-add-build{padding:12px 24px;font-size:0.8125rem}
   .page-glow{width:600px;height:400px}
@@ -709,6 +758,31 @@ justify-content:center;gap:8px}
       <h3>No solutions found</h3>
       <p>Try adjusting your search or filter criteria</p>
     </div>
+  </div>
+</div>
+
+<!-- INDUSTRY PAGE VIEW -->
+<div class="industry-page" id="industryPage">
+  <div class="ind-hero">
+    <button class="detail-back" onclick="goHome()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14L4 8l6-6"/></svg>
+      All Solutions
+    </button>
+    <div class="ind-hero-badge" id="indBadge"></div>
+    <h1 class="ind-hero-title" id="indTitle"></h1>
+    <p class="ind-hero-desc" id="indDesc"></p>
+    <div class="ind-stats">
+      <div class="ind-stat"><span class="ind-stat-num" id="indSolCount">0</span><span class="ind-stat-label">Solutions</span></div>
+      <div class="ind-stat"><span class="ind-stat-num" id="indCatCount">0</span><span class="ind-stat-label">Categories</span></div>
+    </div>
+  </div>
+  <div class="ind-categories" id="indCategories"></div>
+  <div class="ind-section" id="indSections"></div>
+  <div class="ind-cta">
+    <div class="cta-glow"></div>
+    <h3>Ready to automate <span id="indCtaName"></span>?</h3>
+    <p>Book a free systems audit and we'll build a custom automation roadmap for your business.</p>
+    <a href="https://cranklabs.tech/#book" class="nav-cta" style="font-size:1rem;padding:14px 32px;position:relative;z-index:1">Book Your Free Audit</a>
   </div>
 </div>
 
@@ -1767,11 +1841,92 @@ function toggleCartFromDetail(){
 }
 
 /* ===== HASH ROUTING ===== */
+/* ===== INDUSTRY DESCRIPTIONS ===== */
+const industryMeta={
+'Real Estate':{desc:'AI-powered lead capture, voice qualification, transaction management, and marketing automation built for agents, brokerages, and property teams.'},
+'Healthcare & Wellness':{desc:'HIPAA-aware scheduling, patient communication, billing automation, and clinical support systems for clinics, hospitals, and wellness practices.'},
+'Finance & Banking':{desc:'Deal sourcing, due diligence automation, portfolio management, compliance, and investor relations systems for funds, banks, and advisory firms.'},
+'E-Commerce & Retail':{desc:'Customer support bots, catalog management, cart recovery, fulfillment automation, and retention systems for online and omnichannel retailers.'},
+'Hospitality & F&B':{desc:'Guest experience automation, reservation management, upsell engines, reputation monitoring, and operational systems for hotels and restaurants.'},
+'Legal & Compliance':{desc:'Contract intelligence, client intake, compliance monitoring, research automation, and practice management for law firms and legal departments.'},
+'Education & Coaching':{desc:'Enrollment funnels, student engagement, session management, content delivery, and retention systems for coaches, educators, and course creators.'},
+'Consulting & Professional Services':{desc:'Business development automation, proposal generation, client delivery systems, pipeline management, and utilization tracking for consulting firms.'},
+'Home Services & Maintenance':{desc:'Instant lead response, crew dispatch, field operations, estimate automation, and reputation management for service contractors and trades.'},
+'Recruitment & HR':{desc:'Candidate sourcing, resume screening, interview coordination, pipeline automation, and onboarding systems for agencies and HR teams.'},
+'Manufacturing & Supply Chain':{desc:'Procurement automation, quality control, inventory management, production scheduling, and compliance systems for manufacturers and distributors.'},
+'Nonprofit & NGO':{desc:'Donor engagement, fundraising automation, volunteer management, program operations, and grant reporting for nonprofits and social enterprises.'},
+'Automotive & Dealerships':{desc:'BDC automation, service scheduling, inventory management, customer retention, and F&I document processing for dealerships and auto groups.'},
+'Fitness & Sports':{desc:'Member acquisition, engagement automation, class scheduling, retention systems, and revenue optimization for gyms, studios, and sports facilities.'},
+'Insurance':{desc:'Policy renewal automation, claims intake, underwriting extraction, quote comparison, compliance, and agent commission tracking for carriers and agencies.'},
+'K-12 & Higher Education':{desc:'Student enrollment, parent communication, attendance tracking, grading automation, and campus operations for schools and universities.'},
+'Logistics & Transportation':{desc:'Shipment tracking, route optimization, freight quoting, fleet maintenance, driver compliance, and warehouse automation for logistics companies.'},
+'Real Estate & Property Management':{desc:'Listing syndication, tenant screening, rent collection, property inspections, lease management, and vendor coordination for property managers.'},
+'Events & Entertainment':{desc:'Event ticketing, venue booking, talent coordination, sponsor management, and post-event engagement for event producers and venues.'},
+'Veterinary & Pet Care':{desc:'Appointment booking, vaccination reminders, owner communication, boarding management, and inventory tracking for veterinary clinics and pet businesses.'}
+};
+
+function toSlug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}
+
+/* ===== RENDER INDUSTRY PAGE ===== */
+function renderIndustryPage(industryName){
+  document.getElementById('marketplace').style.display='none';
+  document.getElementById('detailPage').classList.remove('active');
+  const ip=document.getElementById('industryPage');
+  ip.classList.add('active');
+
+  const meta=industryMeta[industryName]||{desc:'AI-powered automation solutions built for '+industryName+'.'};
+  const indSolutions=solutions.filter(s=>s.industry===industryName);
+  const categories=[...new Set(indSolutions.map(s=>s.category))];
+
+  document.getElementById('indBadge').textContent=industryName;
+  document.getElementById('indTitle').textContent='AI Solutions for '+industryName;
+  document.getElementById('indDesc').textContent=meta.desc;
+  document.getElementById('indSolCount').textContent=indSolutions.length;
+  document.getElementById('indCatCount').textContent=categories.length;
+  document.getElementById('indCtaName').textContent=industryName;
+
+  const catContainer=document.getElementById('indCategories');
+  catContainer.innerHTML='<button class="ind-cat-tab active" onclick="filterIndCat(this,\'all\')">All</button>'+
+    categories.map(c=>'<button class="ind-cat-tab" onclick="filterIndCat(this,\''+c.replace(/'/g,"\\'")+'\')">'+c+'</button>').join('');
+
+  renderIndGroups(indSolutions,categories);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderIndGroups(indSolutions,categories,filterCat){
+  const sections=document.getElementById('indSections');
+  const cats=filterCat&&filterCat!=='all'?[filterCat]:categories;
+  sections.innerHTML=cats.map(cat=>{
+    const catSols=indSolutions.filter(s=>s.category===cat);
+    return`<div class="ind-group"><div class="ind-group-head"><span class="ind-group-title">${cat}</span><span class="ind-group-count">${catSols.length} solutions</span></div><div class="ind-group-grid">${catSols.map(s=>{
+      const inCart=cart.includes(s.id);
+      return`<div class="card" onclick="location.hash='/solution/${s.slug}'"><div class="card-header"><span class="card-category">${s.category}</span></div><h3>${s.title}</h3><p>${s.desc}</p><div class="card-footer"><button class="card-link">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l4 4-4 4"/></svg></button><button class="card-add ${inCart?'added':''}" onclick="event.stopPropagation();toggleCart(${s.id})"><span class="add-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v8M3 7h8"/></svg></span><span class="check-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l3 3 5-5"/></svg></span>${inCart?'Added':'Add'}</button></div></div>`;
+    }).join('')}</div></div>`;
+  }).join('');
+}
+
+let currentIndFilter='all';
+function filterIndCat(btn,cat){
+  currentIndFilter=cat;
+  document.querySelectorAll('.ind-cat-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const industryName=document.getElementById('indBadge').textContent;
+  const indSolutions=solutions.filter(s=>s.industry===industryName);
+  const categories=[...new Set(indSolutions.map(s=>s.category))];
+  renderIndGroups(indSolutions,categories,cat);
+}
+
+/* ===== HASH ROUTING ===== */
 function handleHash(){
   const hash=window.location.hash;
   if(hash.startsWith('#/solution/')){
     const slug=hash.replace('#/solution/','');
     renderDetail(slug);
+  } else if(hash.startsWith('#/industry/')){
+    const indSlug=hash.replace('#/industry/','');
+    const match=industries.find(i=>toSlug(i)===indSlug);
+    if(match) renderIndustryPage(match);
+    else goHome();
   } else if(hash==='#quiz'){
     goHome();
     setTimeout(()=>{
@@ -1786,6 +1941,7 @@ function goHome(e){
   if(e) e.preventDefault();
   document.getElementById('marketplace').style.display='';
   document.getElementById('detailPage').classList.remove('active');
+  document.getElementById('industryPage').classList.remove('active');
   currentDetailSlug=null;
   if(window.location.hash) history.pushState(null,null,' ');
 }
@@ -1909,8 +2065,9 @@ function buildNavIndustries(){
   const counts={};
   solutions.forEach(s=>{counts[s.industry]=(counts[s.industry]||0)+1});
   industries.forEach(ind=>{
-    grid.innerHTML+=`<a class="sol-mega-item" href="#" onclick="filterFromNav('${ind.replace(/'/g,"\\'")}');return false">${ind}<span class="sol-count">${counts[ind]||0}</span></a>`;
-    mobGrid.innerHTML+=`<a class="mob-ind-item" href="#" onclick="filterFromNav('${ind.replace(/'/g,"\\'")}');closeMobileNav();return false">${ind}</a>`;
+    const slug=toSlug(ind);
+    grid.innerHTML+=`<a class="sol-mega-item" href="#/industry/${slug}" onclick="closeSolMega()">${ind}<span class="sol-count">${counts[ind]||0}</span></a>`;
+    mobGrid.innerHTML+=`<a class="mob-ind-item" href="#/industry/${slug}" onclick="closeMobileNav()">${ind}</a>`;
   });
 }
 function filterFromNav(ind){
