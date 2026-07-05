@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Autopilot — AI Operations for Aesthetic Clinics | Crank Labs</title>
+<meta name="description" content="Clinic Autopilot is a done-for-you AI system for UAE aesthetic clinics — it brings dormant clients back, answers every DM in seconds, fills cancelled chairs and shows you which ad became a booking.">
+<link rel="icon" type="image/png" href="./crank-logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF8F4;
+  --cream:#F3EFE7;
+  --ink:#1C1A16;
+  --ink-2:#4C473E;
+  --mut:#8B8477;
+  --hair:#E3DCCE;
+  --gold:#A18355;
+  --gold-lt:#C2A87E;
+  --dark:#161410;
+  --dark-2:#1E1B16;
+  --hair-d:rgba(250,248,244,.14);
+  --disp:'Fraunces',Georgia,serif;
+  --body:'Manrope',-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--gold);color:#fff}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+section{padding:130px 0}
+
+h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:-.015em;line-height:1.12}
+h2{font-size:clamp(34px,4.2vw,54px);color:var(--ink)}
+h2 em,h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:26px}
+.lede{font-size:17.5px;color:var(--ink-2);max-width:640px;margin-top:26px;line-height:1.75}
+.ctr{text-align:center}
+.ctr .lede{margin-left:auto;margin-right:auto}
+
+/* reveals */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.32s}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:19px 38px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .35s var(--ease),color .35s,border-color .35s}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--gold);color:#fff}
+.btn-cream{background:var(--paper);color:var(--ink)}
+.btn-cream:hover{background:var(--gold);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border-color:rgba(28,26,22,.35)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-ghost.on-dark{color:var(--paper);border-color:rgba(250,248,244,.4)}
+.btn-ghost.on-dark:hover{border-color:var(--paper)}
+.tlink{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:6px;transition:color .3s}
+.tlink:hover{color:var(--gold)}
+
+/* top bar */
+#topbar{background:var(--dark);color:rgba(250,248,244,.8);font-size:12px;letter-spacing:.06em;text-align:center;padding:11px 46px;position:relative;z-index:60}
+#topbar b{color:var(--paper);font-weight:600}
+#topbar a{color:var(--gold-lt);margin-left:10px;border-bottom:1px solid rgba(194,168,126,.5);padding-bottom:1px}
+#topbar .x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(250,248,244,.5);font-size:16px;cursor:pointer;padding:4px 8px}
+#topbar .x:hover{color:#fff}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(250,248,244,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.nav-in{max-width:1240px;margin:0 auto;padding:0 40px;height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:baseline;gap:14px}
+.brand .bl{font-family:var(--disp);font-weight:500;font-size:21px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.brand .bl img{height:26px;width:auto;filter:brightness(0)}
+.brand .bs{font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border-left:1px solid var(--hair);padding-left:14px}
+.nav-links{display:flex;gap:36px;font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.nav-links a{transition:color .3s;padding:4px 0}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{display:flex;align-items:center;gap:22px}
+.nav-cta .wa{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.nav-cta .wa:hover{color:var(--gold)}
+.nav-cta .btn{padding:14px 26px}
+
+/* hero */
+#hero{position:relative;padding:0;min-height:92vh;display:flex;align-items:flex-end;background:var(--dark)}
+#hero .bg{position:absolute;inset:0;overflow:hidden}
+#hero .bg img{width:100%;height:100%;object-fit:cover;opacity:.92;transform:scale(1.06);animation:heroin 3.2s var(--ease) forwards}
+@keyframes heroin{to{transform:scale(1)}}
+#hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(75deg,rgba(12,10,7,.86) 0%,rgba(12,10,7,.55) 46%,rgba(12,10,7,.18) 75%,rgba(12,10,7,.38) 100%)}
+#hero .bg::before{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(180deg,transparent,rgba(10,8,6,.72));z-index:1}
+.hero-in{position:relative;z-index:2;width:100%;padding:170px 0 96px}
+.hero-cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:70px;align-items:end}
+#hero .eyebrow{color:var(--gold-lt)}
+#hero h1{font-size:clamp(42px,5.4vw,74px);color:var(--paper);max-width:14ch}
+#hero h1 em{color:var(--gold-lt)}
+#hero .sub{margin-top:30px;font-size:17px;line-height:1.75;color:rgba(250,248,244,.78);max-width:560px;font-weight:400}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-top:42px}
+.hero-note{margin-top:26px;font-size:13px;color:rgba(250,248,244,.55);max-width:460px;line-height:1.6}
+.hero-note b{color:rgba(250,248,244,.8);font-weight:600}
+
+/* hero live panel */
+.live{background:rgba(16,14,10,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(250,248,244,.16);padding:30px 30px 12px;max-width:400px;margin-left:auto}
+.live .lh{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-bottom:18px;border-bottom:1px solid rgba(250,248,244,.14)}
+.live .lh h4{font-family:var(--disp);font-weight:400;font-size:16px;color:var(--paper);letter-spacing:0}
+.live .lh span{font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,248,244,.45)}
+.live-row{display:flex;gap:14px;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(250,248,244,.08);opacity:0;transform:translateY(6px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.live-row:last-child{border-bottom:none}
+.live-row.on{opacity:1;transform:none}
+.live-row .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-lt);flex-shrink:0;transform:translateY(-2px)}
+.live-row p{font-size:13.5px;color:rgba(250,248,244,.85);line-height:1.5;flex:1}
+.live-row time{font-size:11px;color:rgba(250,248,244,.4);white-space:nowrap}
+
+/* marquee strip under hero */
+.strip{background:var(--dark);border-top:1px solid var(--hair-d);padding:22px 0}
+.strip .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.strip span{font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,248,244,.5)}
+.strip b{color:var(--gold-lt);font-weight:600}
+
+/* leak section */
+#leak{background:var(--paper)}
+.sec-head{max-width:760px}
+.leaks{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;column-gap:80px}
+.leak{padding:44px 0;border-top:1px solid var(--hair)}
+.leak .n{font-family:var(--disp);font-size:15px;font-style:italic;color:var(--gold);margin-bottom:16px;display:block}
+.leak h3{font-size:24px;margin-bottom:14px;max-width:22ch}
+.leak p{font-size:15px;color:var(--ink-2);line-height:1.75;max-width:52ch}
+.leak-close{margin-top:90px;text-align:center}
+.leak-close p{font-family:var(--disp);font-size:clamp(22px,2.6vw,30px);line-height:1.45;max-width:26ch;margin:0 auto;color:var(--ink)}
+.leak-close em{font-style:italic;color:var(--gold)}
+.leak-close .rule{width:56px;height:1px;background:var(--gold);margin:0 auto 34px}
+
+/* image band */
+.band{position:relative;height:74vh;min-height:480px;overflow:hidden;padding:0}
+.band img{width:100%;height:100%;object-fit:cover}
+.band .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,7,.25),rgba(12,10,7,.55))}
+.band .bq{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.band .bq p{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(24px,3.4vw,40px);color:var(--paper);max-width:24ch;line-height:1.4}
+.band .bq small{display:block;margin-top:22px;font-family:var(--body);font-style:normal;font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(250,248,244,.6)}
+
+/* system */
+#system{background:var(--cream)}
+.sys-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:90px;align-items:start}
+.sys-left{position:sticky;top:130px}
+.sys-left .lede{font-size:16.5px}
+.sys-left .tlink{margin-top:40px}
+.mods{border-top:1px solid var(--hair)}
+.mod{padding:38px 0;border-bottom:1px solid var(--hair)}
+.mod .mtop{display:flex;align-items:baseline;gap:20px}
+.mod .n{font-family:var(--disp);font-style:italic;font-size:15px;color:var(--gold);width:34px;flex-shrink:0}
+.mod h3{font-size:23px;letter-spacing:-.01em}
+.mod .roi{margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-lt);padding:5px 12px;white-space:nowrap}
+.mod .bh{font-family:var(--disp);font-style:italic;font-size:16.5px;color:var(--ink);margin:12px 0 10px;padding-left:54px}
+.mod p{font-size:14.5px;color:var(--ink-2);line-height:1.75;padding-left:54px;max-width:56ch}
+
+/* comparison */
+#compare{background:var(--paper)}
+.cmp{margin-top:80px;border-top:1px solid var(--hair)}
+.cmp-legend{display:flex;gap:34px;padding:26px 0 8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.cmp-legend span{display:inline-flex;align-items:center;gap:10px}
+.cmp-legend i{width:26px;height:3px;display:inline-block}
+.cmp-legend .without i{background:#D9D2C2}
+.cmp-legend .with i{background:var(--gold)}
+.cmp-row{padding:30px 0;border-bottom:1px solid var(--hair)}
+.cmp-row .lbl{font-family:var(--disp);font-size:19px;margin-bottom:18px}
+.bar-line{display:flex;align-items:center;gap:22px;margin-top:10px}
+.bar-track{flex:1;height:3px;background:transparent;position:relative}
+.bar-track::before{content:"";position:absolute;inset:0;background:var(--hair);opacity:.6}
+.bar{position:relative;height:100%;width:0;transition:width 1.4s var(--ease)}
+.bar.g{background:#CFC7B4}
+.bar.b{background:var(--gold)}
+.bar-val{width:190px;flex-shrink:0;font-size:12.5px;letter-spacing:.04em;color:var(--mut)}
+.bar-line.with .bar-val{color:var(--ink);font-weight:600}
+.cmp-cap{margin-top:44px;text-align:center;font-family:var(--disp);font-size:19px;color:var(--ink);line-height:1.6}
+.cmp-cap em{font-style:italic;color:var(--gold)}
+.cmp-note{margin-top:14px;text-align:center;font-size:12px;color:var(--mut);letter-spacing:.03em}
+
+/* stats band */
+#stats{position:relative;background:var(--dark);padding:120px 0;overflow:hidden}
+#stats .bg{position:absolute;inset:0}
+#stats .bg img{width:100%;height:100%;object-fit:cover;opacity:.28}
+#stats .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,14,10,.5),rgba(16,14,10,.75))}
+.stats-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.stat{text-align:center;padding:10px 40px;border-left:1px solid var(--hair-d)}
+.stat:first-child{border-left:none}
+.stat .n{font-family:var(--disp);font-weight:300;font-size:clamp(44px,4.6vw,62px);color:var(--paper);line-height:1;letter-spacing:-.02em}
+.stat .n em{font-style:italic;color:var(--gold-lt)}
+.stat .l{margin-top:18px;font-size:13px;color:rgba(250,248,244,.6);max-width:250px;margin-left:auto;margin-right:auto;line-height:1.65}
+
+/* trust */
+#why{background:var(--paper)}
+.trust-cols{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:90px;align-items:center}
+.trust-img{position:relative;height:640px;overflow:hidden}
+.trust-img img{width:100%;height:100%;object-fit:cover}
+.trust-img figcaption{position:absolute;left:0;bottom:0;right:0;padding:26px 30px;background:linear-gradient(180deg,transparent,rgba(12,10,7,.65));color:rgba(250,248,244,.85);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.pillars{margin-top:64px}
+.pillar{padding:40px 0;border-top:1px solid var(--hair)}
+.pillar h3{font-size:23px;margin-bottom:14px}
+.pillar h3 .pn{font-style:italic;font-size:15px;color:var(--gold);margin-right:16px}
+.pillar p{font-size:15px;color:var(--ink-2);line-height:1.78;max-width:58ch}
+
+/* how */
+#how{background:var(--cream)}
+.steps{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{padding:40px 34px 10px;border-left:1px solid var(--hair)}
+.step:first-child{border-left:none;padding-left:0}
+.step .sn{font-family:var(--disp);font-weight:300;font-style:italic;font-size:44px;color:var(--gold);line-height:1}
+.step .wk{display:block;margin:22px 0 14px;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mut)}
+.step .wk b{color:var(--gold);font-weight:700}
+.step h3{font-size:20px;line-height:1.3;margin-bottom:12px}
+.step p{font-size:14px;color:var(--ink-2);line-height:1.7}
+
+/* pricing */
+#pricing{background:var(--paper)}
+.tiers{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--hair)}
+.tier{padding:52px 44px;border-left:1px solid var(--hair);display:flex;flex-direction:column;background:var(--paper)}
+.tier:first-child{border-left:none}
+.tier.pop{background:var(--dark);color:var(--paper);margin:-1px;border:1px solid var(--dark);position:relative}
+.tier .tn{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:26px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tier .tn .mp{font-size:9.5px;letter-spacing:.2em;color:var(--gold-lt);border:1px solid rgba(194,168,126,.5);padding:5px 12px;font-weight:700}
+.tier .price{font-family:var(--disp);font-weight:300;font-size:42px;letter-spacing:-.02em;line-height:1}
+.tier .price small{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.tier.pop .price small{color:rgba(250,248,244,.5)}
+.tier .tl{margin-top:14px;font-family:var(--disp);font-style:italic;font-size:16px;color:var(--ink-2)}
+.tier.pop .tl{color:rgba(250,248,244,.75)}
+.tier ul{list-style:none;margin:34px 0 30px;flex:1}
+.tier li{position:relative;padding:11px 0 11px 26px;font-size:14px;color:var(--ink-2);border-bottom:1px solid var(--hair);line-height:1.5}
+.tier li:last-child{border-bottom:none}
+.tier li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.tier li.plus{font-weight:600;color:var(--ink)}
+.tier.pop li{color:rgba(250,248,244,.75);border-color:var(--hair-d)}
+.tier.pop li.plus{color:var(--paper)}
+.tier .best{font-size:12.5px;color:var(--mut);margin-bottom:30px;line-height:1.6}
+.tier.pop .best{color:rgba(250,248,244,.55)}
+.tier .btn{width:100%}
+
+/* founding */
+.founding{margin-top:70px;background:var(--dark);color:var(--paper);padding:74px 80px;position:relative}
+.founding::before{content:"";position:absolute;inset:14px;border:1px solid rgba(194,168,126,.35);pointer-events:none}
+.founding .fin{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:70px;align-items:center}
+.founding .eyebrow{color:var(--gold-lt)}
+.founding h3{font-family:var(--disp);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.2}
+.founding h3 em{font-style:italic;color:var(--gold-lt)}
+.founding p{margin-top:22px;font-size:15px;color:rgba(250,248,244,.72);line-height:1.8;max-width:58ch}
+.founding p b{color:var(--paper);font-weight:600}
+.fslots{text-align:center}
+.fslots .marks{display:flex;gap:10px;justify-content:center}
+.fslots .marks i{width:44px;height:2px;background:var(--gold-lt)}
+.fslots .cnt{font-family:var(--disp);font-weight:300;font-size:72px;color:var(--paper);line-height:1;margin-top:26px}
+.fslots .cnt em{font-style:italic;color:var(--gold-lt)}
+.fslots .lbl{margin-top:10px;font-size:10.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(250,248,244,.5)}
+.fslots .btn{margin-top:34px}
+.risk{margin-top:56px;text-align:center;font-size:14.5px;color:var(--ink-2);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.8}
+.risk b{color:var(--ink);font-weight:600}
+
+/* faq */
+#faq{background:var(--cream)}
+.faq-list{max-width:880px;margin:70px auto 0;border-top:1px solid var(--hair)}
+details{border-bottom:1px solid var(--hair)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:26px;padding:30px 4px;font-family:var(--disp);font-weight:400;font-size:20px;letter-spacing:-.01em;transition:color .3s}
+summary:hover{color:var(--gold)}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex-shrink:0;font-family:var(--disp);font-style:italic;font-size:20px;color:var(--gold);transition:transform .4s var(--ease);width:18px;text-align:center}
+details[open] summary .pm{transform:rotate(45deg)}
+details .a{padding:0 4px 34px;font-size:15px;color:var(--ink-2);line-height:1.8;max-width:66ch}
+
+/* closing */
+#close-cta{position:relative;padding:170px 0;background:var(--dark);overflow:hidden;text-align:center}
+#close-cta .bg{position:absolute;inset:0}
+#close-cta .bg img{width:100%;height:100%;object-fit:cover;opacity:.4}
+#close-cta .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(16,14,10,.25),rgba(16,14,10,.82))}
+#close-cta .wrap{position:relative}
+#close-cta .eyebrow{color:var(--gold-lt)}
+#close-cta h2{color:var(--paper);max-width:22ch;margin:0 auto}
+#close-cta h2 em{color:var(--gold-lt)}
+#close-cta .lede{color:rgba(250,248,244,.72);margin-left:auto;margin-right:auto}
+#close-cta .hero-btns{justify-content:center}
+#close-cta .fin{margin-top:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,244,.5)}
+#close-cta .fin a{border-bottom:1px solid rgba(250,248,244,.3);padding-bottom:2px}
+#close-cta .fin a:hover{color:var(--gold-lt)}
+
+/* footer */
+footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;font-size:13.5px;border-top:1px solid var(--hair-d)}
+.ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:50px;padding-bottom:56px;border-bottom:1px solid var(--hair-d)}
+.ft-brand .bl{font-family:var(--disp);font-weight:500;font-size:20px;color:var(--paper);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.ft-brand .bl img{height:24px;width:auto;filter:brightness(0) invert(1)}
+.ft-brand p{max-width:280px;line-height:1.7;font-family:var(--disp);font-style:italic;font-size:15px;color:rgba(250,248,244,.6)}
+.ftc h4{font-size:10.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px}
+.ftc a{display:block;margin-bottom:12px;transition:color .3s;font-size:13.5px}
+.ftc a:hover{color:var(--paper)}
+.ft-bot{padding-top:30px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,244,.35)}
+
+/* mobile bar */
+#mbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(22,20,16,.96);backdrop-filter:blur(12px);border-top:1px solid var(--hair-d);padding:12px 16px calc(12px + env(safe-area-inset-bottom));gap:12px}
+#mbar .btn{flex:1;padding:16px 10px}
+#mbar .btn-ghost{color:var(--paper);border-color:rgba(250,248,244,.35)}
+
+/* responsive */
+@media(max-width:1060px){
+  .hero-cols{grid-template-columns:1fr;gap:54px}
+  .live{margin-left:0}
+  .sys-grid{grid-template-columns:1fr;gap:60px}
+  .sys-left{position:static}
+  .trust-cols{grid-template-columns:1fr;gap:56px}
+  .trust-img{height:440px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{padding:40px 30px 10px}
+  .step:nth-child(odd){border-left:none;padding-left:0}
+  .founding .fin{grid-template-columns:1fr;gap:50px}
+  .fslots{text-align:left}
+  .fslots .marks{justify-content:flex-start}
+}
+@media(max-width:860px){
+  .wrap{padding:0 24px}
+  .ft-top{grid-template-columns:1fr 1fr;gap:38px}
+  .nav-in{padding:0 24px;height:72px}
+  .nav-links{display:none}
+  section{padding:90px 0}
+  .leaks{grid-template-columns:1fr;column-gap:0}
+  .leak{padding:36px 0}
+  .tiers{grid-template-columns:1fr;border:none}
+  .tier{border:1px solid var(--hair);border-bottom:none;padding:44px 34px}
+  .tier:last-child{border-bottom:1px solid var(--hair)}
+  .tier.pop{margin:0;border-color:var(--dark)}
+  .stats-grid{grid-template-columns:1fr}
+  .stat{border-left:none;border-top:1px solid var(--hair-d);padding:36px 20px}
+  .stat:first-child{border-top:none;padding-top:10px}
+  .founding{padding:56px 32px}
+  .steps{grid-template-columns:1fr}
+  .step{border-left:none;padding:36px 0 6px;border-top:1px solid var(--hair)}
+  .step:first-child{border-top:none}
+  .mod .bh,.mod p{padding-left:0}
+  .band{height:56vh;min-height:380px}
+  .hero-in{padding:130px 0 70px}
+  summary{font-size:17.5px}
+}
+@media(max-width:720px){
+  #mbar{display:flex}
+  body{padding-bottom:76px}
+  .nav-cta .wa{display:none}
+  .nav-cta .btn{padding:12px 20px;font-size:11px}
+  .brand .bs{display:none}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero-btns .btn{width:100%;padding:17px 20px;letter-spacing:.14em}
+  #topbar{font-size:11px;text-align:left;padding:10px 42px 10px 18px}
+  .live-row:nth-child(n+4){display:none}
+  .trust-img{height:340px}
+  .founding::before{inset:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<div id="topbar">
+  <b>Founding Clinics programme now open</b> — first five clinics only.
+  <a href="#founding">Claim a slot</a>
+  <button class="x" aria-label="Dismiss" onclick="this.parentElement.style.display='none'">×</button>
+</div>
+
+<!-- nav -->
+<nav>
+  <div class="nav-in">
+    <a href="/" class="brand">
+      <span class="bl"><img src="./crank-logo-icon.png" alt="">Crank Labs</span>
+      <span class="bs">Clinic Autopilot</span>
+    </a>
+    <div class="nav-links">
+      <a href="#leak">The Leak</a>
+      <a href="#system">The System</a>
+      <a href="#why">Why Crank</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="wa" href="https://wa.me/971563402532">WhatsApp</a>
+      <a class="btn btn-ink" href="https://wa.me/971563402532">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- hero -->
+<header id="hero">
+  <div class="bg"><img src="https://images.unsplash.com/photo-1758448093806-88b2089068ab?auto=format&fit=crop&w=2200&q=80" alt="A calm, marble-and-wood aesthetic clinic reception"></div>
+  <div class="hero-in">
+    <div class="wrap">
+      <div class="hero-cols">
+        <div>
+          <span class="eyebrow rv in">AI Operations for Aesthetic Clinics</span>
+          <h1 class="rv in">Your clinic's next <em>AED 100,000</em> is already sitting in your patient list.</h1>
+          <p class="sub rv in d1">Clinic Autopilot is a done-for-you AI system that brings dormant clients back, answers every DM in seconds, fills the chairs cancellations leave empty, and finally shows you which ad became a booking — so you can focus on treating patients, not chasing them.</p>
+          <div class="hero-btns rv in d2">
+            <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
+            <a class="btn btn-ghost on-dark" href="https://wa.me/971563402532?text=Hi%20Crank%20Labs%2C%20I%27d%20like%20a%20free%20Clinic%20Readiness%20Audit.">Free Clinic Audit</a>
+          </div>
+          <p class="hero-note rv in d3"><b>The audit comes first.</b> We show you the recoverable revenue before you commit a single dirham.</p>
+        </div>
+        <aside class="live rv in d2" aria-label="Product preview">
+          <div class="lh"><h4>Your clinic, on Autopilot</h4><span>Preview — sample data</span></div>
+          <div class="live-row"><span class="dot"></span><p>Reactivation sent — 12 clients due for Botox</p><time>just now</time></div>
+          <div class="live-row"><span class="dot"></span><p>DM answered &amp; consultation booked</p><time>0.6&nbsp;s</time></div>
+          <div class="live-row"><span class="dot"></span><p>No-show slot re-filled from waitlist</p><time>2:14&nbsp;pm</time></div>
+          <div class="live-row"><span class="dot"></span><p>New five-star Google review captured</p><time>today</time></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- strip -->
+<div class="strip">
+  <div class="wrap">
+    <span>Dormant-client reactivation</span>
+    <span>24/7 concierge on WhatsApp &amp; Instagram</span>
+    <span>No-show defence</span>
+    <span>Ad-to-booking attribution</span>
+    <span><b>Done for you, by Crank Labs</b></span>
+  </div>
+</div>
+
+<!-- leak -->
+<section id="leak">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">The Operations Tax</span>
+      <h2 class="rv">The busiest clinic in the city can still be <em>bleeding money quietly.</em></h2>
+      <p class="lede rv d1">It never shows up as a crisis. No single day looks wrong. But every week, revenue you already earned walks out the door — because nobody has the time to chase it. Here's where it goes.</p>
+    </div>
+
+    <div class="leaks">
+      <article class="leak rv">
+        <span class="n">No. 01</span>
+        <h3>Your best clients quietly stop coming back</h3>
+        <p>Botox fades at 3–4 months. Filler at 6–9. Laser packages lapse. But nobody's tracking who's due — so your most valuable, already-happy clients simply drift to whichever clinic remembered them first. They don't churn loudly. They just don't rebook.</p>
+      </article>
+      <article class="leak rv d1">
+        <span class="n">No. 02</span>
+        <h3>Every missed DM is a booking that went next door</h3>
+        <p>Instagram and WhatsApp fill up with "how much?", "does it hurt?", "any slots this week?" — after hours, on your day off, while you're mid-treatment. The enquiries you can't answer in minutes don't wait. They book somewhere that replied.</p>
+      </article>
+      <article class="leak rv">
+        <span class="n">No. 03</span>
+        <h3>Empty chairs you're still paying for</h3>
+        <p>Elective aesthetic appointments no-show more than almost any other kind. Every cancellation with no one to fill it is a fixed cost — rent, staff, room time — with zero revenue against it.</p>
+      </article>
+      <article class="leak rv d1">
+        <span class="n">No. 04</span>
+        <h3>Ad spend you can't actually read</h3>
+        <p>You're putting AED 20K+ a month into Meta and influencers, and you genuinely can't say which reel, which creator, or which campaign turned into a paid treatment. You're flying on gut feel and hoping the number goes up.</p>
+      </article>
+    </div>
+
+    <div class="leak-close rv">
+      <div class="rule"></div>
+      <p>None of this is a marketing problem or a staffing problem. It's an <em>operations</em> problem — and it's fixable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- image band -->
+<figure class="band">
+  <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=2200&q=80" alt="A client receiving a facial treatment" loading="lazy">
+  <div class="veil"></div>
+  <figcaption class="bq">
+    <p class="rv">"They don't churn loudly.<br>They just don't rebook."
+      <small>— The quiet revenue leak, every clinic, every month</small>
+    </p>
+  </figcaption>
+</figure>
+
+<!-- system -->
+<section id="system">
+  <div class="wrap">
+    <div class="sys-grid">
+      <div class="sys-left">
+        <span class="eyebrow rv">One Connected System</span>
+        <h2 class="rv">One system. <em>Six ways</em> it pays for itself.</h2>
+        <p class="lede rv d1">Clinic Autopilot isn't another app for your front desk to learn. It's a managed AI operation — designed, built and run by Crank Labs — that plugs the leaks while you run the clinic.</p>
+        <a class="tlink rv d2" href="https://wa.me/971563402532">See it live — book a demo</a>
+      </div>
+
+      <div class="mods">
+        <article class="mod rv">
+          <div class="mtop"><span class="n">01</span><h3>Reactivation Engine</h3><span class="roi">Fastest ROI</span></div>
+          <p class="bh">Bring back the clients you already earned.</p>
+          <p>Autopilot knows when each client is due for their next treatment and reaches out on WhatsApp — in your clinic's voice, at exactly the right moment. This one module usually covers the entire retainer on its own, in the first month.</p>
+        </article>
+        <article class="mod rv">
+          <div class="mtop"><span class="n">02</span><h3>AI Concierge</h3></div>
+          <p class="bh">Every DM answered in seconds. 24/7.</p>
+          <p>Handles price, availability and aftercare questions and books consultations across WhatsApp and Instagram — day, night, weekend, holiday. It captures, answers logistics, and books. It never gives medical advice — anything clinical goes straight to your team.</p>
+        </article>
+        <article class="mod rv">
+          <div class="mtop"><span class="n">03</span><h3>No-Show Guard</h3></div>
+          <p class="bh">Fill the chair before it empties.</p>
+          <p>Smart reminders, one-tap rescheduling, and automatic waitlist fill turn a last-minute cancellation into a booking instead of a loss.</p>
+        </article>
+        <article class="mod rv">
+          <div class="mtop"><span class="n">04</span><h3>Ads &amp; Attribution Intelligence</h3></div>
+          <p class="bh">Finally see which ad became a booking.</p>
+          <p>Autopilot connects the reel, the influencer and the campaign to the actual paid treatment — and the revenue behind it. Stop guessing where your marketing budget goes and start spending it where it works.</p>
+        </article>
+        <article class="mod rv">
+          <div class="mtop"><span class="n">05</span><h3>Review Engine</h3></div>
+          <p class="bh">Turn happy clients into your best marketing.</p>
+          <p>Perfectly-timed, automated Google review requests after each treatment. In aesthetics, your rating is your walk-in rate — this keeps it climbing.</p>
+        </article>
+        <article class="mod rv">
+          <div class="mtop"><span class="n">06</span><h3>Owner Dashboard</h3></div>
+          <p class="bh">Your whole clinic on one screen.</p>
+          <p>Rebooking rate, revenue by treatment and channel, reactivated revenue recovered, no-shows saved — with the "so what" already written. Group owners get a clean monthly report, delivered automatically.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- comparison -->
+<section id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">The Difference Autopilot Makes</span>
+      <h2 class="rv">The same clinic. <em>Two very different months.</em></h2>
+    </div>
+
+    <div class="cmp rv d1">
+      <div class="cmp-legend">
+        <span class="without"><i></i>Without Autopilot</span>
+        <span class="with"><i></i>With Autopilot</span>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">Dormant clients reactivated each month</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="4"></div></div><div class="bar-val">Close to none</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="88"></div></div><div class="bar-val">Every client who's due</div></div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">Time to answer a DM or WhatsApp</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="92"></div></div><div class="bar-val">Hours to days</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="5"></div></div><div class="bar-val">Seconds</div></div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">No-show rate</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="66"></div></div><div class="bar-val">~25%</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="26"></div></div><div class="bar-val">~10%</div></div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">Ad spend you can attribute to bookings</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="4"></div></div><div class="bar-val">~0%</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="85"></div></div><div class="bar-val">~85%</div></div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">Google reviews each month</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="14"></div></div><div class="bar-val">A slow trickle</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="82"></div></div><div class="bar-val">A steady flow</div></div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="lbl">Front-desk hours on repetitive replies</div>
+        <div class="bar-line"><div class="bar-track"><div class="bar g" data-w="86"></div></div><div class="bar-val">Many</div></div>
+        <div class="bar-line with"><div class="bar-track"><div class="bar b" data-w="12"></div></div><div class="bar-val">Few</div></div>
+      </div>
+
+      <p class="cmp-cap">Same patients. Same treatments. Same ad budget. <em>The only thing that changed is that nothing slips through anymore.</em></p>
+      <p class="cmp-note">Figures are illustrative of typical clinic benchmarks — your free audit shows your clinic's actual numbers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- stats -->
+<section id="stats">
+  <div class="bg"><img src="https://images.unsplash.com/photo-1761470575018-135c213340eb?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat rv"><div class="n">AED <em>100K+</em></div><div class="l">repeat revenue hiding in a typical clinic's past-client list</div></div>
+      <div class="stat rv d1"><div class="n">24<em>/</em>7</div><div class="l">your concierge never sleeps, never misses a message</div></div>
+      <div class="stat rv d2"><div class="n">2–4 <em>weeks</em></div><div class="l">from sign-off to live, done-for-you</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- trust -->
+<section id="why">
+  <div class="wrap">
+    <div class="trust-cols">
+      <figure class="trust-img rv">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=1400&q=80" alt="An aesthetic practitioner treating a client" loading="lazy">
+        <figcaption>Your team does the medicine. Autopilot does the chasing.</figcaption>
+      </figure>
+      <div>
+        <span class="eyebrow rv">Built for Clinics. Bound by Your Rules.</span>
+        <h2 class="rv">Powerful enough to grow your clinic. <em>Careful enough to run inside it.</em></h2>
+        <div class="pillars">
+          <div class="pillar rv">
+            <h3><span class="pn">I.</span>Regulated-safe by design</h3>
+            <p>Clinic Autopilot handles front-of-house and marketing only. It never diagnoses, never recommends a treatment, and never makes a clinical or before-and-after claim. Every clinical judgment stays exactly where it belongs — with your licensed team. The system is built to sit comfortably alongside how DHA, DHCC and MOH expect a clinic to communicate.</p>
+          </div>
+          <div class="pillar rv d1">
+            <h3><span class="pn">II.</span>Your data. Your patients. Your eyes only.</h3>
+            <p>Patient information is sensitive, and we treat it that way. Your data stays isolated, encrypted and owned by you — running on dedicated infrastructure, never shared with other clients, and never used to train anything but your own system. Ownership, access and boundaries are put in writing before we build a thing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- how -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">How Crank Works</span>
+      <h2 class="rv">We diagnose, build, and run it. <em>You just treat patients.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="sn">01</div>
+        <span class="wk"><b>Week 1 — Free</b></span>
+        <h3>The Clinic Readiness Audit</h3>
+        <p>We look at your patient list, your DM volume, your no-show rate and your ad spend — and show you, in real numbers, how much revenue is sitting there to recover. No cost. No commitment. You keep the plan either way.</p>
+      </div>
+      <div class="step rv d1">
+        <div class="sn">02</div>
+        <span class="wk">Week 1–2</span>
+        <h3>Your plan, built to your clinic</h3>
+        <p>Fixed scope, your branding, your treatment cycles, your voice. You see exactly what's being built and approve it before anything goes live.</p>
+      </div>
+      <div class="step rv d2">
+        <div class="sn">03</div>
+        <span class="wk">Week 2–4</span>
+        <h3>We build and connect it</h3>
+        <p>WhatsApp, Instagram, your calendar and your CRM wired into one flow — tested on your real treatments and real workflows, not a demo.</p>
+      </div>
+      <div class="step rv d3">
+        <div class="sn">04</div>
+        <span class="wk">Ongoing</span>
+        <h3>We run it. You run the clinic.</h3>
+        <p>Monitored and improved by our engineers every month. When something can work better, it does — without you asking. You just watch the chairs fill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- pricing -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">Simple Pricing, Built to Pay for Itself</span>
+      <h2 class="rv">Pricing that costs less than the <em>revenue it recovers.</em></h2>
+      <p class="lede rv d1">One transparent monthly fee. No hourly billing, no surprise invoices. A one-time onboarding &amp; build fee covers setup, WhatsApp integration, data migration and team training.</p>
+    </div>
+
+    <div class="tiers rv d1">
+      <div class="tier">
+        <div class="tn">Starter</div>
+        <div class="price">AED 3,000 <small>/ month</small></div>
+        <div class="tl">Get revenue back in your first month.</div>
+        <ul>
+          <li>Reactivation Engine</li>
+          <li>AI Concierge</li>
+          <li>No-Show Guard</li>
+          <li>Owner Dashboard</li>
+        </ul>
+        <p class="best">Best for single-location clinics starting out.</p>
+        <a class="btn btn-ghost" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Starter%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+      </div>
+
+      <div class="tier pop">
+        <div class="tn">Growth <span class="mp">Most requested</span></div>
+        <div class="price">AED 4,000 <small>/ month</small></div>
+        <div class="tl">The full growth engine.</div>
+        <ul>
+          <li class="plus">Everything in Starter, plus —</li>
+          <li>Ads &amp; Attribution Intelligence</li>
+          <li>Review Engine</li>
+          <li>Your own client-owned CRM</li>
+        </ul>
+        <p class="best">Best for established clinics spending on ads.</p>
+        <a class="btn btn-cream" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Growth%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+      </div>
+
+      <div class="tier">
+        <div class="tn">Command</div>
+        <div class="price">AED 5,000 <small>/ month</small></div>
+        <div class="tl">For groups and multi-location owners.</div>
+        <ul>
+          <li class="plus">Everything in Growth, plus —</li>
+          <li>Automated monthly board report</li>
+          <li>Multi-location support &amp; roll-up reporting</li>
+        </ul>
+        <p class="best">Best for chains and clinic groups.</p>
+        <a class="btn btn-ghost" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Command%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+      </div>
+    </div>
+
+    <!-- founding -->
+    <div class="founding rv" id="founding">
+      <div class="fin">
+        <div>
+          <span class="eyebrow">By Application</span>
+          <h3>Founding Clinics — <em>first five only.</em></h3>
+          <p>We're taking on five founding clinics to prove the system in the UAE market. Founding Clinics get their <b>setup fee waived</b> and a <b>locked founding rate held for twelve months</b> — in exchange for a testimonial, a case study, and a reference call for future clinics. Once the five slots are filled, standard pricing applies.</p>
+        </div>
+        <div class="fslots">
+          <div class="marks"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="cnt">5 <em>of 5</em></div>
+          <div class="lbl">Slots remaining</div>
+          <a class="btn btn-cream" href="https://wa.me/971563402532?text=Hi%2C%20I%27d%20like%20to%20apply%20as%20a%20Founding%20Clinic%20for%20Clinic%20Autopilot.">Apply as a Founding Clinic</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="risk rv"><b>See the money before you commit.</b> The free audit shows your recoverable revenue up front. If month one doesn't cover the retainer, you'll see it in the numbers long before you're ever locked in.</p>
+  </div>
+</section>
+
+<!-- faq -->
+<section id="faq">
+  <div class="wrap">
+    <div class="ctr">
+      <span class="eyebrow rv">Common Questions</span>
+      <h2 class="rv">Before you <em>ask.</em></h2>
+    </div>
+
+    <div class="faq-list rv d1">
+      <details>
+        <summary>Will this feel spammy or impersonal to my patients?<span class="pm">+</span></summary>
+        <div class="a">No — the opposite. Messages go out in your clinic's voice, only to the right person, only at the right time (when they're genuinely due). Done well, reactivation feels like a clinic that cared enough to remember them. We tune tone and frequency with you before anything sends.</div>
+      </details>
+      <details>
+        <summary>Does the AI give medical advice?<span class="pm">+</span></summary>
+        <div class="a">Never. The Concierge handles price, availability, aftercare logistics and booking. Any clinical question is captured and handed to your team. Autopilot is built to augment your front-of-house, not to practise medicine.</div>
+      </details>
+      <details>
+        <summary>Is my patient data safe?<span class="pm">+</span></summary>
+        <div class="a">Yes. Your data is isolated, encrypted, owned by you, and never shared or used to train anything but your own system. Ownership and boundaries are written down before we build. For sensitive setups we can deploy fully self-hosted, so nothing leaves your control.</div>
+      </details>
+      <details>
+        <summary>Do I have to change my current booking system or CRM?<span class="pm">+</span></summary>
+        <div class="a">No. Autopilot connects to the tools you already use — WhatsApp, Instagram, your calendar and CRM. If you don't have a CRM, we can include one that stays yours.</div>
+      </details>
+      <details>
+        <summary>How fast until I see results?<span class="pm">+</span></summary>
+        <div class="a">The audit is done in a week. Systems typically go live within two to four weeks of sign-off — and reactivation revenue usually shows in the first month.</div>
+      </details>
+      <details>
+        <summary>I already have a receptionist. Why do I need this?<span class="pm">+</span></summary>
+        <div class="a">Because your receptionist sleeps, takes leave, and can't answer 40 DMs at 11pm while also greeting the client in front of them. Autopilot takes the repetitive load off your team so they can do the human part — the welcome, the care, the upsell — better.</div>
+      </details>
+      <details>
+        <summary>What does it cost to set up?<span class="pm">+</span></summary>
+        <div class="a">A one-time onboarding &amp; build fee (setup, WhatsApp integration, migration, training) plus your monthly tier. Founding Clinics get the setup fee waived. We'll give you exact numbers on the audit call.</div>
+      </details>
+      <details>
+        <summary>Which treatments does reactivation actually work for?<span class="pm">+</span></summary>
+        <div class="a">Any treatment with a repeat cycle — Botox, filler, laser packages, HydraFacial, skin programmes, PRP. If clients are meant to come back on a schedule, Autopilot makes sure they do.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- closing -->
+<section id="close-cta">
+  <div class="bg"><img src="https://images.unsplash.com/photo-1758448500688-3ababa93fd67?auto=format&fit=crop&w=2200&q=75" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <span class="eyebrow rv">Begin with the Audit</span>
+    <h2 class="rv">Your next 50 bookings are already in your phone. <em>Let's go get them.</em></h2>
+    <p class="lede rv d1">Book a demo and we'll run your free Clinic Readiness Audit — the recoverable revenue, the leaks, and the plan to close them. Yours to keep, whether you build with us or not.</p>
+    <div class="hero-btns rv d2">
+      <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
+      <a class="btn btn-ghost on-dark" href="https://wa.me/971563402532">WhatsApp +971 56 340 2532</a>
+    </div>
+    <p class="fin rv d3"><a href="mailto:hello@cranklabs.tech">hello@cranklabs.tech</a> &nbsp;·&nbsp; Dubai, UAE</p>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="/" class="bl"><img src="./crank-logo-icon.png" alt="">Crank Labs</a>
+        <p>AI operations for clinics that intend to lead their market.</p>
+      </div>
+      <div class="ftc"><h4>The System</h4>
+        <a href="#system">Reactivation Engine</a>
+        <a href="#system">AI Concierge</a>
+        <a href="#system">No-Show Guard</a>
+        <a href="#system">Ads &amp; Attribution</a>
+        <a href="#system">Review Engine</a>
+        <a href="#system">Owner Dashboard</a>
+      </div>
+      <div class="ftc"><h4>Company</h4>
+        <a href="#how">How We Work</a>
+        <a href="#why">Why Crank</a>
+        <a href="#faq">FAQ</a>
+        <a href="/">cranklabs.tech</a>
+      </div>
+      <div class="ftc"><h4>Contact</h4>
+        <a href="mailto:hello@cranklabs.tech">hello@cranklabs.tech</a>
+        <a href="https://wa.me/971563402532">WhatsApp</a>
+        <a href="https://wa.me/971563402532">Book a demo</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 Crank Labs · Dubai, UAE</span>
+      <span>Engineering Intelligence</span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile bar -->
+<div id="mbar">
+  <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
+  <a class="btn btn-ghost" href="https://wa.me/971563402532">WhatsApp</a>
+</div>
+
+<script>
+/* reveals */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+
+/* comparison bars */
+const bio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar').forEach(b=>{b.style.width=b.dataset.w+'%'});bio.unobserve(e.target)}}),{threshold:.4});
+document.querySelectorAll('.cmp-row').forEach(r=>bio.observe(r));
+
+/* live panel loop */
+const rows=[...document.querySelectorAll('.live-row')];
+let fi=0;
+function tick(){
+  if(fi<rows.length){rows[fi].classList.add('on');fi++;setTimeout(tick,fi===rows.length?3400:1100)}
+  else{rows.forEach(r=>r.classList.remove('on'));fi=0;setTimeout(tick,1000)}
+}
+setTimeout(tick,900);
+
+/* one faq open at a time */
+document.querySelectorAll('#faq details').forEach(d=>d.addEventListener('toggle',()=>{
+  if(d.open)document.querySelectorAll('#faq details').forEach(o=>{if(o!==d)o.open=false});
+}));
+</script>
+</body>
+</html>
