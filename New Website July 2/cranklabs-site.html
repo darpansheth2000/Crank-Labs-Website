@@ -61,7 +61,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .split.in .w i{transform:none}
 
 /* ===== buttons ===== */
-.btn{position:relative;display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;border-radius:100px;padding:15px 30px;border:none;cursor:pointer;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,background .3s;will-change:transform}
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:600;font-size:15px;line-height:1.6;border-radius:100px;padding:15px 30px;border:none;cursor:pointer;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,background .3s;will-change:transform}
 .btn .sh{position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s var(--ease);pointer-events:none}
 .btn:hover .sh{left:130%}
 .btn-blue{background:var(--blue);color:#fff;box-shadow:0 1px 2px rgba(23,60,203,.3)}
@@ -86,6 +86,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .topbar::before{content:"";position:absolute;top:0;left:-40%;width:30%;height:100%;background:linear-gradient(105deg,transparent,rgba(123,155,255,.14),transparent);animation:barshine 5s var(--ease) infinite}
 @keyframes barshine{0%{left:-40%}60%,100%{left:120%}}
 .topbar a{color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.35);margin-left:8px}
+.topbar .tb-cta{background:none;border:none;padding:0;font-family:inherit;font-size:inherit;color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.35);margin-left:8px;cursor:pointer}
+.topbar .tb-cta:hover{border-bottom-color:#fff}
 
 /* ===== nav ===== */
 .nav-outer{position:sticky;top:0;z-index:900;background:rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid transparent;transition:transform .45s var(--ease),border-color .3s,box-shadow .3s}
@@ -474,7 +476,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
 
 <div id="prog"></div>
 
-<div class="topbar">Now onboarding a limited number of Q3 engagements.<a href="#contact">Request a slot</a></div>
+<div class="topbar">Now onboarding a limited number of Q3 engagements.<button type="button" class="tb-cta" data-cal-link="darpan-sheth/30min" data-cal-namespace="30min" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'>Request a slot</button></div>
 
 <div class="nav-outer" id="navo">
   <div class="wrap nav">
@@ -488,7 +490,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
     </nav>
     <div class="nav-r">
       <a class="ghost" href="#contact">Contact</a>
-      <a href="#contact" class="btn btn-dark btn-nav mag">Book a demo</a>
+      <button type="button" class="btn btn-dark btn-nav mag" data-cal-link="darpan-sheth/30min" data-cal-namespace="30min" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'>Book a demo</button>
     </div>
   </div>
 </div>
@@ -500,7 +502,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
     <h1 class="split" id="h1">Turn manual operations into <span class="rot" id="rot"><span class="word">an AI workforce</span></span></h1>
     <p class="lede rv d1">From your inbox to your board report — Crank Labs builds and runs the AI employees, knowledge systems and automations inside your company. <b>One partner. Zero extra headcount.</b></p>
     <div class="hero-cta rv d2">
-      <a href="#contact" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
+      <button type="button" class="btn btn-blue mag" data-cal-link="darpan-sheth/30min" data-cal-namespace="30min" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'>Book a demo <span class="arr">→</span><span class="sh"></span></button>
       <a href="#system" class="btn btn-line mag">See the system</a>
     </div>
     <p class="hero-fine rv d2"><b>Starts with a free operations audit.</b> No commitment required.</p>
@@ -802,7 +804,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
         <span class="rchip">"Ask Ahmed, he knows where it is"</span>
       </div>
       <div class="repl-cta rv d2">
-        <a href="#contact" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
+        <button type="button" class="btn btn-blue mag" data-cal-link="darpan-sheth/30min" data-cal-namespace="30min" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'>Book a demo <span class="arr">→</span><span class="sh"></span></button>
         <a href="https://wa.me/971501037434" class="btn btn-white mag">WhatsApp us</a>
       </div>
     </div>
@@ -816,7 +818,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
     <h2 class="split">Your competitors are <em>reading</em> about AI. You could be <em>running</em> on it.</h2>
     <p class="lede rv d1">Book a demo. We'll audit your operation, show you exactly where AI pays for itself, and hand you the plan — whether you build with us or not.</p>
     <div class="final-cta rv d2">
-      <a href="https://wa.me/971501037434" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
+      <button type="button" class="btn btn-blue mag" data-cal-link="darpan-sheth/30min" data-cal-namespace="30min" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'>Book a demo <span class="arr">→</span><span class="sh"></span></button>
       <a href="mailto:darpan@cranklabs.tech" class="btn btn-line mag">darpan@cranklabs.tech</a>
       <a href="mailto:varun@cranklabs.tech" class="btn btn-line mag">varun@cranklabs.tech</a>
     </div>
@@ -1137,5 +1139,16 @@ if(!touch&&!reduced){document.querySelectorAll('.mag').forEach(b=>{
   b.addEventListener('mouseleave',()=>b.style.transform='');
 })}
 </script>
+
+<!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://app.cal.com"});
+Cal.config = Cal.config || {};
+Cal.config.forwardQueryParams = true;
+
+  Cal.ns["30min"]("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#2454FF"}},"hideEventTypeDetails":false,"layout":"week_view"});
+  </script>
+  <!-- Cal element-click embed code ends -->
 </body>
 </html>
