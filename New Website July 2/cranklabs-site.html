@@ -403,11 +403,31 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .final-line a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
 .final-line a:hover{border-color:var(--ink)}
 
+/* ===== offices ===== */
+.offices{margin:48px auto 0;max-width:720px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;text-align:left}
+.office{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:var(--paper);transition:border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.office:hover{border-color:#C9D5FA;transform:translateY(-3px);box-shadow:0 14px 34px rgba(12,20,60,.07)}
+.office h4{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.o-name{font-family:var(--disp);font-size:17.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.o-role{font-size:12.5px;color:var(--mut);margin-top:3px}
+.o-links{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.o-links a{font-size:14px;color:var(--ink-2);transition:color .2s}
+.o-links a:hover{color:var(--blue)}
+@media(max-width:640px){.offices{grid-template-columns:1fr;gap:14px}}
+
+/* ===== whatsapp fab ===== */
+.wa-fab{position:fixed;right:26px;bottom:26px;z-index:999;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.34),0 2px 8px rgba(8,12,30,.14);transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+.wa-fab svg{width:29px;height:29px}
+.wa-fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 16px 34px rgba(37,211,102,.44),0 3px 10px rgba(8,12,30,.16)}
+.wa-fab:active{transform:scale(.95)}
+@media(max-width:640px){.wa-fab{right:16px;bottom:16px;width:52px;height:52px}.wa-fab svg{width:27px;height:27px}}
+@media(prefers-reduced-motion:reduce){.wa-fab{transition:none}.wa-fab:hover{transform:none}}
+
 /* ===== footer ===== */
 footer{border-top:1px solid var(--line);padding:64px 0 44px}
 .ft{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .ft-brand p{margin-top:14px;font-size:14px;color:var(--mut);max-width:300px;line-height:1.7}
-.ft-cols{display:flex;gap:76px;flex-wrap:wrap}
+.ft-cols{display:flex;gap:40px 56px;flex-wrap:wrap}
 .ftc h4{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:18px}
 .ftc a{display:block;font-size:14.5px;color:var(--ink-2);margin-bottom:12px;transition:color .2s,transform .2s}
 .ftc a:hover{color:var(--blue);transform:translateX(2px)}
@@ -465,7 +485,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-r">
-      <a class="ghost" href="mailto:hello@cranklabs.tech">Contact</a>
+      <a class="ghost" href="#contact">Contact</a>
       <a href="#contact" class="btn btn-dark btn-nav mag">Book a demo</a>
     </div>
   </div>
@@ -781,7 +801,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
       </div>
       <div class="repl-cta rv d2">
         <a href="#contact" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
-        <a href="https://wa.me/971563402532" class="btn btn-white mag">WhatsApp us</a>
+        <a href="https://wa.me/971501037434" class="btn btn-white mag">WhatsApp us</a>
       </div>
     </div>
   </div>
@@ -794,10 +814,29 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
     <h2 class="split">Your competitors are <em>reading</em> about AI. You could be <em>running</em> on it.</h2>
     <p class="lede rv d1">Book a demo. We'll audit your operation, show you exactly where AI pays for itself, and hand you the plan — whether you build with us or not.</p>
     <div class="final-cta rv d2">
-      <a href="https://wa.me/971563402532" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
-      <a href="mailto:hello@cranklabs.tech" class="btn btn-line mag">hello@cranklabs.tech</a>
+      <a href="https://wa.me/971501037434" class="btn btn-blue mag">Book a demo <span class="arr">→</span><span class="sh"></span></a>
+      <a href="mailto:darpan@cranklabs.tech" class="btn btn-line mag">darpan@cranklabs.tech</a>
     </div>
-    <p class="final-line rv d2">WhatsApp <a href="https://wa.me/971563402532">+971 56 340 2532</a> · Dubai, UAE</p>
+    <div class="offices rv d2">
+      <div class="office">
+        <h4>Dubai Office</h4>
+        <p class="o-name">Darpan Sheth</p>
+        <p class="o-role">Co-Founder · UAE &amp; GCC</p>
+        <div class="o-links">
+          <a href="https://wa.me/971501037434">WhatsApp +971 50 103 7434</a>
+          <a href="mailto:darpan@cranklabs.tech">darpan@cranklabs.tech</a>
+        </div>
+      </div>
+      <div class="office">
+        <h4>India Office</h4>
+        <p class="o-name">Varun Shah</p>
+        <p class="o-role">Co-Founder · India</p>
+        <div class="o-links">
+          <a href="https://wa.me/917666828884">WhatsApp +91 76668 28884</a>
+          <a href="mailto:varun@cranklabs.tech">varun@cranklabs.tech</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -811,12 +850,18 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px}
       <div class="ft-cols">
         <div class="ftc"><h4>Platform</h4><a href="#system">AI Employees</a><a href="#system">Second Brain</a><a href="#system">Automations</a><a href="#system">Command Center</a></div>
         <div class="ftc"><h4>Company</h4><a href="#how">How We Work</a><a href="#enterprise">Why Crank</a><a href="#faq">FAQ</a></div>
-        <div class="ftc"><h4>Contact</h4><a href="mailto:hello@cranklabs.tech">hello@cranklabs.tech</a><a href="https://wa.me/971563402532">WhatsApp</a><a href="#contact">Book a demo</a></div>
+        <div class="ftc"><h4>Dubai Office</h4><a href="tel:+971501037434">+971 50 103 7434</a><a href="mailto:darpan@cranklabs.tech">darpan@cranklabs.tech</a><a href="https://wa.me/971501037434">WhatsApp</a></div>
+        <div class="ftc"><h4>India Office</h4><a href="tel:+917666828884">+91 76668 28884</a><a href="mailto:varun@cranklabs.tech">varun@cranklabs.tech</a><a href="https://wa.me/917666828884">WhatsApp</a></div>
       </div>
     </div>
-    <div class="ft-base"><span>© 2026 Crank Labs · Dubai, UAE</span><span>Engineering Intelligence.</span></div>
+    <div class="ft-base"><span>© 2026 Crank Labs · Dubai, UAE · India</span><span>Engineering Intelligence.</span></div>
   </div>
 </footer>
+
+<!-- floating whatsapp -->
+<a class="wa-fab" href="https://wa.me/971501037434" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.99 2.896 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 11.987 0C5.437 0 .106 5.334.103 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
 
 <script>
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;

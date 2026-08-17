@@ -277,9 +277,10 @@ details .a{padding:0 4px 34px;font-size:15px;color:var(--ink-2);line-height:1.8;
 #close-cta h2 em{color:var(--gold-lt)}
 #close-cta .lede{color:rgba(250,248,244,.72);margin-left:auto;margin-right:auto}
 #close-cta .hero-btns{justify-content:center}
-#close-cta .fin{margin-top:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,244,.5)}
+#close-cta .fin{margin-top:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,244,.5);line-height:2.4}
 #close-cta .fin a{border-bottom:1px solid rgba(250,248,244,.3);padding-bottom:2px}
 #close-cta .fin a:hover{color:var(--gold-lt)}
+#close-cta .fin b{color:var(--gold-lt);font-weight:700;letter-spacing:.22em}
 
 /* footer */
 footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;font-size:13.5px;border-top:1px solid var(--hair-d)}
@@ -290,11 +291,21 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
 .ftc h4{font-size:10.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px}
 .ftc a{display:block;margin-bottom:12px;transition:color .3s;font-size:13.5px}
 .ftc a:hover{color:var(--paper)}
+.ft-office{display:block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,244,.35);margin-bottom:9px}
+.ft-office+a{margin-bottom:10px}
+a+.ft-office{margin-top:20px}
 .ft-bot{padding-top:30px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,244,.35)}
 
 /* mobile bar */
 #mbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(22,20,16,.96);backdrop-filter:blur(12px);border-top:1px solid var(--hair-d);padding:12px 16px calc(12px + env(safe-area-inset-bottom));gap:12px}
 #mbar .btn{flex:1;padding:16px 10px}
+
+/* floating whatsapp */
+.wa-fab{position:fixed;right:26px;bottom:26px;z-index:90;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.3),0 2px 10px rgba(0,0,0,.24);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.wa-fab svg{width:29px;height:29px}
+.wa-fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 16px 34px rgba(37,211,102,.4),0 3px 12px rgba(0,0,0,.28)}
+.wa-fab:active{transform:scale(.95)}
+@media(prefers-reduced-motion:reduce){.wa-fab{transition:none}.wa-fab:hover{transform:none}}
 #mbar .btn-ghost{color:var(--paper);border-color:rgba(250,248,244,.35)}
 
 /* responsive */
@@ -339,6 +350,8 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
 @media(max-width:720px){
   #mbar{display:flex}
   body{padding-bottom:76px}
+  .wa-fab{right:16px;bottom:calc(88px + env(safe-area-inset-bottom));width:50px;height:50px}
+  .wa-fab svg{width:26px;height:26px}
   .nav-cta .wa{display:none}
   .nav-cta .btn{padding:12px 20px;font-size:11px}
   .brand .bs{display:none}
@@ -375,8 +388,8 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a class="wa" href="https://wa.me/971563402532">WhatsApp</a>
-      <a class="btn btn-ink" href="https://wa.me/971563402532">Book a demo</a>
+      <a class="wa" href="https://wa.me/971501037434">WhatsApp</a>
+      <a class="btn btn-ink" href="https://wa.me/971501037434">Book a demo</a>
     </div>
   </div>
 </nav>
@@ -392,8 +405,8 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
           <h1 class="rv in">Your clinic's next <em>AED 100,000</em> is already sitting in your patient list.</h1>
           <p class="sub rv in d1">Clinic Autopilot is a done-for-you AI system that brings dormant clients back, answers every DM in seconds, fills the chairs cancellations leave empty, and finally shows you which ad became a booking — so you can focus on treating patients, not chasing them.</p>
           <div class="hero-btns rv in d2">
-            <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
-            <a class="btn btn-ghost on-dark" href="https://wa.me/971563402532?text=Hi%20Crank%20Labs%2C%20I%27d%20like%20a%20free%20Clinic%20Readiness%20Audit.">Free Clinic Audit</a>
+            <a class="btn btn-cream" href="https://wa.me/971501037434">Book a demo</a>
+            <a class="btn btn-ghost on-dark" href="https://wa.me/971501037434?text=Hi%20Crank%20Labs%2C%20I%27d%20like%20a%20free%20Clinic%20Readiness%20Audit.">Free Clinic Audit</a>
           </div>
           <p class="hero-note rv in d3"><b>The audit comes first.</b> We show you the recoverable revenue before you commit a single dirham.</p>
         </div>
@@ -478,7 +491,7 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
         <span class="eyebrow rv">One Connected System</span>
         <h2 class="rv">One system. <em>Six ways</em> it pays for itself.</h2>
         <p class="lede rv d1">Clinic Autopilot isn't another app for your front desk to learn. It's a managed AI operation — designed, built and run by Crank Labs — that plugs the leaks while you run the clinic.</p>
-        <a class="tlink rv d2" href="https://wa.me/971563402532">See it live — book a demo</a>
+        <a class="tlink rv d2" href="https://wa.me/971501037434">See it live — book a demo</a>
       </div>
 
       <div class="mods">
@@ -668,7 +681,7 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
           <li>Owner Dashboard</li>
         </ul>
         <p class="best">Best for single-location clinics starting out.</p>
-        <a class="btn btn-ghost" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Starter%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+        <a class="btn btn-ghost" href="https://wa.me/971501037434?text=Hi%2C%20I%27m%20interested%20in%20the%20Starter%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
       </div>
 
       <div class="tier pop">
@@ -682,7 +695,7 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
           <li>Your own client-owned CRM</li>
         </ul>
         <p class="best">Best for established clinics spending on ads.</p>
-        <a class="btn btn-cream" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Growth%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+        <a class="btn btn-cream" href="https://wa.me/971501037434?text=Hi%2C%20I%27m%20interested%20in%20the%20Growth%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
       </div>
 
       <div class="tier">
@@ -695,7 +708,7 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
           <li>Multi-location support &amp; roll-up reporting</li>
         </ul>
         <p class="best">Best for chains and clinic groups.</p>
-        <a class="btn btn-ghost" href="https://wa.me/971563402532?text=Hi%2C%20I%27m%20interested%20in%20the%20Command%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
+        <a class="btn btn-ghost" href="https://wa.me/971501037434?text=Hi%2C%20I%27m%20interested%20in%20the%20Command%20plan%20for%20Clinic%20Autopilot.">Book a demo</a>
       </div>
     </div>
 
@@ -711,7 +724,7 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
           <div class="marks"><i class="taken"></i><i class="taken"></i><i></i><i></i><i></i></div>
           <div class="cnt">3 <em>of 5</em></div>
           <div class="lbl">Slots remaining</div>
-          <a class="btn btn-cream" href="https://wa.me/971563402532?text=Hi%2C%20I%27d%20like%20to%20apply%20as%20a%20Founding%20Clinic%20for%20Clinic%20Autopilot.">Apply as a Founding Clinic</a>
+          <a class="btn btn-cream" href="https://wa.me/971501037434?text=Hi%2C%20I%27d%20like%20to%20apply%20as%20a%20Founding%20Clinic%20for%20Clinic%20Autopilot.">Apply as a Founding Clinic</a>
         </div>
       </div>
     </div>
@@ -773,10 +786,13 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
     <h2 class="rv">Your next 50 bookings are already in your phone. <em>Let's go get them.</em></h2>
     <p class="lede rv d1">Book a demo and we'll run your free Clinic Readiness Audit — the recoverable revenue, the leaks, and the plan to close them. Yours to keep, whether you build with us or not.</p>
     <div class="hero-btns rv d2">
-      <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
-      <a class="btn btn-ghost on-dark" href="https://wa.me/971563402532">WhatsApp +971 56 340 2532</a>
+      <a class="btn btn-cream" href="https://wa.me/971501037434">Book a demo</a>
+      <a class="btn btn-ghost on-dark" href="https://wa.me/971501037434">WhatsApp +971 50 103 7434</a>
     </div>
-    <p class="fin rv d3"><a href="mailto:hello@cranklabs.tech">hello@cranklabs.tech</a> &nbsp;·&nbsp; Dubai, UAE</p>
+    <p class="fin rv d3">
+      <b>Dubai</b> &nbsp;<a href="https://wa.me/971501037434">+971 50 103 7434</a> &nbsp;·&nbsp; <a href="mailto:darpan@cranklabs.tech">darpan@cranklabs.tech</a><br>
+      <b>India</b> &nbsp;<a href="https://wa.me/917666828884">+91 76668 28884</a> &nbsp;·&nbsp; <a href="mailto:varun@cranklabs.tech">varun@cranklabs.tech</a>
+    </p>
   </div>
 </section>
 
@@ -803,22 +819,30 @@ footer{background:var(--dark);color:rgba(250,248,244,.55);padding:80px 0 40px;fo
         <a href="/">cranklabs.tech</a>
       </div>
       <div class="ftc"><h4>Contact</h4>
-        <a href="mailto:hello@cranklabs.tech">hello@cranklabs.tech</a>
-        <a href="https://wa.me/971563402532">WhatsApp</a>
-        <a href="https://wa.me/971563402532">Book a demo</a>
+        <span class="ft-office">Dubai Office</span>
+        <a href="tel:+971501037434">+971 50 103 7434</a>
+        <a href="mailto:darpan@cranklabs.tech">darpan@cranklabs.tech</a>
+        <span class="ft-office">India Office</span>
+        <a href="tel:+917666828884">+91 76668 28884</a>
+        <a href="mailto:varun@cranklabs.tech">varun@cranklabs.tech</a>
       </div>
     </div>
     <div class="ft-bot">
-      <span>© 2026 Crank Labs · Dubai, UAE</span>
+      <span>© 2026 Crank Labs · Dubai, UAE · India</span>
       <span>Engineering Intelligence</span>
     </div>
   </div>
 </footer>
 
+<!-- floating whatsapp -->
+<a class="wa-fab" href="https://wa.me/971501037434" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.99 2.896 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 11.987 0C5.437 0 .106 5.334.103 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
 <!-- mobile bar -->
 <div id="mbar">
-  <a class="btn btn-cream" href="https://wa.me/971563402532">Book a demo</a>
-  <a class="btn btn-ghost" href="https://wa.me/971563402532">WhatsApp</a>
+  <a class="btn btn-cream" href="https://wa.me/971501037434">Book a demo</a>
+  <a class="btn btn-ghost" href="https://wa.me/971501037434">WhatsApp</a>
 </div>
 
 <script>
