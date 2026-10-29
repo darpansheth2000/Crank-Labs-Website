@@ -1,0 +1,82 @@
+# Crank Labs
+
+> Crank Labs is a full stack consulting and business transformation firm with offices in Mumbai (India) and Dubai (UAE), founded by Varun and Darpan. One team takes a business from diagnosis to running systems: strategy and process redesign, full stack software development, AI agents, automation, and Visibility, our AI SEO platform (https://crank-visibility.vercel.app/).
+
+## Services
+- Consulting & strategy: Operations audits, process mapping and a transformation roadmap tied to revenue, cost and time saved. Decisions, not slideware.
+- Business transformation: We redesign how sales, operations and finance actually run, then lead the rollout with your team until the new way sticks.
+- Software development: Full stack web apps, portals, dashboards and integrations, front end to cloud, built around how your team works.
+- AI agents: WhatsApp, voice and email agents that answer every enquiry in seconds, qualify the lead and book it into your calendar, day or night.
+- Automation: Invoices, approvals, reporting and data entry handled end to end, then posted into Tally, Zoho, your CRM or ERP.
+- Visibility: Our AI SEO platform. See whether ChatGPT, Perplexity and Google AI Overviews recommend you, and what to fix when they don’t.
+
+## Industries served
+- Hospitals & maternity care (India)
+- Fire-fighting vehicle manufacturers (India)
+- Dental & aesthetic clinics (UAE)
+- Accounting & bookkeeping firms (UAE · Australia)
+- Fine jewellers & diamond traders (India · UAE)
+- Smart-home & electrical contractors (UAE)
+- Fiber broadband providers (India)
+- Cloud & ERP hosting companies (India)
+- Kitchen & interior manufacturers (India)
+- Corporate gifting manufacturers (India)
+- Travel & experience brands (India)
+- Medical colleges & student events (India)
+
+## How we work
+1. Diagnose: a free working session mapping how leads, operations and finance flow
+2. Redesign & build: the target process, built on real data (software, integrations, AI agents, automation)
+3. Run & scale: measure, tune, train the team, then take on the next function
+
+## Contact
+- Book a call: https://cal.com/cranklabs/15min
+- Varun (co-founder): varun@cranklabs.tech
+- Darpan (co-founder): darpan@cranklabs.tech
+- Phone / WhatsApp (Dubai): +971 56 340 2532
+- Offices: Mumbai, India and Dubai, UAE. Serving India, the UAE and Australia
+
+## Articles
+- [AI Agent vs Chatbot: What Business Owners Need to Know in 2026](https://cranklabs.tech/blog/ai-agent-vs-chatbot/): The difference between an AI agent and a chatbot, explained in plain English, and how to tell which one your business actually needs.
+- [WhatsApp AI Agents for Clinics in the UAE: Stop Losing Patient Enquiries](https://cranklabs.tech/blog/whatsapp-ai-agent-for-clinics-uae/): How dental, aesthetic and medical clinics in Dubai and across the UAE use WhatsApp AI agents to reply instantly, book appointments and reactivate past patients.
+- [How Much Does AI Automation Cost for a Business in 2026?](https://cranklabs.tech/blog/ai-automation-cost-small-business/): An honest breakdown of what drives the cost of AI agents and workflow automation: build fees, monthly running costs, and how to work out ROI before you spend.
+- [AEO vs SEO: How to Get Your Business Recommended by ChatGPT and Google AI Overviews](https://cranklabs.tech/blog/aeo-vs-seo-get-recommended-by-chatgpt/): Answer Engine Optimization explained: what AEO is, how it differs from SEO, and the practical steps that make AI assistants cite and recommend your business.
+- [AI Bookkeeping Automation for Accounting Firms: Tally & Zoho Without Losing Control](https://cranklabs.tech/blog/ai-bookkeeping-automation-accounting-firms/): How accounting and bookkeeping firms automate document collection, data extraction and entry into TallyPrime or Zoho Books, with every entry approved by an accountant.
+- [AI and Automation in Manufacturing Quality Control: From Paper Checklists to Live Dashboards](https://cranklabs.tech/blog/ai-in-manufacturing-quality-control/): How specialist manufacturers, including fire-fighting vehicle builders, replace paper QC sheets and spreadsheets with digital inspections, live dashboards and AI-assisted reporting.
+
+## FAQ
+### What is full stack consulting?
+Full stack consulting means one team covers the whole business change: strategy and process design, the software and integrations, AI agents and automation, and the rollout with your people. You never hand a consultant’s recommendations to a separate development agency and hope they survive the translation.
+
+### What does business transformation involve?
+Business transformation is changing how a company operates so it grows without adding the same amount of cost and headcount. In practice we map how work flows today, redesign the slow or manual parts, build the systems that run the new process, and train your team on it. Most engagements start with one function, such as sales follow-up or finance operations, and expand from there.
+
+### How is Crank Labs different from a consulting firm or a dev agency?
+Consulting firms advise and leave; development agencies build what they are told. We do both, so the people who diagnose your business are the people who build and run the fix, and we are measured on whether it works in your operations, not on the deck or the code alone.
+
+### What does an AI automation agency actually do?
+An AI automation agency designs, builds and runs AI agents and workflows that take repetitive work off your team: answering leads on WhatsApp, booking appointments, reading invoices, updating your CRM and reporting. Crank Labs does this end to end: audit, build, integration and ongoing management.
+
+### What is the difference between an AI agent and a chatbot?
+A chatbot answers questions from a script. An AI agent understands intent, makes decisions and takes actions in your systems. It can qualify a lead, check availability, book the slot, send the confirmation and log it in your CRM without a human in the loop.
+
+### How much does it cost to build an AI agent for my business?
+It depends on how many systems the agent connects to and how much volume it handles. Most of our clients start with one focused agent on a fixed build fee plus a monthly managed plan. You get an exact quote after the free audit, with no surprises.
+
+### How long does it take to go live?
+A focused agent, such as a WhatsApp lead-response agent or an invoice-entry workflow, is typically live in two to four weeks. Larger multi-system builds are delivered in phases so you see results from the first month.
+
+### Which industries do you work with?
+Healthcare (hospitals, dental and aesthetic clinics), manufacturing (including fire-fighting vehicle builders), accounting and bookkeeping firms, jewellery and diamond trade, smart-home and electrical contractors, telecom, hospitality and travel. If your team handles enquiries, documents or repeat follow-ups, we can automate it.
+
+### Can the AI work with WhatsApp, Tally, Zoho and our existing CRM?
+Yes. We integrate with the WhatsApp Business Platform, Microsoft 365 and Gmail, TallyPrime, Zoho Books, popular CRMs, calendars and custom databases. We build around the tools your team already uses instead of replacing them.
+
+### Is our customer data safe?
+Agents run on infrastructure we control or on your own cloud, with access limited to what each workflow needs. For finance and healthcare workflows we keep a human approval step before anything is sent or posted.
+
+### What is AEO and why does my business need it?
+Answer Engine Optimization (AEO) is the practice of structuring your website and content so AI assistants like ChatGPT, Perplexity, Gemini and Google AI Overviews quote and recommend you. More buyers now ask an AI before they search. If you are not in the answer, you are not on the shortlist.
+
+### Where are you based?
+Crank Labs has offices in Mumbai and Dubai, and was founded by Varun and Darpan. We deliver for clients across India, the UAE and Australia, remotely with on-site visits where needed.
