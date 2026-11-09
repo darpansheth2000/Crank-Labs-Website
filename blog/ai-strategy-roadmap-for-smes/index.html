@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Strategy Roadmap for SMEs: A Practical 90-Day Plan</title>
+<meta name="description" content="A week-by-week AI strategy roadmap for businesses of 20 to 500 people: use-case scoring, data readiness checklist, governance, training and how to measure ROI." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="canonical" href="https://cranklabs.tech/blog/ai-strategy-roadmap-for-smes/" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Crank Labs" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:title" content="AI Strategy Roadmap for SMEs: A Practical 90-Day Plan" />
+<meta property="og:description" content="A week-by-week AI strategy roadmap for businesses of 20 to 500 people: use-case scoring, data readiness checklist, governance, training and how to measure ROI." />
+<meta property="og:url" content="https://cranklabs.tech/blog/ai-strategy-roadmap-for-smes/" />
+<meta property="og:image" content="https://cranklabs.tech/hero-poster.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Strategy Roadmap for SMEs: A Practical 90-Day Plan" />
+<meta name="twitter:description" content="A week-by-week AI strategy roadmap for businesses of 20 to 500 people: use-case scoring, data readiness checklist, governance, training and how to measure ROI." />
+<meta name="twitter:image" content="https://cranklabs.tech/hero-poster.jpg" />
+<link rel="icon" type="image/png" href="/crank-logo-icon.png" />
+<link rel="apple-touch-icon" href="/crank-logo-192.png" />
+<link rel="alternate" type="application/rss+xml" title="Crank Labs Insights" href="https://cranklabs.tech/blog/feed.xml" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<style>
+:root{--font-heading:'HelveticaNowDisplay-Medium','Helvetica Neue',Arial,sans-serif;--font-body:'HelveticaNowDisplayW01-Rg','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+body{margin:0;background:#fff;color:#000;font-family:var(--font-body);-webkit-font-smoothing:antialiased;line-height:1.6}
+::selection{background:#000;color:#fff}a{color:inherit}
+:focus-visible{outline:2px solid #000;outline-offset:3px}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(20px,4vw,40px);background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--font-heading);font-size:clamp(21px,2.4vw,26px);letter-spacing:-.02em}
+.brand img{height:26px;width:auto}
+header nav{display:flex;gap:22px;font-size:16px}header nav a{text-decoration:none;color:rgba(0,0,0,.7)}header nav a:hover,header nav a[aria-current]{color:#000;text-decoration:underline;text-underline-offset:4px}
+@media (max-width:900px){header nav{display:none}}
+.pill{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:999px;border:1px solid rgba(0,0,0,.1);background:#fff;color:#000;text-decoration:none;font-size:15px;padding:.3em 1.25em;transition:background-color .2s,color .2s}
+.pill:hover{background:#000;color:#fff}.pill.dark{background:#000;color:#fff;border-color:#000}.pill.dark:hover{background:#fff;color:#000}
+main{max-width:760px;margin:0 auto;padding:clamp(32px,6vw,72px) 20px 64px}
+.crumbs{font-size:14px;color:rgba(0,0,0,.5);margin:0 0 18px}.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.meta{font-size:14px;color:rgba(0,0,0,.5)}.meta a{text-decoration:none}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.08;font-weight:400;letter-spacing:-.02em;margin:10px 0 16px}
+h2{font-size:clamp(22px,2.6vw,28px);font-weight:400;letter-spacing:-.01em;line-height:1.25;margin:44px 0 10px}
+h3{font-size:20px;font-weight:400;font-family:var(--font-heading);line-height:1.3;margin:28px 0 6px}
+p,li{color:rgba(0,0,0,.75);font-size:18px}strong{color:#000;font-weight:400;font-family:var(--font-heading)}
+.lead{font-size:20px;color:#000}
+ul,ol{padding-left:22px}li{margin:6px 0}
+main a{text-underline-offset:3px}
+.table{overflow-x:auto;margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:16px;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid rgba(0,0,0,.1);color:rgba(0,0,0,.8)}
+th{font-family:var(--font-heading);font-weight:400;color:#000;background:#f2f2f0}
+.answer{margin:32px 0;background:#f2f2f0;padding:22px 24px}
+.answer p{color:#000;margin:6px 0 0;font-size:19px}
+.toc{margin:24px 0;border-left:2px solid #000;padding:2px 0 2px 18px}.toc ol{margin:6px 0 0;padding-left:18px}.toc li{font-size:16px;margin:3px 0}.toc a{text-decoration:none}.toc a:hover{text-decoration:underline}
+details{border-bottom:1px solid rgba(0,0,0,.1);padding:16px 0}
+summary{cursor:pointer;color:#000;font-size:19px;list-style:none}summary::-webkit-details-marker{display:none}
+details p{margin:8px 0 0;font-size:17px}
+.box{margin-top:48px;border-top:1px solid rgba(0,0,0,.1)}
+.end{margin-top:56px;background:#000;color:#fff;padding:28px 24px}
+.end h2{margin-top:0;color:#fff}.end p{color:rgba(255,255,255,.75)}.end .pill{border-color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.list a{display:block;text-decoration:none;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.1)}
+.list a:hover h2,.list a:hover h3{text-decoration:underline;text-underline-offset:4px}
+.list h2,.list h3{margin:6px 0;font-size:21px;font-family:var(--font-body)}.list p{margin:0;font-size:16px}
+footer{padding:32px clamp(20px,4vw,40px) 24px;font-size:14px;color:rgba(0,0,0,.55);border-top:1px solid rgba(0,0,0,.1)}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-bottom:28px}
+footer .cols p{color:#000;font-size:15px;margin:0 0 6px}footer ul{list-style:none;padding:0;margin:0}footer li{font-size:15px;margin:4px 0}
+footer .cols a{text-decoration:none}footer .cols a:hover{color:#000;text-decoration:underline}
+footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+<meta property="article:published_time" content="2026-11-09" />
+<meta property="article:modified_time" content="2026-11-09" />
+<meta property="article:section" content="Strategy" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://cranklabs.tech/blog/ai-strategy-roadmap-for-smes/#article","headline":"AI Strategy Roadmap for SMEs: A Practical 90-Day Plan","description":"A week-by-week AI strategy roadmap for businesses of 20 to 500 people: use-case scoring, data readiness checklist, governance, training and how to measure ROI.","datePublished":"2026-11-09","dateModified":"2026-11-09","wordCount":2093,"keywords":"AI strategy roadmap, AI roadmap for small business, AI implementation plan, AI adoption strategy, 90-day AI plan","articleSection":"Strategy","inLanguage":"en","mainEntityOfPage":"https://cranklabs.tech/blog/ai-strategy-roadmap-for-smes/","image":"https://cranklabs.tech/hero-poster.jpg","author":{"@type":"Organization","@id":"https://cranklabs.tech/#org","name":"Crank Labs","url":"https://cranklabs.tech/"},"publisher":{"@id":"https://cranklabs.tech/#org","@type":"Organization","name":"Crank Labs","logo":{"@type":"ImageObject","url":"https://cranklabs.tech/crank-logo-192.png"}},"isPartOf":{"@id":"https://cranklabs.tech/blog/#blog"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer p"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cranklabs.tech/"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://cranklabs.tech/blog/"},{"@type":"ListItem","position":3,"name":"AI Strategy Roadmap for SMEs: A Practical 90-Day Plan","item":"https://cranklabs.tech/blog/ai-strategy-roadmap-for-smes/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 90 days realistic for a first AI project in a small business?","acceptedAnswer":{"@type":"Answer","text":"Yes, if the first project is narrow. One workflow with clear volume, such as enquiry response or invoice entry, can be designed, built, piloted and rolled out within a quarter. The build itself typically takes two to four weeks. What makes timelines slip is choosing a use case with poor data or no operational owner."}},{"@type":"Question","name":"Do we need a Chief AI Officer or a data team?","acceptedAnswer":{"@type":"Answer","text":"Not for most businesses of 20 to 500 people. You need an executive sponsor, a process owner for each use case, a champion from the team and a delivery partner, whether in-house or external. Specialist roles make sense later, once several AI systems are running and the volume of work justifies them."}},{"@type":"Question","name":"How often should an AI roadmap be updated?","acceptedAnswer":{"@type":"Answer","text":"Review it at the end of every project and at least once a quarter. Each completed project teaches you about your data, your systems and how your team adopts change, and that should reshape the order of what comes next. A roadmap that stays fixed for a year has usually stopped being used."}},{"@type":"Question","name":"Should we build our own AI tools or buy off-the-shelf software?","acceptedAnswer":{"@type":"Answer","text":"Use off-the-shelf features where they already exist in software you pay for. Build when the value depends on connecting several of your systems, on your own rules and data, or on a workflow no product covers well. Many SMEs end up with a mix: bought tools at the edges and custom integrations in the middle."}}]}</script>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">Crank Labs<img src="/crank-logo-black.png" alt="" width="527" height="615" /></a>
+  <nav aria-label="Primary"><a href="/ai-consulting/">AI consulting</a><a href="/business-transformation/">Transformation</a><a href="/ai-agents/">AI agents</a><a href="/ai-automation/">Automation</a><a href="/blog/">Insights</a></nav>
+  <a class="pill dark" href="https://cal.com/cranklabs/15min" target="_blank" rel="noopener">Book a 15-min call</a>
+</header>
+<main>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Insights</a> / Strategy</nav>
+<article>
+  <p class="meta">Strategy, 10 min read, by the Crank Labs team, <time datetime="2026-11-09">9 November 2026</time></p>
+  <h1>AI Strategy Roadmap for SMEs: A Practical 90-Day Plan</h1>
+  <p class="lead">A week-by-week AI strategy roadmap for businesses of 20 to 500 people: use-case scoring, data readiness checklist, governance, training and how to measure ROI.</p>
+  <section class="answer" aria-label="Short answer"><span class="meta">The short answer</span><p>An AI strategy roadmap for an SME is a short, sequenced plan that takes a business from scattered AI ideas to one or two working systems with measured results. A practical version runs about 90 days: two weeks to diagnose, two to score and choose use cases, six to design, build and pilot, and the rest to roll out, train staff, set governance and decide what comes next.</p></section>
+  <nav class="toc" aria-label="In this article"><span class="meta">In this article</span><ol><li><a href="#what-is-an-ai-strategy-roadmap-and-what-is-it-not">What is an AI strategy roadmap, and what is it not?</a></li><li><a href="#who-should-own-the-ai-roadmap">Who should own the AI roadmap?</a></li><li><a href="#what-does-a-90-day-ai-plan-look-like-week-by-week">What does a 90-day AI plan look like week by week?</a></li><li><a href="#weeks-1-to-2-how-do-you-find-the-right-ai-use-cases">Weeks 1 to 2: how do you find the right AI use cases?</a></li><li><a href="#weeks-3-to-4-how-do-you-score-and-prioritise-ai-use-cases">Weeks 3 to 4: how do you score and prioritise AI use cases?</a></li><li><a href="#is-your-data-and-integration-ready-a-checklist">Is your data and integration ready? A checklist</a></li><li><a href="#weeks-5-to-10-how-do-you-design-build-and-pilot">Weeks 5 to 10: how do you design, build and pilot?</a></li><li><a href="#weeks-11-to-13-how-do-you-handle-governance-and-team-trainin">Weeks 11 to 13: how do you handle governance and team training?</a></li><li><a href="#how-do-you-measure-ai-roi-without-making-up-numbers">How do you measure AI ROI without making up numbers?</a></li><li><a href="#what-are-the-most-common-mistakes-in-an-ai-adoption-strategy">What are the most common mistakes in an AI adoption strategy?</a></li><li><a href="#what-should-you-do-next">What should you do next?</a></li></ol></nav>
+  <p>Most small and mid-sized businesses do not need a thick AI strategy document. They need an AI strategy roadmap that fits on one page, names a first project, and gets something working inside a quarter. This guide sets out a practical 90-day AI plan for a business of 20 to 500 people: what to do each week, how to score use cases, what to check about your data and systems, how to govern and train, and how to measure the return using your own numbers.</p>
+<h2 id="what-is-an-ai-strategy-roadmap-and-what-is-it-not">What is an AI strategy roadmap, and what is it not?</h2>
+<p>An AI strategy roadmap answers four questions: which business problems AI will address first, in what order, who owns each one, and how you will know it worked. It is tied to revenue, cost or time saved, not to a list of tools.</p>
+<p>It is not:</p>
+<ul>
+<li><strong>A technology wish list.</strong> "Deploy a chatbot, try a forecasting model, explore computer vision" is not a roadmap.</li>
+<li><strong>A multi-year transformation plan.</strong> For an SME, anything beyond the next two or three projects will change once the first one teaches you something.</li>
+<li><strong>An IT project.</strong> The people who own sales, operations and finance must own the roadmap. IT and any outside partner support them.</li>
+</ul>
+<p>If your business needs deeper change to how sales, operations or finance run before AI can help, read our <a href="/blog/business-transformation-framework/">business transformation framework</a> alongside this plan.</p>
+<h2 id="who-should-own-the-ai-roadmap">Who should own the AI roadmap?</h2>
+<p>A 90-day AI implementation plan needs a small, named team. In most SMEs that means:</p>
+<ul>
+<li><strong>Executive sponsor:</strong> the owner, CEO or COO. Sets priorities, removes blockers, signs off the go or no-go decisions.</li>
+<li><strong>Process owner:</strong> the manager of the function being changed, for example the head of accounts or the sales manager. Owns the new process and reviews the AI's work in the first weeks.</li>
+<li><strong>Champion:</strong> one or two people from the team doing the work. They test early versions and tell you what breaks.</li>
+<li><strong>Systems contact:</strong> whoever manages your software and access, in-house or an IT provider.</li>
+<li><strong>Delivery partner:</strong> an internal developer or an outside AI consulting firm that designs and builds.</li>
+</ul>
+<p>Budget roughly a few hours a week from the process owner and champion. If you cannot free that time, postpone the roadmap. An AI adoption strategy without operational owners stalls quietly.</p>
+<h2 id="what-does-a-90-day-ai-plan-look-like-week-by-week">What does a 90-day AI plan look like week by week?</h2>
+<div class="table"><table>
+<thead>
+<tr><th>Weeks</th><th>Phase</th><th>Main activities</th><th>Output</th></tr>
+</thead>
+<tbody>
+<tr><td>1 to 2</td><td>Diagnose</td><td>Interviews, process walk-throughs, collect sample data, list every repetitive task</td><td>Long list of candidate use cases with rough volumes</td></tr>
+<tr><td>3 to 4</td><td>Score and select</td><td>Score candidates on value, effort, data readiness and risk; take baselines</td><td>One or two chosen use cases, written success measures</td></tr>
+<tr><td>5 to 6</td><td>Design and prepare</td><td>Target process, approval points, integration and access plan, data clean-up</td><td>Signed-off design and readiness checklist</td></tr>
+<tr><td>7 to 10</td><td>Build and pilot</td><td>Build on real data, test on past cases, pilot with a small group, daily reviews</td><td>Working system used by the pilot group</td></tr>
+<tr><td>11 to 12</td><td>Roll out and train</td><td>Extend to the full team, role-based training, governance rules in place</td><td>System in everyday use with a runbook</td></tr>
+<tr><td>13</td><td>Review and choose next</td><td>Compare against baseline, decide to extend, adjust or stop, pick the next use case</td><td>Results review and updated roadmap</td></tr>
+</tbody>
+</table></div>
+<p>The timeline is realistic because the first project is narrow. A focused agent or workflow, such as WhatsApp lead response or invoice entry, is typically live in two to four weeks of build. The rest of the 90 days goes on choosing well, preparing properly and making the change stick.</p>
+<h2 id="weeks-1-to-2-how-do-you-find-the-right-ai-use-cases">Weeks 1 to 2: how do you find the right AI use cases?</h2>
+<p>Do not start by asking "where can we use AI?". Start by asking where time and money leak. Three activities give you most of what you need.</p>
+<h3>Walk the process</h3>
+<p>Sit with the people who handle enquiries, orders, invoices, approvals and reports. Ask them to show you, not tell you. Note every place where information is re-typed, copied between systems, chased by phone or waits in someone's inbox.</p>
+<h3>Collect real samples</h3>
+<p>Gather a few weeks of enquiries, a batch of invoices, CRM exports and the spreadsheets people actually use. These show volumes, formats and edge cases, and they tell you early whether the data is usable.</p>
+<h3>Build the long list</h3>
+<p>Write each candidate as a sentence: "Supplier invoices arriving by email are keyed into the accounting software by two people every day." Add rough weekly volume and who does it. A long list for a mid-sized business usually covers enquiry handling, quoting, follow-ups, document processing, scheduling, reporting and internal requests.</p>
+<h2 id="weeks-3-to-4-how-do-you-score-and-prioritise-ai-use-cases">Weeks 3 to 4: how do you score and prioritise AI use cases?</h2>
+<p>Score every candidate from 1 to 5 on four factors. The descriptions below keep scoring consistent between different people.</p>
+<div class="table"><table>
+<thead>
+<tr><th>Factor</th><th>Score 1</th><th>Score 3</th><th>Score 5</th></tr>
+</thead>
+<tbody>
+<tr><td>Value</td><td>Rare task, little time or revenue at stake</td><td>Weekly task, noticeable time or some revenue at stake</td><td>Daily, high-volume task or directly tied to lost revenue</td></tr>
+<tr><td>Effort (reverse scored)</td><td>Many systems, custom development, unclear process</td><td>Two or three systems, some integration work</td><td>One or two systems with good access, clear process</td></tr>
+<tr><td>Data readiness</td><td>Data scattered, inconsistent or mostly in people's heads</td><td>Data exists but needs cleaning or a standard format</td><td>Data is digital, consistent and accessible today</td></tr>
+<tr><td>Risk (reverse scored)</td><td>Errors would hurt customers, patients or finances and are hard to catch</td><td>Errors are recoverable with a review step</td><td>Errors are low impact and easy to spot</td></tr>
+</tbody>
+</table></div>
+<p>Because effort and risk are reverse scored, a higher total is always better. Add the four scores. Then apply two rules before ranking: any use case scoring 1 on data readiness waits until the data is fixed, and any use case scoring 1 on risk needs a mandatory human approval step built into the design.</p>
+<p>Here is an illustrative scoring for a generic 150-person kitchen and interior manufacturer:</p>
+<div class="table"><table>
+<thead>
+<tr><th>Candidate use case</th><th>Value</th><th>Effort</th><th>Data readiness</th><th>Risk</th><th>Total</th></tr>
+</thead>
+<tbody>
+<tr><td>WhatsApp enquiry response and showroom booking</td><td>5</td><td>4</td><td>4</td><td>4</td><td>17</td></tr>
+<tr><td>Supplier invoice entry into the accounting software</td><td>4</td><td>4</td><td>5</td><td>3</td><td>16</td></tr>
+<tr><td>Weekly production status report for management</td><td>3</td><td>3</td><td>3</td><td>5</td><td>14</td></tr>
+<tr><td>Demand forecasting for raw materials</td><td>4</td><td>2</td><td>1</td><td>3</td><td>10</td></tr>
+</tbody>
+</table></div>
+<p>In this example the enquiry agent goes first, invoice entry second, and forecasting waits because the data is not ready. That is a typical pattern: the exciting use case is rarely the right first one. Before the build starts, take a baseline for the chosen use cases, such as average response time to an enquiry or hours spent on invoice entry each week.</p>
+<h2 id="is-your-data-and-integration-ready-a-checklist">Is your data and integration ready? A checklist</h2>
+<p>Run this checklist in weeks 5 and 6. Every "no" is either a task to fix before the build or a reason to change the design.</p>
+<ul>
+<li>Do we know exactly which systems the workflow touches (CRM, accounting software, email, WhatsApp, spreadsheets, databases)?</li>
+<li>Can each system be accessed through an API, an integration or a reliable export?</li>
+<li>Are the logins and accounts in the company's name, not an individual's?</li>
+<li>Is the data the AI needs digital and in a consistent format?</li>
+<li>Are customer, supplier and product records reasonably free of duplicates?</li>
+<li>Do we have a set of past cases, with correct outcomes, to test against?</li>
+<li>Have we written down the edge cases and exceptions staff handle today?</li>
+<li>Do we know which data is personal or sensitive, and which data protection laws apply?</li>
+<li>Is it agreed what the AI may read, what it may write, and what it may never do?</li>
+<li>Is there a named person to approve AI actions involving money, health or legal commitments?</li>
+<li>Is there somewhere to log every AI action so it can be reviewed?</li>
+</ul>
+<h2 id="weeks-5-to-10-how-do-you-design-build-and-pilot">Weeks 5 to 10: how do you design, build and pilot?</h2>
+<p>The design should be a short written description of the new process, step by step, including where the AI acts, where it hands to a person and who approves what. Keep it to a page or two so the process owner can actually check it.</p>
+<p>During the build, insist on three habits:</p>
+<ol>
+<li><strong>Build on real data.</strong> Test against past enquiries or invoices with known outcomes before any customer or ledger sees the result.</li>
+<li><strong>Start supervised.</strong> In the pilot, the AI drafts and a person approves. Remove approvals only where the record shows the AI is reliably right and mistakes would be cheap.</li>
+<li><strong>Review daily, then weekly.</strong> Short reviews of what the AI did, what it got wrong and what it handed over. Fix rules and prompts as you go.</li>
+</ol>
+<p>Our pages on <a href="/ai-automation/">AI automation for invoices, approvals and reporting</a> and <a href="/ai-agents/">AI agents for WhatsApp, voice and email</a> describe what typical builds involve.</p>
+<h2 id="weeks-11-to-13-how-do-you-handle-governance-and-team-trainin">Weeks 11 to 13: how do you handle governance and team training?</h2>
+<h3>Governance that fits an SME</h3>
+<p>You do not need a committee. You need a few written rules that everyone knows:</p>
+<ul>
+<li><strong>Approved tools:</strong> which AI tools staff may use, and which data may never be pasted into public tools.</li>
+<li><strong>Approval rules:</strong> which actions need a person to sign off, especially anything financial, clinical or contractual.</li>
+<li><strong>Access:</strong> each AI system gets only the permissions its workflow needs.</li>
+<li><strong>Logging and review:</strong> every action is logged and a named person reviews a sample regularly.</li>
+<li><strong>Incidents:</strong> how staff report a wrong answer or action, and who fixes it.</li>
+<li><strong>Data protection:</strong> alignment with the laws that apply, such as India's Digital Personal Data Protection Act 2023 or the UAE Personal Data Protection Law.</li>
+</ul>
+<h3>Training by role</h3>
+<ul>
+<li><strong>Front-line staff:</strong> what the system does, how to spot a mistake, how to take over a conversation or correct an entry.</li>
+<li><strong>Process owners:</strong> how to read the logs, adjust rules and track the measures.</li>
+<li><strong>Leadership:</strong> what the results review shows and how to choose the next use case.</li>
+</ul>
+<p>Training is where adoption is won. A system that staff do not trust gets worked around within weeks.</p>
+<h2 id="how-do-you-measure-ai-roi-without-making-up-numbers">How do you measure AI ROI without making up numbers?</h2>
+<p>The only numbers that matter are your own. Measure before and after, using the same method, on the same process.</p>
+<div class="table"><table>
+<thead>
+<tr><th>Measure</th><th>How to take the baseline</th><th>How to measure after</th></tr>
+</thead>
+<tbody>
+<tr><td>Staff time on the task</td><td>Time a sample of tasks and multiply by weekly volume</td><td>Time the remaining manual work, including reviews and corrections</td></tr>
+<tr><td>Response time to enquiries</td><td>Timestamps of first reply from WhatsApp or email history</td><td>Same timestamps from the system logs</td></tr>
+<tr><td>Missed or unanswered enquiries</td><td>Count enquiries with no reply within your target time</td><td>Same count after launch</td></tr>
+<tr><td>Errors and rework</td><td>Count corrections in a sample period</td><td>Count corrections in the same length of period</td></tr>
+<tr><td>Cycle time</td><td>Days from invoice receipt to posting, or from enquiry to quote</td><td>Same measure after launch</td></tr>
+<tr><td>Conversion</td><td>Share of enquiries that became bookings or orders in a sample month</td><td>Same calculation, compared month to month</td></tr>
+</tbody>
+</table></div>
+<p>Then put it in plain money terms: hours saved per month multiplied by the loaded cost of those hours, plus any extra revenue from enquiries that would otherwise have been missed, minus the build fee spread over a sensible period and the monthly running costs. If the result is clearly positive, extend. If it is marginal, adjust. If it is negative after tuning, stop and move to the next use case. For what drives the cost side, see our guide to <a href="/blog/ai-automation-cost-small-business/">AI automation costs for small businesses</a>.</p>
+<h2 id="what-are-the-most-common-mistakes-in-an-ai-adoption-strategy">What are the most common mistakes in an AI adoption strategy?</h2>
+<ul>
+<li>Starting with the most impressive use case instead of the one with ready data.</li>
+<li>Skipping the baseline, so nobody can prove the project worked.</li>
+<li>Running the project from IT without an operational owner.</li>
+<li>Removing human approval too early to save a little time.</li>
+<li>Trying to automate a process that the team does not agree on.</li>
+<li>Planning five projects at once rather than one at a time.</li>
+<li>Treating launch as the finish line instead of the start of tuning.</li>
+</ul>
+<p>Accounting teams in particular tend to see quick, measurable results from document-heavy workflows. Our post on <a href="/blog/ai-bookkeeping-automation-accounting-firms/">AI bookkeeping automation for accounting firms</a> walks through that use case.</p>
+<h2 id="what-should-you-do-next">What should you do next?</h2>
+<p>Block two hours this week with your process owners and build the long list. Score it with the table above, and you will already have a draft AI strategy roadmap. If you want an outside view, Crank Labs runs a free diagnosis session that maps how your leads, operations and finance flow and identifies the first use case worth building. Read how we approach <a href="/ai-consulting/">AI consulting from roadmap to rollout</a>, check our guide on <a href="/blog/what-is-ai-consulting/">what AI consulting involves</a>, or <a href="https://cal.com/cranklabs/15min">book a free 15-minute call</a>.</p>
+  <section class="box" aria-labelledby="faq"><h2 id="faq">Frequently asked questions</h2>
+  <details><summary>Is 90 days realistic for a first AI project in a small business?</summary><p>Yes, if the first project is narrow. One workflow with clear volume, such as enquiry response or invoice entry, can be designed, built, piloted and rolled out within a quarter. The build itself typically takes two to four weeks. What makes timelines slip is choosing a use case with poor data or no operational owner.</p></details>
+  <details><summary>Do we need a Chief AI Officer or a data team?</summary><p>Not for most businesses of 20 to 500 people. You need an executive sponsor, a process owner for each use case, a champion from the team and a delivery partner, whether in-house or external. Specialist roles make sense later, once several AI systems are running and the volume of work justifies them.</p></details>
+  <details><summary>How often should an AI roadmap be updated?</summary><p>Review it at the end of every project and at least once a quarter. Each completed project teaches you about your data, your systems and how your team adopts change, and that should reshape the order of what comes next. A roadmap that stays fixed for a year has usually stopped being used.</p></details>
+  <details><summary>Should we build our own AI tools or buy off-the-shelf software?</summary><p>Use off-the-shelf features where they already exist in software you pay for. Build when the value depends on connecting several of your systems, on your own rules and data, or on a workflow no product covers well. Many SMEs end up with a mix: bought tools at the edges and custom integrations in the middle.</p></details>
+  </section>
+</article>
+<aside class="end">
+  <h2>Want this working in your business?</h2>
+  <p>Crank Labs is an AI consulting and business transformation firm with offices in Dubai and Mumbai. We redesign how operations run, then build the software, AI agents and automation behind it, for clinics, manufacturers, accounting firms, jewellers and more across the UAE, India, the UK, the US and Australia. See our <a href="/ai-automation/" style="color:#fff">ai automation</a> and <a href="/ai-agents/" style="color:#fff">ai agent development</a> services.</p>
+  <div class="row"><a class="pill" href="https://cal.com/cranklabs/15min" target="_blank" rel="noopener">Book a 15-min call</a><a class="pill" href="https://wa.me/971563402532?text=Hi%20Crank%20Labs%2C%20I'd%20like%20to%20book%20a%2015-min%20call%20about%20transforming%20my%20business." target="_blank" rel="noopener">WhatsApp us</a></div>
+</aside>
+<nav class="box list" aria-label="More articles">
+  <a href="/blog/ai-automation-cost-small-business/"><span class="meta">Strategy, 8 min read</span><h3>AI Automation Cost in 2026: What Drives the Price and the ROI</h3><p>What AI automation costs and why: build fees, monthly running costs, the factors that move the price, hidden costs and how to work out ROI before you spend.</p></a>
+  <a href="/blog/ai-adoption-guide-uae-businesses/"><span class="meta">AI Consulting, 9 min read</span><h3>AI for Businesses in the UAE: A Practical Adoption Guide</h3><p>A practical guide to AI for businesses in the UAE: WhatsApp-first customers, Arabic and English, the PDPL, sector use cases and where a Dubai firm should begin.</p></a>
+  <a href="/blog/business-transformation-framework/"><span class="meta">Transformation, 11 min read</span><h3>Business Transformation Framework: 7 Steps, Owners and Metrics</h3><p>A practical business transformation framework in seven steps, with what happens in each, the deliverables, who owns them, typical timings and metrics to track.</p></a>
+</nav>
+</main>
+<footer>
+  <div class="cols">
+    <div><p>Services</p><ul><li><a href="/ai-consulting/">AI consulting</a></li><li><a href="/business-transformation/">Business transformation</a></li><li><a href="/ai-agents/">AI agents</a></li><li><a href="/ai-automation/">AI automation</a></li><li><a href="/software-development/">Software development</a></li><li><a href="/answer-engine-optimization/">Answer engine optimization</a></li></ul></div>
+    <div><p>Locations</p><ul><li><a href="/ai-consulting-dubai/">AI consulting in Dubai</a></li><li><a href="/ai-consulting-mumbai/">AI consulting in Mumbai &amp; India</a></li><li><a href="/ai-consulting-uk/">AI consulting for UK businesses</a></li><li><a href="/ai-consulting-usa/">AI consulting for US businesses</a></li><li><a href="/ai-consulting-australia/">AI consulting in Australia</a></li></ul></div>
+    <div><p>Insights</p><ul><li><a href="/blog/ai-adoption-guide-uae-businesses/">AI for Businesses in the UAE: A Practical Adoption Guide</a></li><li><a href="/blog/ai-strategy-roadmap-for-smes/">AI Strategy Roadmap for SMEs: A Practical 90-Day Plan</a></li><li><a href="/blog/business-transformation-framework/">Business Transformation Framework: 7 Steps, Owners and Metrics</a></li><li><a href="/blog/digital-transformation-vs-business-transformation/">Digital Transformation vs Business Transformation: Which First?</a></li><li><a href="/blog/">All articles</a></li></ul></div>
+    <div><p>Contact</p><ul><li><a href="https://cal.com/cranklabs/15min" target="_blank" rel="noopener">Book a 15-min call</a></li><li><a href="https://wa.me/971563402532?text=Hi%20Crank%20Labs%2C%20I'd%20like%20to%20book%20a%2015-min%20call%20about%20transforming%20my%20business." target="_blank" rel="noopener">WhatsApp +971 56 340 2532</a></li><li><a href="mailto:varun@cranklabs.tech">varun@cranklabs.tech</a></li><li><a href="mailto:darpan@cranklabs.tech">darpan@cranklabs.tech</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Crank Labs · AI consulting, full stack consulting &amp; business transformation · Dubai &amp; Mumbai</span></div>
+</footer>
+</body>
+</html>
