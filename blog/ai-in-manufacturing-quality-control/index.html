@@ -242,7 +242,7 @@ document.querySelectorAll('form.lead-form').forEach(function (f) {
     b.disabled = true; b.textContent = 'Sending…';
     fetch("https://formsubmit.co/ajax/darpan@cranklabs.tech", { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(Object.assign(d, { page: location.href, _subject: 'New lead: ' + (d.company || d.name) + ' (' + document.title + ')', _cc: "varun@cranklabs.tech", _replyto: d.email, _template: 'table' })) })
-      .then(function (r) { if (!r.ok) throw 0; s.textContent = "Thanks, it's with both founders. We'll reply by email or WhatsApp."; f.reset(); b.textContent = 'Sent'; })
+      .then(function (r) { return r.json(); }).then(function (j) { if (String(j.success) !== 'true') throw 0; s.textContent = "Thanks, it's with both founders. We'll reply by email or WhatsApp."; f.reset(); b.textContent = 'Sent'; })
       .catch(function () { s.textContent = "Our form didn't go through, so we've opened WhatsApp with your message."; b.disabled = false; b.textContent = 'Send';
         window.open('https://wa.me/971563402532?text=' + encodeURIComponent('Hi Crank Labs, I am ' + d.name + ' (' + d.email + '). ' + (d.message || '') + ' [' + location.href + ']'), '_blank', 'noopener'); });
   });
